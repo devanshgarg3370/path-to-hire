@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Skill Gap Analysis | Path to Hire</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/frontend/css/skill-gap.css">
+
+</head>
+
+<body>
+
+<div class="skill-gap-page">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="page-header">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <h2>Path to Hire</h2>
+
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Dashboard
+
+        </a>
+
+    </header>
+
+
+
+    <!-- ================= PAGE TITLE ================= -->
+
+    <section class="page-title">
+
+        <h1>Skill Gap Analysis</h1>
+
+        <p>
+            Compare your current skills with your dream role and receive
+            an AI-generated learning roadmap.
+        </p>
+
+    </section>
+
+
+
+    <!-- ================= ANALYSIS FORM ================= -->
+
+    <section class="analysis-card">
+
+        <div class="form-grid">
+
+            <!-- Target Role -->
+
+            <div class="input-group">
+
+                <label>Target Role</label>
+
+                <select>
+
+                    <option>Frontend Developer</option>
+
+                    <option>Backend Developer</option>
+
+                    <option>Full Stack Developer</option>
+
+                    <option>AI Engineer</option>
+
+                    <option>Data Scientist</option>
+
+                    <option>Machine Learning Engineer</option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- Company -->
+
+            <div class="input-group">
+
+                <label>Target Company</label>
+
+                <input
+                    type="text"
+                    placeholder="Search company...">
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Suggested Companies -->
+
+        <div class="company-chips">
+
+            <span>Google</span>
+
+            <span>Microsoft</span>
+
+            <span>Amazon</span>
+
+            <span>Adobe</span>
+
+            <span>Oracle</span>
+
+            <span>Infosys</span>
+
+            <span>TCS</span>
+
+            <span>Accenture</span>
+
+        </div>
+
+
+
+        <button class="analyze-btn">
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            Analyze Skill Gap
+
+        </button>
+
+    </section>
+
+
+
+    <!-- ================= RESULTS ================= -->
+
+    <section class="results-section" id="resultsSection" style="display:none;">
+        <h2>Analysis Results</h2>
+
+
+
+        <!-- Skill Match -->
+
+        <div class="match-card">
+
+            <h3>Overall Skill Match</h3>
+
+            <div class="match-bar">
+
+                <div class="match-fill">
+                    78%
+                </div>
+
+            </div>
+
+            <p>
+                You currently match approximately
+                <strong>78%</strong> of the required skills.
+            </p>
+
+        </div>
+
+
+
+        <!-- Skill Match Breakdown -->
+
+        <div class="chart-section">
+
+            <h3>Skill Match Breakdown</h3>
+
+            
+        <div class="skills-chart">
+
+    <div class="skill">
+        <span>HTML & CSS</span>
+        <div class="bar"><div class="fill" data-width="95"></div></div>
+        <strong>95%</strong>
+    </div>
+
+    <div class="skill">
+        <span>JavaScript</span>
+        <div class="bar"><div class="fill" data-width="82"></div></div>
+        <strong>82%</strong>
+    </div>
+
+    <div class="skill">
+        <span>React</span>
+        <div class="bar"><div class="fill" data-width="76"></div></div>
+        <strong>76%</strong>
+    </div>
+
+    <div class="skill">
+        <span>Node.js</span>
+        <div class="bar"><div class="fill" data-width="60"></div></div>
+        <strong>60%</strong>
+    </div>
+
+    <div class="skill">
+        <span>MongoDB</span>
+        <div class="bar"><div class="fill" data-width="70"></div></div>
+        <strong>70%</strong>
+    </div>
+
+</div>
+
+
+        </div>
+
+
+
+        <!-- Missing Skills Table -->
+
+        <div class="table-card">
+
+            <h3>Missing Skills</h3>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Skill</th>
+
+                        <th>Priority</th>
+
+                        <th>Learning Time</th>
+
+                        <th>Difficulty</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>Docker</td>
+
+                        <td>High</td>
+
+                        <td>2 Weeks</td>
+
+                        <td><span class="badge hard">Hard</span></td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>AWS</td>
+
+                        <td>High</td>
+
+                        <td>4 Weeks</td>
+
+                        <td><span class="badge hard">Hard</span></td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>TypeScript</td>
+
+                        <td>Medium</td>
+
+                        <td>10 Days</td>
+
+                        <td><span class="badge medium">Medium</span></td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Testing (Jest)</td>
+
+                        <td>Medium</td>
+
+                        <td>1 Week</td>
+
+                        <td><span class="badge medium">Medium</span></td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>GraphQL</td>
+
+                        <td>Low</td>
+
+                        <td>5 Days</td>
+
+                        <td><span class="badge easy">Easy</span></td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <!-- Summary -->
+
+        <div class="summary-card">
+
+            <h3>AI Summary</h3>
+
+            <p>
+
+                Your profile is well aligned for Frontend Development.
+                Improving Cloud, Docker, DSA and Testing skills will
+                significantly increase your placement readiness.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- CTA -->
+
+        <div class="cta-section">
+
+            <button class="roadmap-btn">
+
+                <i class="fa-solid fa-road"></i>
+
+                Generate Roadmap From This
+
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="/frontend/js/skill-gap.js"></script>
+
+</body>
+
+</html>

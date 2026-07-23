@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Settings | Path to Hire</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="/frontend/css/settings.css">
+
+</head>
+
+<body>
+
+<div class="settings-page">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="page-header">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <h2>Path to Hire</h2>
+
+        </div>
+
+        <a href="dashboard.html">
+
+            Dashboard
+
+        </a>
+
+    </header>
+
+
+
+    <!-- ================= SETTINGS ================= -->
+
+    <section class="settings-container">
+
+        <!-- Sidebar Tabs -->
+
+        <aside class="settings-sidebar">
+
+            <button class="tab-btn active"
+                data-tab="account">
+
+                <i class="fa-solid fa-user"></i>
+
+                Account
+
+            </button>
+
+            <button class="tab-btn"
+                data-tab="notifications">
+
+                <i class="fa-solid fa-bell"></i>
+
+                Notifications
+
+            </button>
+
+            <button class="tab-btn"
+                data-tab="security">
+
+                <i class="fa-solid fa-lock"></i>
+
+                Security
+
+            </button>
+
+            <button class="tab-btn danger"
+                data-tab="danger">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Danger Zone
+
+            </button>
+
+        </aside>
+
+
+
+        <!-- Content -->
+
+        <div class="settings-content">
+
+            <!-- ================= ACCOUNT ================= -->
+
+            <section
+                id="account"
+                class="tab-content active">
+
+                <h2>
+
+                    Account Settings
+
+                </h2>
+
+                <form id="accountForm">
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Full Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name">
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Email
+
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email">
+
+                    </div>
+
+                    <button type="submit">
+
+                        Save Changes
+
+                    </button>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- ================= NOTIFICATIONS ================= -->
+
+            <section
+                id="notifications"
+                class="tab-content">
+
+                <h2>
+
+                    Notifications
+
+                </h2>
+
+                <label>
+
+                    <input type="checkbox"
+                        id="emailNotifications">
+
+                    Email Notifications
+
+                </label>
+
+                <label>
+
+                    <input type="checkbox"
+                        id="jobAlerts">
+
+                    Internship Alerts
+
+                </label>
+
+                <label>
+
+                    <input type="checkbox"
+                        id="roadmapReminders">
+
+                    Roadmap Reminders
+
+                </label>
+
+                <button id="saveNotifications">
+
+                    Save Preferences
+
+                </button>
+
+            </section>
+
+
+
+            <!-- ================= SECURITY ================= -->
+
+            <section
+                id="security"
+                class="tab-content">
+
+                <h2>
+
+                    Change Password
+
+                </h2>
+
+                <form id="passwordForm">
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Current Password
+
+                        </label>
+
+                        <input
+                            type="password"
+                            id="currentPassword">
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+
+                            New Password
+
+                        </label>
+
+                        <input
+                            type="password"
+                            id="newPassword">
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Confirm Password
+
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirmPassword">
+
+                    </div>
+
+                    <button type="submit">
+
+                        Update Password
+
+                    </button>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- ================= DANGER ZONE ================= -->
+
+            <section
+                id="danger"
+                class="tab-content">
+
+                <h2>
+
+                    Danger Zone
+
+                </h2>
+
+                <p>
+
+                    Deleting your account is permanent.
+                    All resumes, reports, interviews,
+                    and roadmap progress will be removed.
+
+                </p>
+
+                <button
+                    id="deleteAccount"
+                    class="danger-btn">
+
+                    Delete Account
+
+                </button>
+
+            </section>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="/frontend/js/settings.js"></script>
+
+</body>
+
+</html>

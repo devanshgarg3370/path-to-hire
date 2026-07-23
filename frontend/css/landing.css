@@ -1,0 +1,102 @@
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f8faff;
+}
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+}
+
+.navbar-brand{
+    color:#2563eb!important;
+}
+
+.nav-link{
+    font-weight:500;
+}
+
+.nav-link:hover{
+    color:#2563eb!important;
+}
+
+.btn-primary{
+    background:#2563eb;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#1d4ed8;
+}
+/* Companies */
+.companies i{
+transition:.3s;
+}
+
+.companies i:hover{
+transform:scale(1.2);
+}
+
+/* Features */
+.features{
+background:#f8faff;
+}
+
+.feature-icon{
+width:70px;
+height:70px;
+margin:auto;
+display:grid;
+place-items:center;
+border-radius:50%;
+background:#eef4ff;
+}
+
+.card{
+border-radius:20px;
+transition:.35s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 40px rgba(0,0,0,.12)!important;
+}
+.features{
+    padding:80px 8%;
+    background:#f8fafc;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.feature-card{
+    background:#fff;
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-10px);
+}
+
+.feature-card i{
+    font-size:50px;
+    color:#2563eb;
+    margin-bottom:20px;
+}
+
+.feature-card h3{
+    margin-bottom:15px;
+}

@@ -1,0 +1,350 @@
+/* ================= GOOGLE FONT ================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#eef4ff,#dbeafe,#eff6ff);
+color:#1e293b;
+min-height:100vh;
+}
+
+/* ================= PAGE ================= */
+
+.roadmap-page{
+width:95%;
+max-width:1500px;
+margin:auto;
+padding:30px 0;
+}
+
+/* ================= HEADER ================= */
+
+.page-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:35px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+font-size:24px;
+font-weight:700;
+color:#2563eb;
+}
+
+.logo i{
+font-size:30px;
+}
+
+.page-header a{
+text-decoration:none;
+background:#2563eb;
+color:#fff;
+padding:10px 20px;
+border-radius:10px;
+transition:.3s;
+}
+
+.page-header a:hover{
+background:#1d4ed8;
+}
+
+/* ================= TITLE ================= */
+
+.title-section{
+text-align:center;
+margin-bottom:40px;
+}
+
+.title-section h1{
+font-size:40px;
+margin-bottom:12px;
+}
+
+.title-section p{
+max-width:700px;
+margin:auto;
+color:#64748b;
+line-height:1.7;
+}
+
+/* ================= TOP ================= */
+
+.roadmap-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:25px;
+flex-wrap:wrap;
+margin-bottom:35px;
+}
+
+.progress-card{
+flex:1;
+min-width:350px;
+background:rgba(255,255,255,.7);
+backdrop-filter:blur(15px);
+padding:25px;
+border-radius:20px;
+box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
+
+.progress-header{
+display:flex;
+justify-content:space-between;
+margin-bottom:15px;
+font-weight:600;
+}
+
+.progress-bar{
+height:14px;
+background:#dbeafe;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-fill{
+width:0;
+height:100%;
+background:linear-gradient(90deg,#2563eb,#3b82f6);
+border-radius:20px;
+transition:2s;
+}
+
+/* ================= BUTTONS ================= */
+
+.controls{
+display:flex;
+gap:15px;
+}
+
+.controls button,
+.regenerate-btn,
+.modal-buttons button{
+border:none;
+cursor:pointer;
+padding:12px 22px;
+border-radius:12px;
+font-size:15px;
+font-weight:600;
+transition:.3s;
+}
+
+.controls button{
+background:#fff;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.controls .active{
+background:#2563eb;
+color:#fff;
+}
+
+.controls button:hover,
+.regenerate-btn:hover{
+transform:translateY(-3px);
+}
+
+/* ================= BOARD ================= */
+
+.kanban-board{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+}
+
+.week-column{
+background:rgba(255,255,255,.75);
+backdrop-filter:blur(18px);
+padding:20px;
+border-radius:20px;
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.week-column h2{
+color:#2563eb;
+margin-bottom:6px;
+}
+
+.week-column span{
+color:#64748b;
+font-size:14px;
+display:block;
+margin-bottom:20px;
+}
+
+/* ================= TASK ================= */
+
+.task-card{
+background:#fff;
+padding:18px;
+border-radius:16px;
+margin-bottom:18px;
+box-shadow:0 8px 20px rgba(0,0,0,.06);
+transition:.3s;
+}
+
+.task-card:hover{
+transform:translateY(-6px);
+box-shadow:0 18px 35px rgba(37,99,235,.15);
+}
+
+.task-top{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:12px;
+}
+
+.task-top h4{
+font-size:16px;
+}
+
+.task-card p{
+color:#2563eb;
+margin-bottom:10px;
+}
+
+.task-card small{
+color:#64748b;
+}
+
+/* ================= BUTTON ================= */
+
+.bottom-section{
+text-align:center;
+margin-top:45px;
+}
+
+.regenerate-btn{
+background:#2563eb;
+color:#fff;
+font-size:17px;
+padding:14px 35px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.45);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.modal-box{
+background:rgba(255,255,255,.95);
+backdrop-filter:blur(18px);
+padding:35px;
+width:420px;
+border-radius:22px;
+animation:popup .35s;
+}
+
+@keyframes popup{
+from{
+transform:scale(.8);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.modal-box h2{
+margin-bottom:10px;
+}
+
+.modal-box p{
+margin:15px 0;
+color:#64748b;
+}
+
+.modal input{
+width:100%;
+margin:15px 0;
+}
+
+.modal-buttons{
+display:flex;
+justify-content:flex-end;
+gap:12px;
+margin-top:20px;
+}
+
+.modal-buttons button:first-child{
+background:#e2e8f0;
+}
+
+.modal-buttons button:last-child{
+background:#2563eb;
+color:#fff;
+}
+
+/* ================= CHECKBOX ================= */
+
+input[type="checkbox"]{
+width:18px;
+height:18px;
+accent-color:#2563eb;
+cursor:pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1200px){
+
+.kanban-board{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:768px){
+
+.page-header{
+flex-direction:column;
+gap:20px;
+}
+
+.roadmap-top{
+flex-direction:column;
+}
+
+.controls{
+width:100%;
+}
+
+.controls button{
+flex:1;
+}
+
+.kanban-board{
+grid-template-columns:1fr;
+}
+
+.progress-card{
+min-width:100%;
+}
+
+.modal-box{
+width:90%;
+}
+
+.title-section h1{
+font-size:32px;
+}
+
+}

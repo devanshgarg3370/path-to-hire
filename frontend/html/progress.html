@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Progress Tracking | Path to Hire</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="/frontend/css/progress.css">
+
+</head>
+
+<body>
+
+<div class="progress-page">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="page-header">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <h2>Path to Hire</h2>
+
+        </div>
+
+        <a href="dashboard.html">
+
+            Dashboard
+
+        </a>
+
+    </header>
+
+
+
+    <!-- ================= PAGE TITLE ================= -->
+
+    <section class="page-title">
+
+        <h1>
+
+            Progress Tracking
+
+        </h1>
+
+        <p>
+
+            Track your placement journey, completed activities,
+            and job readiness improvements.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- ================= SCORE CARD ================= -->
+
+    <section class="summary-card">
+
+        <div class="summary-item">
+
+            <h3 id="jobReadiness">
+
+                0%
+
+            </h3>
+
+            <p>
+
+                Job Readiness Score
+
+            </p>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h3 id="completedTasks">
+
+                0
+
+            </h3>
+
+            <p>
+
+                Tasks Completed
+
+            </p>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h3 id="interviewsTaken">
+
+                0
+
+            </h3>
+
+            <p>
+
+                Interviews Taken
+
+            </p>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h3 id="resumeAnalyses">
+
+                0
+
+            </h3>
+
+            <p>
+
+                Resume Analyses
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= CHART ================= -->
+
+    <section class="chart-section">
+
+        <div class="section-header">
+
+            <h2>
+
+                Job Readiness Trend
+
+            </h2>
+
+        </div>
+
+        <canvas id="readinessChart"></canvas>
+
+    </section>
+
+
+
+    <!-- ================= ACTIVITY TIMELINE ================= -->
+
+    <section class="activity-section">
+
+        <div class="section-header">
+
+            <h2>
+
+                Activity Timeline
+
+            </h2>
+
+        </div>
+
+        <div
+            id="activityTimeline"
+            class="timeline">
+
+            <!-- JavaScript Generates Timeline -->
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= EMPTY STATE ================= -->
+
+    <section
+        id="emptyState"
+        class="empty-state">
+
+        <i class="fa-solid fa-chart-simple"></i>
+
+        <h2>
+
+            No Progress Yet
+
+        </h2>
+
+        <p>
+
+            Start analyzing your resume or complete
+            roadmap tasks to see your progress.
+
+        </p>
+
+    </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="/frontend/js/progress.js"></script>
+
+</body>
+
+</html>

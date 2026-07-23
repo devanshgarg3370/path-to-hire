@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Internship Recommendations | Path to Hire</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="/frontend/css/internships.css">
+
+</head>
+
+<body>
+
+<div class="internship-page">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="page-header">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-briefcase"></i>
+
+            <h2>Path to Hire</h2>
+
+        </div>
+
+        <a href="dashboard.html">
+
+            Dashboard
+
+        </a>
+
+    </header>
+
+
+
+    <!-- ================= MAIN LAYOUT ================= -->
+
+    <div class="internship-layout">
+
+
+
+
+        <!-- =====================================
+                FILTER SIDEBAR
+        ====================================== -->
+
+        <aside class="filter-sidebar">
+
+            <h2>
+
+                Filters
+
+            </h2>
+
+
+
+            <!-- Location -->
+
+            <div class="filter-group">
+
+                <label>
+
+                    Location
+
+                </label>
+
+                <select id="location">
+
+                    <option value="">All Locations</option>
+
+                    <option>Bangalore</option>
+
+                    <option>Hyderabad</option>
+
+                    <option>Pune</option>
+
+                    <option>Delhi NCR</option>
+
+                    <option>Mumbai</option>
+
+                </select>
+
+            </div>
+
+
+
+
+
+            <!-- Remote -->
+
+            <div class="filter-group">
+
+                <label>
+
+                    Remote Only
+
+                </label>
+
+                <input
+                    type="checkbox"
+                    id="remote">
+
+            </div>
+
+
+
+
+
+            <!-- Stipend -->
+
+            <div class="filter-group">
+
+                <label>
+
+                    Minimum Stipend
+
+                </label>
+
+                <input
+                    type="range"
+                    id="stipend"
+                    min="0"
+                    max="100000"
+                    step="5000">
+
+                <span id="stipendValue">
+
+                    ₹20,000
+
+                </span>
+
+            </div>
+
+
+
+
+
+
+            <!-- Company Type -->
+
+            <div class="filter-group">
+
+                <label>
+
+                    Company Type
+
+                </label>
+
+                <label>
+
+                    <input
+                        type="checkbox">
+
+                    Startup
+
+                </label>
+
+                <label>
+
+                    <input
+                        type="checkbox">
+
+                    MNC
+
+                </label>
+
+                <label>
+
+                    <input
+                        type="checkbox">
+
+                    Product Based
+
+                </label>
+
+                <label>
+
+                    <input
+                        type="checkbox">
+
+                    Service Based
+
+                </label>
+
+            </div>
+
+
+
+
+
+            <button id="applyFilters">
+
+                Apply Filters
+
+            </button>
+
+        </aside>
+
+
+
+
+
+
+
+        <!-- =====================================
+                INTERNSHIP RESULTS
+        ====================================== -->
+
+        <main class="results-section">
+
+            <div class="results-header">
+
+                <h1>
+
+                    Recommended Internships
+
+                </h1>
+
+                <p>
+
+                    Personalized recommendations based on your resume.
+
+                </p>
+
+            </div>
+
+
+
+
+
+            <!-- Dynamic Cards -->
+
+            <div
+                id="internshipGrid"
+                class="internship-grid">
+
+                <!-- JavaScript will create cards -->
+
+            </div>
+
+
+
+
+
+
+            <!-- Empty State -->
+
+            <div
+                id="emptyState"
+                class="empty-state">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <h2>
+
+                    No Matching Internships
+
+                </h2>
+
+                <p>
+
+                    Try changing location, stipend,
+                    or company filters.
+
+                </p>
+
+                <button>
+
+                    Reset Filters
+
+                </button>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>
+
+<script src="/frontend/js/internships.js"></script>
+
+</body>
+
+</html>

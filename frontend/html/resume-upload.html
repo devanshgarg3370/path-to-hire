@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analyzer | Path to Hire</title>
+
+
+    <!-- Google Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="/frontend/css/resume-upload.css">
+
+
+</head>
+
+
+<body>
+
+
+<div class="resume-page">
+
+
+
+    <!-- ================= HEADER ================= -->
+
+
+    <header class="resume-header">
+
+
+        <div class="logo">
+
+            <i class="fa-solid fa-robot"></i>
+
+            <h2>
+                Path to Hire
+            </h2>
+
+        </div>
+
+
+
+        <a href="dashboard.html" class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Dashboard
+
+        </a>
+
+
+    </header>
+
+
+
+
+
+    <!-- ================= MAIN CONTAINER ================= -->
+
+
+    <main class="resume-container">
+
+
+        <section class="resume-card">
+
+
+            <div class="page-heading">
+
+
+                <h1>
+                    AI Resume Analyzer
+                </h1>
+
+
+                <p>
+                    Upload your resume and get AI-powered career insights.
+                </p>
+
+
+            </div>
+
+
+
+
+
+            <!-- ================= EMPTY STATE ================= -->
+
+
+            <div class="empty-state" id="emptyState">
+
+
+                <div class="empty-image">
+
+
+                    <i class="fa-solid fa-file-circle-plus"></i>
+
+
+                </div>
+
+
+
+                <h2>
+                    No Resume Uploaded
+                </h2>
+
+
+                <p>
+                    Upload your resume to analyze skills,
+                    experience and placement readiness.
+                </p>
+
+
+            </div>
+
+
+
+
+
+
+            <!-- ================= UPLOAD AREA ================= -->
+
+
+            <div class="upload-box" id="uploadBox">
+
+
+                <input 
+                type="file"
+                id="resumeFile"
+                accept=".pdf,.doc,.docx"
+                hidden>
+
+
+                <div class="upload-icon">
+
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                </div>
+
+
+
+                <h3>
+                    Drag & Drop your Resume
+                </h3>
+
+
+                <p>
+                    or click to browse files
+                </p>
+
+
+                <span>
+                    Supported Formats: PDF, DOC, DOCX
+                </span>
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- ================= FILE PREVIEW ================= -->
+
+
+            <div class="file-preview" id="filePreview">
+
+
+                <div class="file-icon">
+
+                    <i class="fa-solid fa-file-pdf"></i>
+
+                </div>
+
+
+
+                <div class="file-info">
+
+
+                    <h4 id="fileName">
+                        Resume.pdf
+                    </h4>
+
+
+                    <p id="fileSize">
+                        2.5 MB
+                    </p>
+
+
+                    <div class="upload-progress">
+
+
+                        <div class="progress-bar"></div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+                <button class="remove-btn">
+
+
+                    <i class="fa-solid fa-xmark"></i>
+
+
+                </button>
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- ================= ANALYZING STATE ================= -->
+
+
+            <div class="analyzing-box" id="analyzingBox">
+
+
+                <div class="loader">
+
+
+                    <i class="fa-solid fa-brain"></i>
+
+
+                </div>
+
+
+
+                <h2>
+                    Analyzing Resume...
+                </h2>
+
+
+                <p>
+                    AI is reviewing your profile
+                </p>
+
+
+
+
+
+                <div class="analysis-steps">
+
+
+
+                    <!-- Step 1 -->
+
+
+                    <div class="step active">
+
+
+                        <span>
+
+                            <i class="fa-solid fa-spinner"></i>
+
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Parsing Resume
+                            </h4>
+
+                            <p>
+                                Reading resume structure
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                    <!-- Step 2 -->
+
+
+                    <div class="step">
+
+
+                        <span>
+
+                            <i class="fa-solid fa-list-check"></i>
+
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Extracting Skills
+                            </h4>
+
+                            <p>
+                                Identifying technical skills
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+                    <!-- Step 3 -->
+
+
+                    <div class="step">
+
+
+                        <span>
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Scoring Resume
+                            </h4>
+
+                            <p>
+                                Checking placement readiness
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+                    <!-- Step 4 -->
+
+
+                    <div class="step">
+
+
+                        <span>
+
+                            <i class="fa-solid fa-lightbulb"></i>
+
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Generating Suggestions
+                            </h4>
+
+
+                            <p>
+                                Creating improvement plan
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+            <!-- Analyze Button -->
+
+
+            <button class="analyze-btn">
+
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+
+                Analyze Resume
+
+
+            </button>
+
+
+
+
+        </section>
+
+
+
+    </main>
+
+
+
+
+</div>
+
+
+
+
+<script src="/frontend/js/resume-upload.js"></script>
+
+
+</body>
+
+</html>

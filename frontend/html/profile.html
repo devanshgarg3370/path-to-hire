@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Profile | Path to Hire</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="/frontend/css/profile.css">
+
+</head>
+
+<body>
+
+<div class="profile-page">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="page-header">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-user"></i>
+
+            <h2>Path to Hire</h2>
+
+        </div>
+
+        <a href="dashboard.html">
+
+            Dashboard
+
+        </a>
+
+    </header>
+
+
+
+    <!-- ================= PROFILE CARD ================= -->
+
+    <section class="profile-card">
+
+        <!-- Avatar -->
+
+        <div class="avatar-section">
+
+            <img
+                id="profileImage"
+                src="images/default-avatar.png"
+                alt="Profile">
+
+            <label
+                for="avatarUpload"
+                class="upload-btn">
+
+                <i class="fa-solid fa-camera"></i>
+
+                Change Photo
+
+            </label>
+
+            <input
+                type="file"
+                id="avatarUpload"
+                accept="image/*"
+                hidden>
+
+        </div>
+
+
+
+        <!-- Profile Form -->
+
+        <form id="profileForm">
+
+            <div class="input-group">
+
+                <label>
+
+                    Full Name
+
+                </label>
+
+                <input
+                    type="text"
+                    id="fullName">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+
+                    Email
+
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    readonly>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+
+                    Bio
+
+                </label>
+
+                <textarea
+                    id="bio"
+                    rows="4"></textarea>
+
+            </div>
+
+            <button
+                type="submit"
+                class="save-btn">
+
+                Save Changes
+
+            </button>
+
+        </form>
+
+    </section>
+
+
+
+    <!-- ================= SKILLS ================= -->
+
+    <section class="skills-section">
+
+        <div class="section-header">
+
+            <h2>
+
+                Skills
+
+            </h2>
+
+        </div>
+
+        <div
+            id="skillsContainer"
+            class="skills-tags">
+
+            <!-- Dynamic Skill Tags -->
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= RESUME HISTORY ================= -->
+
+    <section class="resume-section">
+
+        <div class="section-header">
+
+            <h2>
+
+                Resume History
+
+            </h2>
+
+        </div>
+
+        <div
+            id="resumeHistory"
+            class="resume-list">
+
+            <!-- Dynamic Resume Cards -->
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= EMPTY STATE ================= -->
+
+    <section
+        id="emptyResumeState"
+        class="empty-state">
+
+        <i class="fa-solid fa-file-lines"></i>
+
+        <h2>
+
+            No Resume Uploaded
+
+        </h2>
+
+        <p>
+
+            Upload your first resume to begin AI analysis.
+
+        </p>
+
+    </section>
+
+</div>
+
+<script src="/frontend/js/profile.js"></script>
+
+</body>
+
+</html>

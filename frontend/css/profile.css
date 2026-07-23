@@ -1,0 +1,464 @@
+/* ===================================
+   PATH TO HIRE PROFILE PAGE CSS
+=================================== */
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+
+body{
+
+    background:
+    linear-gradient(
+        135deg,
+        #f0f9ff,
+        #e0f2fe
+    );
+
+    color:#1e293b;
+
+}
+
+
+
+/* MAIN CONTAINER */
+
+.profile-page{
+
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:30px 0;
+
+}
+
+
+
+/* ================= HEADER ================= */
+
+
+.page-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:white;
+
+    padding:18px 30px;
+
+    border-radius:18px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+
+    margin-bottom:35px;
+
+}
+
+
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+}
+
+
+.logo i{
+
+    font-size:28px;
+    color:#0284c7;
+
+}
+
+
+.logo h2{
+
+    font-size:24px;
+
+}
+
+
+.page-header a{
+
+    text-decoration:none;
+
+    background:#0284c7;
+
+    color:white;
+
+    padding:10px 25px;
+
+    border-radius:30px;
+
+    transition:.3s;
+
+}
+
+
+
+.page-header a:hover{
+
+    background:#0369a1;
+
+}
+
+
+
+/* ================= PROFILE CARD ================= */
+
+
+.profile-card{
+
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    display:grid;
+
+    grid-template-columns:300px 1fr;
+
+    gap:40px;
+
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.08);
+
+
+}
+
+
+
+
+
+/* AVATAR */
+
+
+.avatar-section{
+
+    text-align:center;
+
+}
+
+
+
+.avatar-section img{
+
+    width:180px;
+
+    height:180px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:5px solid #38bdf8;
+
+}
+
+
+
+.upload-btn{
+
+    display:block;
+
+    margin-top:20px;
+
+    cursor:pointer;
+
+    background:#0284c7;
+
+    color:white;
+
+    padding:12px;
+
+    border-radius:30px;
+
+    transition:.3s;
+
+}
+
+
+
+.upload-btn:hover{
+
+    background:#0369a1;
+
+}
+
+
+
+
+
+/* FORM */
+
+
+.input-group{
+
+    margin-bottom:22px;
+
+}
+
+
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+
+
+.input-group input,
+.input-group textarea{
+
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:1px solid #cbd5e1;
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+
+
+.input-group input:focus,
+.input-group textarea:focus{
+
+    border-color:#0284c7;
+
+}
+
+
+
+
+
+.save-btn{
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #0284c7,
+        #06b6d4
+    );
+
+
+    color:white;
+
+    border:none;
+
+    padding:14px 35px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+}
+
+
+
+
+/* ================= SECTIONS ================= */
+
+
+.skills-section,
+.resume-section{
+
+    background:white;
+
+    margin-top:35px;
+
+    padding:30px;
+
+    border-radius:25px;
+
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.07);
+
+}
+
+
+
+.section-header h2{
+
+    margin-bottom:20px;
+
+}
+
+
+
+/* SKILLS */
+
+
+.skills-tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+
+
+.skill{
+
+    background:#e0f2fe;
+
+    color:#0369a1;
+
+    padding:10px 20px;
+
+    border-radius:25px;
+
+    font-weight:500;
+
+}
+
+
+
+
+
+/* RESUME CARDS */
+
+
+.resume-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#f8fafc;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.resume-card i{
+
+    font-size:35px;
+
+    color:#0284c7;
+
+}
+
+
+
+.resume-info h3{
+
+    margin-bottom:5px;
+
+}
+
+
+
+.resume-info p{
+
+    color:#64748b;
+
+}
+
+
+
+
+
+/* EMPTY STATE */
+
+
+.empty-state{
+
+    margin-top:30px;
+
+    background:white;
+
+    text-align:center;
+
+    padding:40px;
+
+    border-radius:25px;
+
+}
+
+
+
+.empty-state i{
+
+    font-size:50px;
+
+    color:#0284c7;
+
+}
+
+
+
+.empty-state h2{
+
+    margin:15px 0;
+
+}
+
+
+
+
+
+/* RESPONSIVE */
+
+
+@media(max-width:850px){
+
+
+.profile-card{
+
+    grid-template-columns:1fr;
+
+}
+
+
+.page-header{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+
+}

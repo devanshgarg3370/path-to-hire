@@ -1,0 +1,512 @@
+/* ============================
+   GLOBAL STYLE
+============================ */
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+
+body{
+
+    background:
+    linear-gradient(
+        135deg,
+        #f0f9ff,
+        #e0f2fe
+    );
+
+    color:#1e293b;
+
+}
+
+
+.progress-page{
+
+    width:90%;
+    margin:auto;
+    padding-bottom:50px;
+
+}
+
+
+
+/* ============================
+ HEADER
+============================ */
+
+
+.page-header{
+
+    height:80px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+}
+
+
+.logo i{
+
+    font-size:32px;
+    color:#0096c7;
+
+}
+
+
+.logo h2{
+
+    font-size:25px;
+
+}
+
+
+
+.page-header a{
+
+    text-decoration:none;
+    color:white;
+
+    background:#0096c7;
+
+    padding:12px 25px;
+
+    border-radius:30px;
+
+    transition:.3s;
+
+}
+
+
+.page-header a:hover{
+
+    background:#0077b6;
+
+    transform:translateY(-3px);
+
+}
+
+
+
+
+
+
+/* ============================
+ TITLE
+============================ */
+
+
+.page-title{
+
+    text-align:center;
+    margin:40px 0;
+
+}
+
+
+.page-title h1{
+
+    font-size:42px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #0077b6,
+        #48cae4
+    );
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+}
+
+
+
+.page-title p{
+
+    margin-top:10px;
+    color:#64748b;
+
+}
+
+
+
+
+
+
+/* ============================
+ SUMMARY CARDS
+============================ */
+
+
+.summary-card{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:40px;
+
+}
+
+
+
+.summary-item{
+
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+text-align:center;
+
+
+box-shadow:
+0 15px 30px rgba(0,0,0,.08);
+
+
+transition:.4s;
+
+
+}
+
+
+.summary-item:hover{
+
+transform:
+translateY(-10px);
+
+
+}
+
+
+
+.summary-item h3{
+
+font-size:38px;
+
+color:#0096c7;
+
+margin-bottom:10px;
+
+
+}
+
+
+
+.summary-item p{
+
+color:#64748b;
+
+}
+
+
+
+
+
+
+
+/* ============================
+ CHART
+============================ */
+
+
+.chart-section,
+.activity-section{
+
+background:white;
+
+padding:35px;
+
+border-radius:25px;
+
+margin-bottom:35px;
+
+
+box-shadow:
+0 15px 40px rgba(0,0,0,.08);
+
+
+}
+
+
+
+.section-header h2{
+
+font-size:24px;
+
+margin-bottom:25px;
+
+}
+
+
+
+
+
+#readinessChart{
+
+max-height:350px;
+
+}
+
+
+
+
+
+
+
+/* ============================
+ TIMELINE
+============================ */
+
+
+.timeline{
+
+position:relative;
+
+padding-left:40px;
+
+}
+
+
+
+.timeline::before{
+
+content:"";
+
+position:absolute;
+
+left:15px;
+
+top:0;
+
+width:3px;
+
+height:100%;
+
+background:#48cae4;
+
+}
+
+
+
+.activity-card{
+
+
+background:#f8fafc;
+
+padding:20px;
+
+border-radius:15px;
+
+margin-bottom:25px;
+
+position:relative;
+
+
+animation:
+slide .5s ease;
+
+
+}
+
+
+
+.activity-card::before{
+
+
+content:"";
+
+position:absolute;
+
+left:-33px;
+
+top:25px;
+
+height:18px;
+
+width:18px;
+
+border-radius:50%;
+
+background:#0096c7;
+
+
+}
+
+
+
+.activity-card h3{
+
+font-size:18px;
+
+}
+
+
+
+.activity-card p{
+
+color:#64748b;
+
+font-size:14px;
+
+margin-top:5px;
+
+}
+
+
+
+
+
+
+@keyframes slide{
+
+from{
+
+opacity:0;
+
+transform:translateX(-30px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+}
+
+
+
+
+
+
+/* ============================
+ EMPTY STATE
+============================ */
+
+
+.empty-state{
+
+
+background:white;
+
+padding:60px 30px;
+
+text-align:center;
+
+border-radius:25px;
+
+
+box-shadow:
+0 15px 40px rgba(0,0,0,.08);
+
+
+}
+
+
+.empty-state i{
+
+font-size:70px;
+
+color:#48cae4;
+
+margin-bottom:20px;
+
+}
+
+
+.empty-state h2{
+
+font-size:30px;
+
+}
+
+
+
+
+.empty-state p{
+
+color:#64748b;
+
+margin-top:10px;
+
+}
+
+
+
+
+
+
+
+/* ============================
+ RESPONSIVE
+============================ */
+
+
+@media(max-width:900px){
+
+
+.summary-card{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+
+}
+
+
+
+@media(max-width:600px){
+
+
+.progress-page{
+
+width:95%;
+
+}
+
+
+.summary-card{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.page-title h1{
+
+font-size:30px;
+
+}
+
+
+}

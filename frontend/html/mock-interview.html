@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Mock Interview | Path to Hire</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet" href="/frontend/css/mock-interview.css">
+
+</head>
+
+<body>
+
+<div class="interview-page">
+
+<!-- ================= HEADER ================= -->
+
+<header class="page-header">
+
+<div class="logo">
+
+<i class="fa-solid fa-microphone"></i>
+
+<h2>Path to Hire</h2>
+
+</div>
+
+<a href="dashboard.html">
+
+Dashboard
+
+</a>
+
+</header>
+
+
+
+<!-- ==================================================
+SETUP SCREEN
+================================================== -->
+
+<section id="setupScreen" class="screen active">
+
+<h1>
+
+AI Mock Interview
+
+</h1>
+
+<p>
+
+Configure your interview before starting.
+
+</p>
+
+
+
+<!-- Interview Type -->
+
+<div class="interview-types">
+
+<div class="type-card active">
+
+<i class="fa-solid fa-code"></i>
+
+<h3>Technical</h3>
+
+</div>
+
+<div class="type-card">
+
+<i class="fa-solid fa-user-tie"></i>
+
+<h3>HR</h3>
+
+</div>
+
+<div class="type-card">
+
+<i class="fa-solid fa-comments"></i>
+
+<h3>Behavioral</h3>
+
+</div>
+
+<div class="type-card">
+
+<i class="fa-solid fa-brain"></i>
+
+<h3>Domain</h3>
+
+</div>
+
+</div>
+
+
+
+<!-- Mode -->
+
+<div class="setting">
+
+<label>
+
+Interview Mode
+
+</label>
+
+<div class="toggle">
+
+<button class="active">
+
+Voice
+
+</button>
+
+<button>
+
+Text
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- Difficulty -->
+
+<div class="setting">
+
+<label>
+
+Difficulty
+
+</label>
+
+<select>
+
+<option>Easy</option>
+
+<option>Medium</option>
+
+<option>Hard</option>
+
+</select>
+
+</div>
+
+
+
+<button id="startInterview">
+
+Start Interview
+
+</button>
+
+</section>
+
+
+
+
+
+<!-- ==================================================
+INTERVIEW SCREEN
+================================================== -->
+
+<section
+id="interviewScreen"
+class="screen">
+
+<div class="top-bar">
+
+<div class="timer">
+
+⏱ 12:35
+
+</div>
+
+<div class="progress">
+
+Question 2 / 10
+
+</div>
+
+</div>
+
+
+
+<div class="chat-window">
+
+<div class="ai-message">
+
+<p>
+
+Tell me about yourself.
+
+</p>
+
+</div>
+
+<div class="user-message">
+
+<p>
+
+Your submitted answer appears here.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="answer-box">
+
+<textarea
+
+placeholder="Type your answer...">
+
+</textarea>
+
+<button class="mic-btn">
+
+<i class="fa-solid fa-microphone"></i>
+
+</button>
+
+</div>
+
+
+
+<button class="submit-btn">
+
+Submit Answer
+
+</button>
+
+</section>
+
+
+
+
+
+
+
+<!-- ==================================================
+RESULT SCREEN
+================================================== -->
+
+<section
+id="resultScreen"
+class="screen">
+
+<h1>
+
+Interview Report
+
+</h1>
+
+
+
+<div class="score-grid">
+
+<div class="score-card">
+
+<div class="gauge">
+
+82%
+
+</div>
+
+<h3>
+
+Confidence
+
+</h3>
+
+</div>
+
+<div class="score-card">
+
+<div class="gauge">
+
+76%
+
+</div>
+
+<h3>
+
+Communication
+
+</h3>
+
+</div>
+
+<div class="score-card">
+
+<div class="gauge">
+
+88%
+
+</div>
+
+<h3>
+
+Technical
+
+</h3>
+
+</div>
+
+</div>
+
+
+
+
+
+<h2>
+
+Question-wise Feedback
+
+</h2>
+
+
+
+<div class="accordion">
+
+<button>
+
+Question 1
+
+</button>
+
+<div>
+
+<p>
+
+Good explanation.
+
+Need stronger examples.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="accordion">
+
+<button>
+
+Question 2
+
+</button>
+
+<div>
+
+<p>
+
+Answer was technically correct.
+
+Improve communication.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="result-buttons">
+
+<button>
+
+Retry Interview
+
+</button>
+
+<button>
+
+View Improvement Plan
+
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+<script src="/frontend/js/mock-interview.js"></script>
+
+</body>
+
+</html>
