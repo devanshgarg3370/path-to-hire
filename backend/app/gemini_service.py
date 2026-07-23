@@ -1,3 +1,4 @@
+import json
 import os
 from dotenv import load_dotenv
 from google import genai
@@ -14,6 +15,17 @@ def ask_gemini(prompt: str):
             model="gemini-2.5-flash",
             contents=prompt
         )
-        return response.text
+
+        text = response.text
+
+        # Remove Markdown code block if Gemini returns one
+        text = text.replace("```json", "")
+        text = text.replace("```", "")
+        text = text.strip()
+
+        # Convert JSON string to Python dictionary
+        return json.loads(text)
+
     except Exception as e:
-        return f"Error: {str(e)}"
+        print("Gemini Error:", e)
+        raise e
