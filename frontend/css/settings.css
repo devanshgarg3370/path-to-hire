@@ -26,19 +26,15 @@ margin-bottom:35px;
 }
 
 .logo{
-display:flex;
-align-items:center;
-gap:12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.logo i{
-font-size:28px;
-color:#2563eb;
-}
-
-.logo h2{
-font-size:26px;
-font-weight:700;
+.logo-img{
+    width: 100px;
+    height:100px;
+    object-fit:contain;
 }
 
 .page-header a{

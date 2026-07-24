@@ -52,26 +52,15 @@ body{
 
 
 .logo{
-
     display:flex;
     align-items:center;
     gap:12px;
-
 }
 
-
-.logo i{
-
-    font-size:32px;
-    color:#0096c7;
-
-}
-
-
-.logo h2{
-
-    font-size:25px;
-
+.logo-img{
+    width: 100px;
+    height:100px;
+    object-fit:contain;
 }
 
 

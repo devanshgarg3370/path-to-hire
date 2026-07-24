@@ -123,43 +123,15 @@ transform:none;
 
 
 .logo{
-
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-gap:12px;
-
-margin-bottom:25px;
-
-
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-
-
-.logo i{
-
-
-font-size:35px;
-
-color:#2563eb;
-
-
-}
-
-
-
-.logo h2{
-
-
-color:#1e293b;
-
-font-size:25px;
-
-
+.logo-img{
+    width: 100px;
+    height:100px;
+    object-fit:contain;
 }
 
 

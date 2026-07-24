@@ -1,0 +1,1283 @@
+/* ==========================================
+   PATH TO HIRE - ULTIMATE RESUME GUIDE
+   PART 1
+   Global + Header + Hero + Buttons
+========================================== */
+
+/* ===============================
+   RESET
+================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f8fbff;
+    color:#1f2937;
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+/* ===============================
+   CONTAINER
+================================== */
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* ===============================
+   LINKS
+================================== */
+
+a{
+    text-decoration:none;
+}
+
+img{
+    max-width:100%;
+}
+
+/* ===============================
+   HEADER
+================================== */
+
+.page-header{
+
+    position:sticky;
+    top:0;
+    z-index:999;
+
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(18px);
+
+    box-shadow:0 4px 18px rgba(0,0,0,.08);
+
+}
+
+.page-header .container{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 0;
+
+}
+
+/* ===============================
+   LOGO
+================================== */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-img{
+    width: 100px;
+    height:100px;
+    object-fit:contain;
+}
+
+/* ===============================
+   NAVIGATION
+================================== */
+
+nav{
+
+    display:flex;
+    gap:35px;
+
+}
+
+nav a{
+
+    color:#374151;
+    font-weight:500;
+    transition:.3s;
+    position:relative;
+
+}
+
+nav a::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:0;
+    height:2px;
+
+    left:0;
+    bottom:-6px;
+
+    background:#2563eb;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:#2563eb;
+
+}
+
+nav a:hover::after{
+
+    width:100%;
+
+}
+
+/* ===============================
+   HERO
+================================== */
+
+.hero{
+
+    padding:110px 20px;
+
+    text-align:center;
+
+    background:
+    linear-gradient(135deg,#1d4ed8,#2563eb,#0ea5e9);
+
+    color:white;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* Decorative Glow */
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:50%;
+
+    top:-120px;
+    left:-120px;
+
+    filter:blur(20px);
+
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:400px;
+    height:400px;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:50%;
+
+    bottom:-180px;
+    right:-120px;
+
+    filter:blur(25px);
+
+}
+
+/* ===============================
+   EYEBROW
+================================== */
+
+.eyebrow{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(10px);
+
+    font-weight:600;
+
+    letter-spacing:.5px;
+
+    margin-bottom:25px;
+
+}
+
+/* ===============================
+   HERO TITLE
+================================== */
+
+.hero h1{
+
+    font-size:60px;
+    font-weight:700;
+
+    margin-bottom:25px;
+
+    line-height:1.2;
+
+}
+
+/* ===============================
+   HERO PARAGRAPH
+================================== */
+
+.hero p{
+
+    max-width:760px;
+
+    margin:auto;
+
+    font-size:19px;
+
+    opacity:.95;
+
+}
+
+/* ===============================
+   HERO BUTTONS
+================================== */
+
+.hero-buttons{
+
+    margin-top:45px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+/* ===============================
+   BUTTONS
+================================== */
+
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:15px 34px;
+
+    border-radius:50px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+/* Primary */
+
+.primary-btn{
+
+    background:#ffffff;
+
+    color:#2563eb;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+
+}
+
+.primary-btn:hover{
+
+    transform:translateY(-5px);
+
+    background:#e0f2fe;
+
+}
+
+/* Secondary */
+
+.secondary-btn{
+
+    border:2px solid rgba(255,255,255,.7);
+
+    color:white;
+
+    background:transparent;
+
+}
+
+.secondary-btn:hover{
+
+    background:white;
+
+    color:#2563eb;
+
+}
+
+/* ===============================
+   SECTION
+================================== */
+
+.section{
+
+    padding:90px 0;
+
+}
+
+.section.light{
+
+    background:#eef6ff;
+
+}
+
+/* ===============================
+   SECTION TITLES
+================================== */
+
+.section h2{
+
+    text-align:center;
+
+    font-size:40px;
+
+    color:#1e3a8a;
+
+    margin-bottom:20px;
+
+}
+
+.section> .container> p{
+
+    max-width:850px;
+
+    margin:auto;
+
+    text-align:center;
+
+    color:#4b5563;
+
+    font-size:17px;
+
+}
+
+/* ===============================
+   TEXT SELECTION
+================================== */
+
+::selection{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+/* ===============================
+   SCROLLBAR
+================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#dbeafe;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+
+    border-radius:30px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#1d4ed8;
+
+}
+/* ==========================================
+   PART 2
+   Resume Structure + ATS Tips + Mistakes
+==========================================*/
+
+/*==========================================
+        SECTION SPACING
+==========================================*/
+
+.cards{
+    margin-top:55px;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+/*==========================================
+        CARD
+==========================================*/
+
+.card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:35px 30px;
+
+    text-align:center;
+
+    border:1px solid rgba(37,99,235,.08);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.06);
+
+    transition:.35s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* Top Gradient Line */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:5px;
+
+    background:linear-gradient(90deg,#2563eb,#0ea5e9);
+
+}
+
+/* Hover */
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 18px 45px rgba(37,99,235,.15);
+
+}
+
+/* Icon */
+
+.card i{
+
+    width:75px;
+    height:75px;
+
+    border-radius:50%;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin:0 auto 25px;
+
+    font-size:30px;
+
+    transition:.3s;
+
+}
+
+.card:hover i{
+
+    background:#2563eb;
+    color:#ffffff;
+
+    transform:rotate(8deg) scale(1.08);
+
+}
+
+/* Heading */
+
+.card h3{
+
+    color:#1e3a8a;
+
+    font-size:24px;
+
+    margin-bottom:15px;
+
+}
+
+/* Paragraph */
+
+.card p{
+
+    color:#6b7280;
+
+    font-size:16px;
+
+    line-height:1.8;
+
+}
+
+/*==========================================
+        ATS SECTION
+==========================================*/
+
+.tips-list{
+
+    margin-top:45px;
+
+    max-width:900px;
+
+    margin-left:auto;
+    margin-right:auto;
+
+    list-style:none;
+
+}
+
+.tips-list li{
+
+    background:#ffffff;
+
+    margin-bottom:18px;
+
+    padding:20px 25px 20px 65px;
+
+    border-radius:14px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+
+    position:relative;
+
+    transition:.3s;
+
+    font-size:17px;
+
+    color:#374151;
+
+}
+
+.tips-list li:hover{
+
+    transform:translateX(8px);
+
+    box-shadow:0 15px 35px rgba(37,99,235,.12);
+
+}
+
+/* Check Icon */
+
+.tips-list li::before{
+
+    content:"✓";
+
+    position:absolute;
+
+    left:22px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:28px;
+    height:28px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-weight:700;
+
+    font-size:16px;
+
+}
+
+/*==========================================
+        COMMON MISTAKES
+==========================================*/
+
+.section:last-of-type .cards{
+
+    margin-top:45px;
+
+}
+
+/* Mistake Cards */
+
+.card .fa-circle-xmark{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+.card:hover .fa-circle-xmark{
+
+    background:#dc2626;
+
+    color:#ffffff;
+
+}
+
+/*==========================================
+        EXTRA HOVER EFFECT
+==========================================*/
+
+.card:hover h3{
+
+    color:#2563eb;
+
+}
+
+.card:hover p{
+
+    color:#374151;
+
+}
+
+/*==========================================
+        LIGHT BACKGROUND
+==========================================*/
+
+.section.light{
+
+    background:#eff6ff;
+
+}
+
+/*==========================================
+        NICE SECTION DIVIDER
+==========================================*/
+
+.section{
+
+    position:relative;
+
+}
+
+.section::after{
+
+    content:"";
+
+    display:block;
+
+    width:80px;
+
+    height:4px;
+
+    background:#2563eb;
+
+    margin:55px auto 0;
+
+    border-radius:30px;
+
+}
+
+/* Remove Divider from Last Normal Section */
+
+.section:last-child::after{
+
+    display:none;
+
+}
+/* ==========================================
+   PART 3
+   Skills • Checklist • FAQ • CTA • Footer
+   Responsive Design
+==========================================*/
+
+/*==========================================
+        ACTION VERBS / SKILLS GRID
+==========================================*/
+
+.skills-grid{
+    margin-top:50px;
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:18px;
+}
+
+.skills-grid span{
+
+    padding:14px 24px;
+
+    background:#ffffff;
+
+    border:1px solid rgba(37,99,235,.15);
+
+    color:#2563eb;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+
+}
+
+.skills-grid span:hover{
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 30px rgba(37,99,235,.25);
+
+}
+
+/*==========================================
+            CHECKLIST
+==========================================*/
+
+.checklist{
+
+    max-width:750px;
+
+    margin:45px auto 0;
+
+    list-style:none;
+
+}
+
+.checklist li{
+
+    background:#ffffff;
+
+    margin-bottom:18px;
+
+    padding:18px 25px;
+
+    border-left:5px solid #2563eb;
+
+    border-radius:12px;
+
+    font-size:17px;
+
+    color:#374151;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+
+    transition:.3s;
+
+}
+
+.checklist li:hover{
+
+    transform:translateX(8px);
+
+    box-shadow:0 15px 35px rgba(37,99,235,.12);
+
+}
+
+/*==========================================
+            FAQ
+==========================================*/
+
+.faq{
+
+    max-width:900px;
+
+    margin:50px auto 0;
+
+}
+
+.faq-item{
+
+    background:#ffffff;
+
+    border-radius:16px;
+
+    padding:25px;
+
+    margin-bottom:22px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+
+    border-left:5px solid #2563eb;
+
+    transition:.35s;
+
+}
+
+.faq-item:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 40px rgba(37,99,235,.15);
+
+}
+
+.faq-item h3{
+
+    color:#1e3a8a;
+
+    font-size:22px;
+
+    margin-bottom:12px;
+
+}
+
+.faq-item p{
+
+    color:#6b7280;
+
+    line-height:1.8;
+
+}
+
+/*==========================================
+            CTA
+==========================================*/
+
+.cta{
+
+    padding:100px 20px;
+
+    text-align:center;
+
+    background:linear-gradient(135deg,#1d4ed8,#2563eb,#0ea5e9);
+
+    color:#ffffff;
+
+}
+
+.cta h2{
+
+    font-size:46px;
+
+    margin-bottom:20px;
+
+}
+
+.cta p{
+
+    max-width:760px;
+
+    margin:auto;
+
+    font-size:18px;
+
+    opacity:.95;
+
+}
+
+.cta .btn{
+
+    margin-top:40px;
+
+}
+
+/*==========================================
+            FOOTER
+==========================================*/
+
+footer{
+
+    background:#0f172a;
+
+    color:#ffffff;
+
+    padding:30px 20px;
+
+}
+
+footer .container{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+footer p{
+
+    font-size:15px;
+
+    opacity:.9;
+
+}
+
+/*==========================================
+            RESPONSIVE
+==========================================*/
+
+@media(max-width:992px){
+
+.page-header .container{
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+nav{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:20px;
+
+}
+
+.hero{
+
+    padding:90px 20px;
+
+}
+
+.hero h1{
+
+    font-size:46px;
+
+}
+
+.section h2{
+
+    font-size:34px;
+
+}
+
+.cards{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.hero{
+
+    padding:75px 20px;
+
+}
+
+.hero h1{
+
+    font-size:38px;
+
+}
+
+.hero p{
+
+    font-size:16px;
+
+}
+
+.hero-buttons{
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.btn{
+
+    width:220px;
+
+}
+
+.cards{
+
+    grid-template-columns:1fr;
+
+}
+
+.card{
+
+    padding:28px;
+
+}
+
+.card i{
+
+    width:65px;
+    height:65px;
+    font-size:26px;
+
+}
+
+.card h3{
+
+    font-size:22px;
+
+}
+
+.tips-list li{
+
+    padding:18px 20px 18px 60px;
+
+    font-size:16px;
+
+}
+
+.skills-grid{
+
+    gap:12px;
+
+}
+
+.skills-grid span{
+
+    padding:12px 18px;
+
+    font-size:15px;
+
+}
+
+.checklist li{
+
+    font-size:16px;
+
+}
+
+.faq-item h3{
+
+    font-size:20px;
+
+}
+
+.cta{
+
+    padding:80px 20px;
+
+}
+
+.cta h2{
+
+    font-size:34px;
+
+}
+
+.cta p{
+
+    font-size:16px;
+
+}
+
+}
+
+@media(max-width:500px){
+
+.logo h2{
+
+    font-size:22px;
+
+}
+
+.logo i{
+
+    font-size:28px;
+
+}
+
+nav{
+
+    gap:14px;
+
+}
+
+nav a{
+
+    font-size:15px;
+
+}
+
+.hero h1{
+
+    font-size:30px;
+
+}
+
+.hero p{
+
+    font-size:15px;
+
+}
+
+.eyebrow{
+
+    font-size:13px;
+
+    padding:8px 18px;
+
+}
+
+.section{
+
+    padding:70px 0;
+
+}
+
+.section h2{
+
+    font-size:28px;
+
+}
+
+.section>.container>p{
+
+    font-size:15px;
+
+}
+
+.card{
+
+    padding:24px;
+
+}
+
+.card h3{
+
+    font-size:20px;
+
+}
+
+.card p{
+
+    font-size:15px;
+
+}
+
+.card i{
+
+    width:60px;
+    height:60px;
+    font-size:24px;
+
+}
+
+.tips-list li{
+
+    font-size:15px;
+
+    padding:16px 18px 16px 56px;
+
+}
+
+.skills-grid span{
+
+    font-size:14px;
+
+    padding:10px 16px;
+
+}
+
+.checklist li{
+
+    font-size:15px;
+
+}
+
+.faq-item{
+
+    padding:20px;
+
+}
+
+.faq-item h3{
+
+    font-size:18px;
+
+}
+
+.faq-item p{
+
+    font-size:15px;
+
+}
+
+.cta h2{
+
+    font-size:28px;
+
+}
+
+.cta p{
+
+    font-size:15px;
+
+}
+
+.btn{
+
+    width:100%;
+
+    max-width:260px;
+
+}
+
+footer{
+
+    padding:25px 15px;
+
+}
+
+footer p{
+
+    font-size:14px;
+
+    text-align:center;
+
+}
+
+}

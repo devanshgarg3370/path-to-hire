@@ -24,18 +24,16 @@ margin-bottom:40px
 }
 
 .logo{
-display:flex;
-align-items:center;
-gap:10px;
-font-size:22px;
-font-weight:700;
-color:#2563eb
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.logo i{
-font-size:34px
+.logo-img{
+    width: 100px;
+    height:100px;
+    object-fit:contain;
 }
-
 .back-btn{
 text-decoration:none;
 padding:10px 18px;

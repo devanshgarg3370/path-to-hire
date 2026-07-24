@@ -56,19 +56,15 @@ margin-bottom:40px;
 
 
 .logo{
-
-display:flex;
-align-items:center;
-gap:15px;
-
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-
-.logo i{
-
-font-size:28px;
-color:#0284c7;
-
+.logo-img{
+    width: 100px;
+    height:100px;
+    object-fit:contain;
 }
 
 

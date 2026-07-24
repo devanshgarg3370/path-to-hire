@@ -32,16 +32,15 @@ margin-bottom:35px;
 }
 
 .logo{
-display:flex;
-align-items:center;
-gap:12px;
-font-size:24px;
-font-weight:700;
-color:#2563eb;
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.logo i{
-font-size:30px;
+.logo-img{
+    width: 100px;
+    height:100px;
+    object-fit:contain;
 }
 
 .page-header a{

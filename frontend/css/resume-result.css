@@ -51,23 +51,10 @@ button{
     gap:12px;
 }
 
-.logo i{
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:linear-gradient(135deg,#2563eb,#38bdf8);
-    color:#fff;
-    font-size:24px;
-    box-shadow:0 15px 30px rgba(37,99,235,.25);
-}
-
-.logo h2{
-    font-size:28px;
-    color:#1e3a8a;
-    font-weight:700;
+.logo-img{
+    width: 100px;
+    height:100px;
+    object-fit:contain;
 }
 
 .top-header a{

@@ -28,26 +28,17 @@ box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
 
 .logo{
-
-display:flex;
-align-items:center;
-gap:12px;
-
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.logo i{
-
-font-size:35px;
-
-color:#2563eb;
-
+.logo-img{
+    width: 100px;
+    height:100px;
+    object-fit:contain;
 }
 
-.logo h2{
-
-color:#2563eb;
-
-}
 
 .page-header a{
 
