@@ -5,6 +5,8 @@ from google import genai
 
 load_dotenv()
 
+print("Loaded API Key:", os.getenv("GEMINI_API_KEY"))
+
 client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
@@ -18,12 +20,10 @@ def ask_gemini(prompt: str):
 
         text = response.text
 
-        # Remove Markdown code block if Gemini returns one
         text = text.replace("```json", "")
         text = text.replace("```", "")
         text = text.strip()
 
-        # Convert JSON string to Python dictionary
         return json.loads(text)
 
     except Exception as e:

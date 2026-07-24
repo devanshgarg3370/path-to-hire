@@ -1,11 +1,27 @@
-from fastapi import FastAPI, UploadFile, File , Form
+from fastapi import FastAPI, UploadFile, File, Form
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.pdf_parser import extract_text_from_pdf
 from app.gemini_service import ask_gemini
-from app.prompts import (RESUME_ANALYSIS_PROMPT , ATS_PROMPT , INTERVIEW_PROMPT)
+from app.prompts import (
+    RESUME_ANALYSIS_PROMPT,
+    ATS_PROMPT,
+    INTERVIEW_PROMPT
+)
 from app.schemas import JobDescription
+app = FastAPI(
+    title="PATH-TO-HIRE API",
+    version="1.0.0",
+    description="AI Resume Analyzer Backend"
+)
 
-app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # For development
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def home():
