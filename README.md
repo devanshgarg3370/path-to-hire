@@ -88,16 +88,6 @@ Full pinned dependency list: [`backend/requirements.txt`](backend/requirements.t
 ```
 path-to-hire/
 │
-├── ai/                          # AI experimentation space
-│   ├── prompt/                  # Standalone prompt scripts/scratchpad
-│   │   └── hello.py
-│   └── services/                # Reserved for future standalone AI services
-│
-├── assets/                      # Shared project-level visual assets
-│   ├── icons/
-│   ├── images/
-│   └── logo/
-│
 ├── backend/                     # Core FastAPI application
 │   ├── app/
 │   │   ├── __init__.py
