@@ -283,21 +283,6 @@ Run these first if the backend fails on startup with a `GEMINI_API_KEY not found
 - Piyushi Tikoo
 - Saransh
 
----
-
-## 🤝 Contributing
-
-Contributions are what make the open-source community a great place to learn and build. Any contributions are **greatly appreciated**.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-Please keep PRs focused and include a clear description of what changed and why. If you're adding a new AI endpoint, update `docs/api_spec.md` alongside your code.
-
----
 
 ## 📄 License
 
