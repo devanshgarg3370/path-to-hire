@@ -4,123 +4,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Login to Path to Hire to continue your placement journey.">
+    
     <title>Login | Path to Hire</title>
 
-    <link rel="stylesheet" href="/frontend/css/auth.css">
-
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/frontend/css/auth.css">
 </head>
 
 <body>
 
-<div class="auth-container">
+    <main class="auth-container">
+        <div class="auth-card">
 
-<div class="auth-card">
+            <!-- Logo Section -->
+            <div class="logo">
+                <img src="../assets/images/logo.png" 
+                     alt="Path to Hire Logo" 
+                     style="height: 60px; width: auto; object-fit: contain;">
+                <h2>Path to Hire</h2>
+            </div>
 
-<div class="logo">
-    <img src="../assets/images/logo.png" 
-         alt="Path to Hire Logo" 
-         style="height: 60px; width: auto; object-fit: contain;">
-    <h2>Path to Hire</h2>
-</div>
+            <!-- Header Text -->
+            <header class="auth-header">
+                <h1>Welcome Back</h1>
+                <p>Login to continue your placement journey.</p>
+            </header>
 
-<h1>Welcome Back</h1>
+            <!-- Login Form -->
+            <form id="loginForm" novalidate>
 
-<p>Login to continue your placement journey.</p>
+                <!-- Email Input -->
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email"
+                            placeholder="Enter your email" 
+                            autocomplete="email"
+                            required
+                            aria-describedby="emailError">
+                    </div>
+                    <small class="error" id="emailError" aria-live="polite"></small>
+                </div>
 
-<form id="loginForm">
+                <!-- Password Input -->
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper password-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password"
+                            placeholder="Enter password" 
+                            autocomplete="current-password"
+                            required
+                            aria-describedby="passwordError">
+                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password visibility">
+                            <i class="fa-regular fa-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
+                    <small class="error" id="passwordError" aria-live="polite"></small>
+                </div>
 
-<div class="input-group">
+                <!-- Form Options -->
+                <div class="form-options">
+                    <label class="remember-me" for="rememberMe">
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        <span>Remember Me</span>
+                    </label>
 
-<label>Email</label>
+                    <a href="forgot-password.html" class="forgot-link">Forgot Password?</a>
+                </div>
 
-<input
-type="email"
-id="email"
-placeholder="Enter your email"
-required>
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">Login</button>
 
-<small class="error"></small>
+                <!-- Divider -->
+                <div class="divider">
+                    <span>OR</span>
+                </div>
 
-</div>
+                <!-- OAuth Button -->
+                <button type="button" class="google-btn">
+                    <i class="fab fa-google"></i>
+                    <span>Continue with Google</span>
+                </button>
 
-<div class="input-group">
+                <!-- Footer Text -->
+                <p class="bottom-text">
+                    Don't have an account? 
+                    <a href="signup.html">Sign Up</a>
+                </p>
 
-<label>Password</label>
+            </form>
 
-<input
-type="password"
-id="password"
-placeholder="Enter password"
-required>
+        </div>
+    </main>
 
-<small class="error"></small>
-
-</div>
-
-<div class="form-options">
-
-<label>
-
-<input type="checkbox">
-
-Remember Me
-
-</label>
-
-<a href="forgot-password.html">
-
-Forgot Password?
-
-</a>
-
-</div>
-
-<button type="submit" class="btn">
-
-Login
-
-</button>
-
-<div class="divider">
-
-<span>OR</span>
-
-</div>
-
-<button type="button" class="google-btn">
-
-<i class="fab fa-google"></i>
-
-Continue with Google
-
-</button>
-
-<p class="bottom-text">
-
-Don't have an account?
-
-<a href="signup.html">
-
-Sign Up
-
-</a>
-
-</p>
-
-</form>
-
-</div>
-
-</div>
-
-<script src="/frontend/js/auth.js"></script>
-
+    <!-- JavaScript -->
+   <script src="../js/auth.js"></script>
 </body>
+
 </html>
