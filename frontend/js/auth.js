@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 2. LOGIN FORM HANDLER
     // ==========================================
-    if (loginForm) {
+    if (loginForm)if (loginForm) {
         const emailInput = document.getElementById("email");
         const passwordInput = document.getElementById("password");
 
@@ -204,9 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     showToast("Login Successful 🚀", "success");
 
-                    
                     setTimeout(() => {
-                        window.location.href = "resume-upload.html"; 
+                        window.location.href = "resume-upload.html";
                     }, 1200);
                 } else {
                     const errorMsg = data.detail || "Invalid Email or Password";
@@ -219,6 +218,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
             }
+        });
+    }
+
+    // ==========================================
+    // 3. GOOGLE LOGIN DEMO HANDLER
+    // ==========================================
+    const googleLoginBtn = document.getElementById("googleLoginBtn");
+    if (googleLoginBtn) {
+        googleLoginBtn.addEventListener("click", () => {
+            googleLoginBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Connecting to Google...`;
+            googleLoginBtn.style.opacity = "0.7";
+
+            setTimeout(() => {
+                localStorage.setItem("token", "demo-google-token-xyz");
+                localStorage.setItem("user", JSON.stringify({ name: "Google Demo User", email: "demo.user@gmail.com" }));
+                localStorage.setItem("isLoggedIn", "true");
+
+                showToast("Google Sign-In Successful! 🚀", "success");
+
+                setTimeout(() => {
+                    window.location.href = "resume-upload.html";
+                }, 1000);
+            }, 1000);
         });
     }
 
