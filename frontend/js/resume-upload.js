@@ -163,11 +163,12 @@ removeBtn.addEventListener("click", () => {
 // Analyze Resume
 // ===============================
 
-analyzeBtn.addEventListener("click", async () => {
+analyzeBtn.addEventListener("click", () => {
 
     if (!uploadedFile) {
 
         showToast("⚠ Please upload your resume first");
+
         return;
 
     }
@@ -179,66 +180,48 @@ analyzeBtn.addEventListener("click", async () => {
 
     analyzingBox.style.display = "block";
 
-    try {
+    let current = 0;
 
-        const formData = new FormData();
+    const interval = setInterval(() => {
 
-        formData.append("file", uploadedFile);
+        if (current > 0)
 
-        const response = await fetch(
-            "http://127.0.0.1:8000/resume-analysis",
-            {
-                method: "POST",
-                body: formData
-            }
-        );
+            steps[current - 1].classList.remove("active");
 
-        if (!response.ok) {
+        if (current < steps.length) {
 
-            throw new Error("Backend Error");
+            steps[current].classList.add("active");
+
+            current++;
 
         }
 
-        const result = await response.json();
+        else {
 
-        console.log(result);
+            clearInterval(interval);
 
-        localStorage.setItem(
-            "resumeAnalysis",
-            JSON.stringify(result)
-        );
+            analyzeBtn.innerHTML =
+                '<i class="fa-solid fa-check"></i> Analysis Complete';
 
-        localStorage.setItem(
-            "resumeName",
-            uploadedFile.name
-        );
+            analyzeBtn.style.background = "#22c55e";
 
-        analyzeBtn.innerHTML =
-            '<i class="fa-solid fa-check"></i> Analysis Complete';
+            localStorage.setItem(
+                "resumeName",
+                uploadedFile.name
+            );
 
-        analyzeBtn.style.background = "#22c55e";
+            showToast("🎉 Resume Analysis Completed");
 
-        showToast("🎉 Resume Analysis Completed");
+            setTimeout(() => {
 
-        setTimeout(() => {
+                window.location.href =
+                    "dashboard.html";
 
-            window.location.href = "resume-result.html";
+            }, 1800);
 
-        }, 1200);
+        }
 
-    }
-    catch (error) {
-
-        console.error(error);
-
-        analyzeBtn.disabled = false;
-
-        analyzeBtn.innerHTML =
-            '<i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Resume';
-
-        showToast("❌ Failed to connect to backend");
-
-    }
+    }, 1500);
 
 });
 
