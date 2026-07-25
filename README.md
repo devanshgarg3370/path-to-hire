@@ -276,8 +276,7 @@ Run these first if the backend fails on startup with a `GEMINI_API_KEY not found
 
 ## 📄 License
 
-This project does not yet include a `LICENSE` file. It is intended to be released under the **MIT License** — a permissive license that allows reuse with attribution. To finalize licensing, add a `LICENSE` file to the repository root ([generate one here](https://choosealicense.com/licenses/mit/)).
-
+This project does not yet include a `LICENSE` file. It is intended to be released under the **MIT License** — a permissive license that allows reuse with attribution. 
 ---
 
 ## 🙏 Acknowledgements
