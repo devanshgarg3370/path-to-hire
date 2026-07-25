@@ -47,7 +47,7 @@ async def lifespan(app: FastAPI):
     logger.info("PATH TO HIRE Backend Starting Up... 🚀")
     logger.info("=" * 60)
     
-    # Auto-create database tables on startup
+    # Auto-create database tables on application start
     Base.metadata.create_all(bind=engine)
     
     yield
@@ -63,9 +63,15 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# Configured CORS Middleware to support Live Server origin (http://127.0.0.1:5500)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Restrict origins in production
+    allow_origins=[
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+        "http://127.0.0.1:8000",
+        "*",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -92,7 +98,9 @@ async def validate_pdf(file: UploadFile):
     await file.seek(0)
 
 
-# --- System Endpoints ---
+# =====================================================================
+# SYSTEM & HEALTH ENDPOINTS
+# =====================================================================
 
 @app.get("/", tags=["Health"])
 def home():
@@ -100,7 +108,9 @@ def home():
     return {"message": "Backend Running 🚀"}
 
 
-# --- Auth Endpoints ---
+# =====================================================================
+# AUTHENTICATION ENDPOINTS
+# =====================================================================
 
 @app.post("/register", tags=["Auth"], status_code=status.HTTP_201_CREATED)
 def register(user: UserRegister, db: Session = Depends(get_db)):
@@ -128,7 +138,34 @@ def register(user: UserRegister, db: Session = Depends(get_db)):
     }
 
 
-# --- AI Endpoints ---
+@app.post("/login", tags=["Auth"], status_code=status.HTTP_200_OK)
+def login(user_credentials: UserLogin, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == user_credentials.email).first()
+
+    if not user or not verify_password(user_credentials.password, user.password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid email or password.",
+        )
+
+    access_token = create_access_token(data={"sub": user.email})
+
+    return {
+        "success": True,
+        "message": "Login successful.",
+        "access_token": access_token,
+        "token_type": "bearer",
+        "user": {
+            "id": user.id,
+            "name": user.name,
+            "email": user.email,
+        },
+    }
+
+
+# =====================================================================
+# AI SERVICE ENDPOINTS
+# =====================================================================
 
 @app.post("/resume-analysis", tags=["AI"], status_code=status.HTTP_200_OK)
 async def resume_analysis(file: UploadFile = File(...)):
@@ -263,3 +300,13 @@ async def resume_improvement(file: UploadFile = File(...)):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=str(e),
         )
+    # =====================================================================
+# DASHBOARD ENDPOINT
+# =====================================================================
+
+@app.get("/api/dashboard", tags=["Dashboard"], status_code=status.HTTP_200_OK)
+def get_dashboard(db: Session = Depends(get_db)):
+    return {
+        "success": True,
+        "message": "Dashboard data loaded successfully."
+    }
