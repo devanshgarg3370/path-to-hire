@@ -215,7 +215,7 @@ analyzeBtn.addEventListener("click", () => {
             setTimeout(() => {
 
                 window.location.href =
-                    "frontend/html/dashboard.html";
+                    "dashboard.html";
 
             }, 1800);
 
