@@ -1,31 +1,53 @@
 import json
+import logging
 import os
+
 from dotenv import load_dotenv
 from google import genai
 
 load_dotenv()
 
-client = genai.Client(
-    api_key=os.getenv("GEMINI_API_KEY")
-)
+logger = logging.getLogger(__name__)
+
+API_KEY = os.getenv("GEMINI_API_KEY")
+
+if not API_KEY:
+    raise ValueError(
+        "GEMINI_API_KEY not found. Check your .env file."
+    )
+
+client = genai.Client(api_key=API_KEY)
+
 
 def ask_gemini(prompt: str):
+    """
+    Sends a prompt to Gemini and returns parsed JSON.
+    """
     try:
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt
+            model="gemini-3.5-flash",
+            contents=prompt,
         )
 
-        text = response.text
+        if not response or not response.text:
+            raise ValueError("Gemini returned an empty response.")
 
-        # Remove Markdown code block if Gemini returns one
-        text = text.replace("```json", "")
-        text = text.replace("```", "")
-        text = text.strip()
+        text = (
+            response.text
+            .replace("```json", "")
+            .replace("```", "")
+            .strip()
+        )
 
-        # Convert JSON string to Python dictionary
         return json.loads(text)
 
-    except Exception as e:
-        print("Gemini Error:", e)
-        raise e
+    except json.JSONDecodeError as e:
+        logger.exception("Gemini returned invalid JSON.")
+
+        raise ValueError(
+            f"Invalid JSON received from Gemini.\n\n{text}"
+        ) from e
+
+    except Exception:
+        logger.exception("Gemini request failed.")
+        raise

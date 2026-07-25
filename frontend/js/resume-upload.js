@@ -215,7 +215,7 @@ analyzeBtn.addEventListener("click", () => {
             setTimeout(() => {
 
                 window.location.href =
-                    "resume-analysis.html";
+                    "frontend/html/dashboard.html";
 
             }, 1800);
 

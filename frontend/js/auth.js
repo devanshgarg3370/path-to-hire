@@ -142,28 +142,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (
 
-            email.value === storedUser.email &&
-            password.value === storedUser.password
+    email.value === storedUser.email &&
+    password.value === storedUser.password
 
-        ) {
+) {
 
-            localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("isLoggedIn", "true");
 
-            showToast("Login Successful 🚀", "success");
+    showToast("Login Successful 🚀", "success");
 
-            setTimeout(() => {
+    setTimeout(() => {
 
-                window.location.href = "dashboard.html";
+        window.location.href = "resume-upload.html";
 
-            }, 1500);
+    }, 1500);
 
-        }
+}
 
-        else {
+else {
 
-            showToast("Invalid Email or Password", "error");
+    showToast("Invalid Email or Password", "error");
 
-        }
+}
 
     });
 
