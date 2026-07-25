@@ -1,0 +1,89 @@
+/* ===============================
+   PATH TO HIRE - DEMO VIDEO PAGE
+================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#111827);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    overflow:hidden;
+}
+
+.video-wrapper{
+    width:90%;
+    max-width:1000px;
+    background:#ffffff;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+    animation:fadeIn .6s ease;
+}
+
+.video-title{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.video-title h1{
+    color:#2563eb;
+    font-size:34px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.video-title p{
+    color:#64748b;
+    font-size:16px;
+}
+
+video{
+    width:100%;
+    border-radius:15px;
+    display:block;
+    outline:none;
+    background:#000;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.video-wrapper{
+    width:95%;
+    padding:15px;
+}
+
+.video-title h1{
+    font-size:28px;
+}
+
+.video-title p{
+    font-size:14px;
+}
+
+}
+
+/* Animation */
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
