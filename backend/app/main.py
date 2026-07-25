@@ -20,7 +20,17 @@ from app.prompts import (
     JOB_RECOMMENDATION_PROMPT,
     RESUME_IMPROVEMENT_PROMPT,
 )
+from fastapi import Depends
+from sqlalchemy.orm import Session
 
+from app.database import Base, engine, get_db
+from .models import User
+from app.schemas import UserRegister, UserLogin
+from app.auth import (
+    hash_password,
+    verify_password,
+    create_access_token,
+)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -323,9 +333,36 @@ async def resume_improvement(file: UploadFile = File(...)):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=str(e)
         )
+
 @app.on_event("startup")
 async def startup():
-
     logger.info("=" * 60)
     logger.info("PATH TO HIRE Backend Started Successfully 🚀")
     logger.info("=" * 60)
+
+@app.post("/register")
+def register(user: UserRegister, db: Session = Depends(get_db)):
+    existing_user = db.query(User).filter(
+        User.email == user.email
+    ).first()
+
+    if existing_user:
+        return {
+            "success": False,
+            "message": "Email already registered."
+        }
+
+    new_user = User(
+        name=user.name,
+        email=user.email,
+        password=hash_password(user.password)
+    )
+
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+
+    return {
+        "success": True,
+        "message": "User registered successfully."
+    }
