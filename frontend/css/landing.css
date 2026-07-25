@@ -144,5 +144,43 @@ section {
     display:flex;
     align-items:center;
     gap:30px;          
+}
+/* ===========================
+   Navbar Get Started Button
+=========================== */
+
+.btn-get-started{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    background: #2563eb;
+    color: #fff;
+    text-decoration: none;
+
+    padding: 14px 30px;
+    border-radius: 12px;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    transition: all .3s ease;
+    box-shadow: 0 8px 20px rgba(37,99,235,.25);
+}
+
+.btn-get-started i{
+    font-size: 16px;
+    transition: transform .3s ease;
+}
+
+.btn-get-started:hover{
+    background: #1d4ed8;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(37,99,235,.35);
+}
+
+.btn-get-started:hover i{
+    transform: translateX(6px);
 } 
  
