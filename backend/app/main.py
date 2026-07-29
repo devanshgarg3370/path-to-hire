@@ -10,7 +10,7 @@ from app.routers.auth import router as auth_router
 from app.routers.ai import router as ai_router
 from app.routers.history import router as history_router
 from app.routers.dashboard import router as dashboard_router
-
+from app.routers.career_intelligence import router as career_intelligence_router
 
 # ==========================================================
 # Logging
@@ -69,7 +69,7 @@ app.include_router(auth_router)
 app.include_router(ai_router)
 app.include_router(history_router)
 app.include_router(dashboard_router)
-
+app.include_router(career_intelligence_router)
 
 # ==========================================================
 # Root Endpoint
