@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 # ==========================================================
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(_app: FastAPI):
     logger.info("Creating database tables...")
     Base.metadata.create_all(bind=engine)
     logger.info("Application Started")

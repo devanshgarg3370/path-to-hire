@@ -412,3 +412,79 @@ nav a{
 }
 
 }
+.policy-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.4s;
+
+    height:100%;
+}
+
+.policy-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+
+}
+
+.policy-icon{
+
+    width:65px;
+
+    height:65px;
+
+    background:#eef4ff;
+
+    color:#2563eb;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    font-size:28px;
+
+    margin-bottom:20px;
+
+}
+
+.policy-content{
+
+    max-height:90px;
+
+    overflow:hidden;
+
+    transition:.4s;
+
+}
+
+.policy-content.show{
+
+    max-height:600px;
+
+}
+
+.toggle-btn{
+
+    border:none;
+
+    background:none;
+
+    color:#2563eb;
+
+    font-weight:600;
+
+    margin-top:15px;
+
+}

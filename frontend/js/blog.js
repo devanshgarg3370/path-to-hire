@@ -211,6 +211,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+
+
 /* ==========================================
             TOAST MESSAGE
 ========================================== */
@@ -269,6 +271,28 @@ function showToast(message, success = true) {
 
 }
 
+const buttons = document.querySelectorAll(".read-more-btn");
+
+buttons.forEach(button => {
+
+    const text = button.previousElementSibling;
+
+    if (text.scrollHeight <= text.clientHeight + 2) {
+        button.style.display = "none";
+    }
+
+    button.addEventListener("click", function () {
+
+        text.classList.toggle("show");
+
+        this.innerText = text.classList.contains("show")
+            ? "Read Less"
+            : "Read More";
+
+    });
+
+});
+
 /* ==========================================
         SMOOTH SCROLL FOR LINKS
 ========================================== */
@@ -292,6 +316,8 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
         }
 
+        
     });
+    
 
 });

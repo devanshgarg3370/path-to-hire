@@ -236,6 +236,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+    document.querySelectorAll(".topic-card").forEach(card => {
+
+    const text = card.querySelector(".card-text");
+    const button = card.querySelector(".read-more-btn");
+
+    if (!text || !button) return;
+
+    // Agar content sirf 2 lines ya usse kam hai to button hide kar do
+    if (text.scrollHeight <= text.clientHeight + 2) {
+        button.style.display = "none";
+        return;
+    }
+
+    button.addEventListener("click", () => {
+
+        text.classList.toggle("expanded");
+
+        button.textContent = text.classList.contains("expanded")
+            ? "Read Less"
+            : "Read More";
+
+    });
+
+});
 
     /* ===========================================
             TOAST FUNCTION

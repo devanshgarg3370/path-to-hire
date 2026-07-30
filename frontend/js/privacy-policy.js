@@ -148,6 +148,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     }
+    document.querySelectorAll(".toggle-btn").forEach(btn=>{
+
+    btn.onclick=()=>{
+
+        const content=btn.previousElementSibling;
+
+        content.classList.toggle("show");
+
+        btn.innerHTML=content.classList.contains("show")
+        ?"Read Less"
+        :"Read More";
+
+    }
+
+});
 
     /* ==========================
        Accept Policy Button
