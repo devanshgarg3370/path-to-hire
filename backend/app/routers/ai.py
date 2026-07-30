@@ -91,11 +91,20 @@ async def resume_analysis(
             response=str(analysis),
         )
 
-        logger.info("Resume Analysis Completed")
+        logger.info("🔥🔥🔥 RESUME ANALYSIS COMPLETED 🔥🔥🔥")
 
+
+        print("RETURNING RESUME TEXT LENGTH:", len(resume_text))
+        print("RETURN KEYS:", {
+          "success": True,
+          "analysis": analysis,
+          "resume_text": resume_text
+            }.keys())
+        
         return {
             "success": True,
             "analysis": analysis,
+            "resume_text": resume_text,
         }
 
     except HTTPException:

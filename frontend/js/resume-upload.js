@@ -119,6 +119,8 @@ removeBtn.addEventListener("click", () => {
 
 analyzeBtn.addEventListener("click", async () => {
 
+    console.log("Analyze button clicked");
+
     if (!uploadedFile) {
 
         showToast("Upload a resume first");
@@ -161,7 +163,6 @@ analyzeBtn.addEventListener("click", async () => {
             await new Promise(resolve => setTimeout(resolve, 500));
 
         }
-
         const response = await fetch(
             `${API_BASE}/resume-analysis`,
             {
@@ -172,21 +173,22 @@ analyzeBtn.addEventListener("click", async () => {
                 body: formData
             }
         );
-
         const data = await response.json();
-
-        console.log(data);
-
-        if (!response.ok) {
-
-            throw new Error(data.detail || "Analysis failed");
-
+       
+       if (!response.ok) {
+           throw new Error(data.detail || "Analysis failed");
         }
 
         localStorage.setItem(
             "resumeAnalysis",
             JSON.stringify(data)
         );
+
+        if (data.resume_text) {
+          localStorage.setItem(
+          "resumeText",
+          data.resume_text
+        );}
 
         localStorage.setItem(
             "resumeName",

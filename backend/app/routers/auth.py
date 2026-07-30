@@ -23,6 +23,8 @@ ACCESS_TOKEN_EXPIRE_MINUTES = int(
     os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 1440)
 )
 
+print("ACCESS_TOKEN_EXPIRE_MINUTES =", ACCESS_TOKEN_EXPIRE_MINUTES)
+
 # ==========================================================
 # ROUTER
 # ==========================================================
