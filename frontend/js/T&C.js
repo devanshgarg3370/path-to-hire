@@ -125,6 +125,33 @@ document.addEventListener("DOMContentLoaded", () => {
             `© ${new Date().getFullYear()} Path to Hire. All Rights Reserved.`;
 
     }
+    /* ==============================
+   Read More / Read Less
+============================== */
+
+const buttons = document.querySelectorAll(".read-more-btn");
+
+buttons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const content = button.previousElementSibling;
+
+        content.classList.toggle("show");
+
+        if (content.classList.contains("show")) {
+
+            button.textContent = "Read Less";
+
+        } else {
+
+            button.textContent = "Read More";
+
+        }
+
+    });
+
+});
 
 });
 
