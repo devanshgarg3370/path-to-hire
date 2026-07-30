@@ -1,3 +1,9 @@
+// ==========================================
+// Resume Upload + AI Analysis
+// ==========================================
+
+const API_BASE = "http://127.0.0.1:8000";
+
 // ===============================
 // Elements
 // ===============================
@@ -22,59 +28,35 @@ const steps = document.querySelectorAll(".step");
 let uploadedFile = null;
 
 // ===============================
-// Open File Picker
+// Upload Box
 // ===============================
 
-uploadBox.addEventListener("click", () => {
-    fileInput.click();
-});
-
-// ===============================
-// File Selected
-// ===============================
+uploadBox.addEventListener("click", () => fileInput.click());
 
 fileInput.addEventListener("change", () => {
-
-    if (fileInput.files.length > 0) {
-
+    if (fileInput.files.length) {
         handleFile(fileInput.files[0]);
-
     }
-
 });
 
-// ===============================
-// Drag & Drop
-// ===============================
-
-uploadBox.addEventListener("dragover", (e) => {
-
+uploadBox.addEventListener("dragover", e => {
     e.preventDefault();
-
     uploadBox.classList.add("drag");
-
 });
 
 uploadBox.addEventListener("dragleave", () => {
-
     uploadBox.classList.remove("drag");
-
 });
 
-uploadBox.addEventListener("drop", (e) => {
+uploadBox.addEventListener("drop", e => {
 
     e.preventDefault();
 
     uploadBox.classList.remove("drag");
 
-    const file = e.dataTransfer.files[0];
-
-    if (file) {
-
-        handleFile(file);
-
+    if (e.dataTransfer.files.length) {
+        handleFile(e.dataTransfer.files[0]);
     }
-
 });
 
 // ===============================
@@ -83,59 +65,38 @@ uploadBox.addEventListener("drop", (e) => {
 
 function handleFile(file) {
 
-    const allowed = [
-
-        "application/pdf",
-
-        "application/msword",
-
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-
-    ];
-
-    if (!allowed.includes(file.type)) {
-
-        showToast("❌ Upload only PDF, DOC or DOCX");
-
+    if (file.type !== "application/pdf") {
+        showToast("❌ Please upload a PDF");
         return;
-
     }
 
     uploadedFile = file;
 
     emptyState.style.display = "none";
-
     filePreview.style.display = "flex";
 
     fileName.innerText = file.name;
-
     fileSize.innerText =
         (file.size / 1024 / 1024).toFixed(2) + " MB";
 
-    progressBar.style.width = "0%";
-
     let progress = 0;
 
-    const upload = setInterval(() => {
+    const timer = setInterval(() => {
 
-        progress += 5;
+        progress += 10;
 
         progressBar.style.width = progress + "%";
 
         if (progress >= 100) {
-
-            clearInterval(upload);
-
-            showToast("✅ Resume Uploaded Successfully");
-
+            clearInterval(timer);
         }
 
-    }, 60);
+    }, 50);
 
 }
 
 // ===============================
-// Remove File
+// Remove
 // ===============================
 
 removeBtn.addEventListener("click", () => {
@@ -146,16 +107,9 @@ removeBtn.addEventListener("click", () => {
 
     filePreview.style.display = "none";
 
-    analyzingBox.style.display = "none";
-
     emptyState.style.display = "block";
 
     progressBar.style.width = "0%";
-
-    analyzeBtn.disabled = false;
-
-    analyzeBtn.innerHTML =
-        '<i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Resume';
 
 });
 
@@ -163,11 +117,23 @@ removeBtn.addEventListener("click", () => {
 // Analyze Resume
 // ===============================
 
-analyzeBtn.addEventListener("click", () => {
+analyzeBtn.addEventListener("click", async () => {
 
     if (!uploadedFile) {
 
-        showToast("⚠ Please upload your resume first");
+        showToast("Upload a resume first");
+
+        return;
+
+    }
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+
+        showToast("Please login again");
+
+        window.location.href = "login.html";
 
         return;
 
@@ -180,53 +146,76 @@ analyzeBtn.addEventListener("click", () => {
 
     analyzingBox.style.display = "block";
 
-    let current = 0;
+    steps.forEach(step => step.classList.remove("active"));
 
-    const interval = setInterval(() => {
+    const formData = new FormData();
 
-        if (current > 0)
+    formData.append("file", uploadedFile);
 
-            steps[current - 1].classList.remove("active");
+    try {
 
-        if (current < steps.length) {
+        for (let i = 0; i < steps.length; i++) {
 
-            steps[current].classList.add("active");
+            steps[i].classList.add("active");
 
-            current++;
-
-        }
-
-        else {
-
-            clearInterval(interval);
-
-            analyzeBtn.innerHTML =
-                '<i class="fa-solid fa-check"></i> Analysis Complete';
-
-            analyzeBtn.style.background = "#22c55e";
-
-            localStorage.setItem(
-                "resumeName",
-                uploadedFile.name
-            );
-
-            showToast("🎉 Resume Analysis Completed");
-
-            setTimeout(() => {
-
-                window.location.href =
-                    "dashboard.html";
-
-            }, 1800);
+            await new Promise(resolve => setTimeout(resolve, 500));
 
         }
 
-    }, 1500);
+        const response = await fetch(
+            `${API_BASE}/resume-analysis`,
+            {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                body: formData
+            }
+        );
+
+        const data = await response.json();
+
+        console.log(data);
+
+        if (!response.ok) {
+
+            throw new Error(data.detail || "Analysis failed");
+
+        }
+
+        localStorage.setItem(
+            "resumeAnalysis",
+            JSON.stringify(data)
+        );
+
+        localStorage.setItem(
+            "resumeName",
+            uploadedFile.name
+        );
+
+        showToast("✅ AI Analysis Complete");
+
+        window.location.href = "dashboard.html";
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        showToast(err.message);
+
+        analyzeBtn.disabled = false;
+
+        analyzeBtn.innerHTML =
+            '<i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Resume';
+
+    }
 
 });
 
 // ===============================
-// Toast Notification
+// Toast
 // ===============================
 
 function showToast(message) {
@@ -243,50 +232,13 @@ function showToast(message) {
         color:white;
         padding:15px 25px;
         border-radius:10px;
-        box-shadow:0 10px 25px rgba(0,0,0,.2);
         z-index:9999;
         font-weight:500;
-        animation:slide .4s;
+        box-shadow:0 10px 20px rgba(0,0,0,.2);
     `;
 
     document.body.appendChild(toast);
 
-    setTimeout(() => {
-
-        toast.remove();
-
-    }, 3000);
+    setTimeout(() => toast.remove(), 3000);
 
 }
-
-// ===============================
-// Animation
-// ===============================
-
-const style = document.createElement("style");
-
-style.innerHTML = `
-
-@keyframes slide{
-
-from{
-
-transform:translateX(120px);
-
-opacity:0;
-
-}
-
-to{
-
-transform:translateX(0);
-
-opacity:1;
-
-}
-
-}
-
-`;
-
-document.head.appendChild(style);

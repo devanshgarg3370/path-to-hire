@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 4. Try fetching live backend stats if API endpoint is active
     try {
-        const token = localStorage.getItem("authToken");
-        const response = await fetch("http://127.0.0.1:8000/api/dashboard", {
+        const token = localStorage.getItem("token");
+        const response = await fetch("http://127.0.0.1:8000/dashboard/", {
             headers: token ? { "Authorization": `Bearer ${token}` } : {}
         });
 
