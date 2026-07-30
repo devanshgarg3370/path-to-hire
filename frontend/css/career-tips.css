@@ -753,3 +753,31 @@ padding:70px 6%;
 }
 
 }
+.card-text{
+    line-height: 24px;
+    max-height: 48px;   /* 2 × 24px = 2 lines */
+    overflow: hidden;
+    transition: max-height .4s ease;
+}
+
+.card-text.expanded{
+    max-height: 500px;
+}
+
+
+.card-text.expanded{
+    display: block;
+}
+
+.read-more-btn{
+    background: none;
+    border: none;
+    color: #2563eb;
+    cursor: pointer;
+    font-weight: 600;
+    margin: 8px 0 12px;
+}
+
+.read-more-btn:hover{
+    text-decoration: underline;
+}

@@ -901,3 +901,65 @@ section{
     border-radius:12px;
     font-weight:600;
 }
+.term-card p {
+    position: relative;
+    overflow: hidden;
+    max-height: 3.6em;      /* Approx 2 lines */
+    transition: max-height 0.4s ease;
+}
+
+.term-card p.expanded {
+    max-height: 500px;
+}
+
+.read-more-btn{
+    background: none;
+    border: none;
+    color: #2563eb;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.read-more-btn:hover{
+    text-decoration: underline;
+}
+.card-text{
+    max-height:72px;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+.card-text.show{
+    max-height:500px;
+}
+
+
+.read-more-btn {
+    background: none;
+    border: none;
+    color: #0d6efd;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 8px;
+    transition: .3s;
+}
+
+.read-more-btn:hover {
+    color: #084298;
+    text-decoration: underline;
+}
+.accordion-button{
+    font-size:20px;
+    font-weight:600;
+}
+
+.accordion-button:not(.collapsed){
+    background:#0d6efd;
+    color:#fff;
+}
+
+.accordion-body{
+    line-height:1.8;
+}
