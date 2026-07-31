@@ -2,164 +2,236 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
 
-<meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <title>Signup | Path to Hire</title>
 
-<title>Signup | Path to Hire</title>
+    <!-- Custom CSS -->
+    <link
+        rel="stylesheet"
+        href="/frontend/css/auth.css"
+    >
 
-<link rel="stylesheet" href="/frontend/css/auth.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 </head>
 
 <body>
 
-<div class="auth-container">
+    <div class="auth-container">
 
-<div class="auth-card">
+        <div class="auth-card">
 
- <div class="logo">
-    <img src="/frontend/assets/images/logo.png"
-         alt="Path to Hire Logo"
-         class="logo-img">
+            <!-- Logo -->
+            <div class="logo">
 
-    <h2>Path to Hire</h2>
-</div>
+                <img
+                    src="/frontend/assets/images/logo.png"
+                    alt="Path to Hire Logo"
+                    class="logo-img"
+                >
 
-<h1>Create Account</h1>
+                <h2>Path to Hire</h2>
 
-<p>Start your AI placement preparation.</p>
-
-<form id="signupForm">
-
-<div class="input-group">
-
-<label>Full Name</label>
-
-<input
-type="text"
-id="name"
-placeholder="Enter Full Name"
-required>
-
-</div>
-
-<div class="input-group">
-
-<label>Email</label>
-
-<input
-type="email"
-id="email"
-placeholder="Enter Email"
-required>
-
-</div>
-
-<div class="input-group">
-
-<label>Password</label>
-
-<input
-type="password"
-id="password"
-placeholder="Create Password"
-required>
-
-</div>
-
-<div class="input-group">
-
-<label>Confirm Password</label>
-
-<input
-type="password"
-id="confirmPassword"
-placeholder="Confirm Password"
-required>
-
-</div>
-
-<div class="input-group">
-
-<label>Select Role</label>
-
-<select id="role">
-
-<option>Student</option>
-
-</select>
-
-</div>
-
-<label class="checkbox">
-
-<input
-type="checkbox"
-required>
-
-I agree to the
-
-<a href="/frontend/html/T&C.html">
-
-Terms & Conditions
-
-</a>
-
-</label>
-
-<button
-type="submit"
-class="btn">
-
-Create Account
-
-</button>
-
-<!-- <div class="divider">
-
-<span>OR</span>
-
-</div>
-
-<button
-type="button"
-class="google-btn">
-
-<i class="fab fa-google"></i>
-
-Continue with Google
-
-</button> -->
-
-<p class="bottom-text">
-
-Already have an account?
-
-<a href="login.html">
-
-Login
-
-</a>
-
-</p>
-
-</form>
-
-</div>
-
-</div>
+            </div>
 
 
-<script src="../js/auth.js"></script>
+            <!-- Header -->
+            <h1>Create Account</h1>
+
+            <p>
+                Start your AI placement preparation.
+            </p>
+
+
+            <!-- Signup Form -->
+            <form id="signupForm">
+
+
+                <!-- Full Name -->
+                <div class="input-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter Full Name"
+                        autocomplete="name"
+                        required
+                    >
+
+                    <small
+                        class="error"
+                        aria-live="polite"
+                    ></small>
+
+                </div>
+
+
+                <!-- Email -->
+                <div class="input-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter Email"
+                        autocomplete="email"
+                        required
+                    >
+
+                    <small
+                        class="error"
+                        aria-live="polite"
+                    ></small>
+
+                </div>
+
+
+                <!-- Password WITH Eye -->
+                <div class="input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Create Password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="password"
+                            aria-label="Show password"
+                        >
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+
+                    </div>
+
+                    <small
+                        class="error"
+                        aria-live="polite"
+                    ></small>
+
+                </div>
+
+
+                <!-- Confirm Password WITHOUT Eye -->
+                <div class="input-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm Password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <small
+                        class="error"
+                        aria-live="polite"
+                    ></small>
+
+                </div>
+
+
+                <!-- Role -->
+                <div class="input-group">
+
+                    <label for="role">
+                        Select Role
+                    </label>
+
+                    <select id="role">
+
+                        <option value="Student">
+                            Student
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Terms & Conditions -->
+                <label class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        required
+                    >
+
+                    I agree to the
+
+                    <a href="/frontend/html/T&C.html">
+                        Terms & Conditions
+                    </a>
+
+                </label>
+
+
+                <!-- Submit -->
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Create Account
+                </button>
+
+
+                <!-- Login Link -->
+                <p class="bottom-text">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Login
+                    </a>
+
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Authentication JS -->
+    <script src="../js/auth.js"></script>
 
 </body>
+
 </html>
