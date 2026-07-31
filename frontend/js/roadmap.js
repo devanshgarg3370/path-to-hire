@@ -205,12 +205,19 @@ function setupRoadmapProgress(
 
 
 // ==========================================================
-// INITIAL PAGE LOAD
+// INITIAL PAGE LOAD (RESTORE SAVED ROADMAP)
 // ==========================================================
 
 window.addEventListener(
     "load",
     () => {
+
+        // Restore saved roadmap HTML if it exists so data stays updated
+        const savedRoadmapHTML = localStorage.getItem("roadmapHTML");
+
+        if (savedRoadmapHTML && board) {
+            board.innerHTML = savedRoadmapHTML;
+        }
 
         setupRoadmapProgress(true);
 
@@ -614,20 +621,11 @@ function renderRoadmap(result) {
             .join("");
 
 
-     
-            
-    console.log(weeksHTML);        
-    console.log(board);
-
+    // Render content to the board
     board.innerHTML = weeksHTML;
 
-   board.style.border = "10px solid red";
-   board.style.background = "yellow";
-   
-    console.log("After update:");
-    console.log(board.innerHTML);
-    console.log(board.outerHTML);
-
+    // SAVE THE ROADMAP DATA SO IT PERSISTS UPON UPDATE/REFRESH
+    localStorage.setItem("roadmapHTML", weeksHTML);
 
     // Reset old progress because this
     // is a newly generated roadmap.
@@ -730,15 +728,10 @@ if (modalButtons.length >= 2) {
             // FORM DATA
             // ==============================================
 
-
-
             const requestBody = {
-
-         resume_text: resumeText,
-
-         job_description: jobDescription
-
-           };
+                resume_text: resumeText,
+                job_description: jobDescription
+            };
 
             const originalHTML =
                 generateBtn.innerHTML;
