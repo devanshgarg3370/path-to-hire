@@ -10,12 +10,16 @@
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
     <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
     <!-- CSS -->
     <link rel="stylesheet" href="/frontend/css/skill-gap.css">
@@ -26,37 +30,44 @@
 
 <div class="skill-gap-page">
 
-    <!-- ================= HEADER ================= -->
+    <!-- ================================================== -->
+    <!-- HEADER -->
+    <!-- ================================================== -->
 
-   <header class="navbar">
+    <header class="navbar">
 
-    <div class="logo">
-        <img src="/frontend/assets/images/logo.png" class="logo-img">
-        <h2>Path to Hire</h2>
-    </div>
+        <div class="logo">
+            <img
+                src="/frontend/assets/images/logo.png"
+                class="logo-img"
+                alt="Path to Hire Logo"
+            >
 
-    <div class="nav-right">
+            <h2>Path to Hire</h2>
+        </div>
 
-        <ul class="nav-links">
-            <li><a href="landing.html#home">Home</a></li>
-            <li><a href="landing.html#features">Features</a></li>
-            <li><a href="landing.html#how-it-works">How it Works</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
+        <div class="nav-right">
 
-        <a href="dashboard.html" class="dashboard-btn">
-            <i class="fa-solid fa-arrow-left"></i>
-            Dashboard
-        </a>
+            <ul class="nav-links">
+                <li><a href="landing.html#home">Home</a></li>
+                <li><a href="landing.html#features">Features</a></li>
+                <li><a href="landing.html#how-it-works">How it Works</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
 
-    </div>
+            <a href="dashboard.html" class="dashboard-btn">
+                <i class="fa-solid fa-arrow-left"></i>
+                Dashboard
+            </a>
 
-</header>
+        </div>
+
+    </header>
 
 
-
-
-    <!-- ================= PAGE TITLE ================= -->
+    <!-- ================================================== -->
+    <!-- PAGE TITLE -->
+    <!-- ================================================== -->
 
     <section class="page-title">
 
@@ -70,10 +81,13 @@
     </section>
 
 
-
-    <!-- ================= ANALYSIS FORM ================= -->
+    <!-- ================================================== -->
+    <!-- ANALYSIS FORM -->
+    <!-- ================================================== -->
 
     <section class="analysis-card">
+
+        <!-- Target Role + Company -->
 
         <div class="form-grid">
 
@@ -81,69 +95,137 @@
 
             <div class="input-group">
 
-                <label>Target Role</label>
+                <label for="targetRole">
+                    Target Role
+                </label>
 
-                <select>
+                <select
+                    id="targetRole"
+                    name="targetRole"
+                >
 
-                    <option>Frontend Developer</option>
+                    <option value="Frontend Developer">
+                        Frontend Developer
+                    </option>
 
-                    <option>Backend Developer</option>
+                    <option value="Backend Developer">
+                        Backend Developer
+                    </option>
 
-                    <option>Full Stack Developer</option>
+                    <option value="Full Stack Developer">
+                        Full Stack Developer
+                    </option>
 
-                    <option>AI Engineer</option>
+                    <option value="AI Engineer">
+                        AI Engineer
+                    </option>
 
-                    <option>Data Scientist</option>
+                    <option value="Data Scientist">
+                        Data Scientist
+                    </option>
 
-                    <option>Machine Learning Engineer</option>
+                    <option value="Machine Learning Engineer">
+                        Machine Learning Engineer
+                    </option>
 
                 </select>
 
             </div>
 
 
-
-            <!-- Company -->
+            <!-- Target Company -->
 
             <div class="input-group">
 
-                <label>Target Company</label>
+                <label for="targetCompany">
+                    Target Company
+                </label>
 
                 <input
                     type="text"
-                    placeholder="Search company...">
+                    id="targetCompany"
+                    name="targetCompany"
+                    placeholder="Search company..."
+                >
 
             </div>
 
         </div>
 
 
+        <!-- ================================================== -->
+        <!-- RESUME UPLOAD -->
+        <!-- ================================================== -->
 
-        <!-- Suggested Companies -->
+        <div
+            class="input-group"
+            style="margin-top: 20px;"
+        >
+
+            <label for="resumeFile">
+                Upload Resume (PDF)
+            </label>
+
+            <input
+                type="file"
+                id="resumeFile"
+                name="resumeFile"
+                accept="application/pdf"
+            >
+
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- JOB DESCRIPTION -->
+        <!-- ================================================== -->
+
+        <div
+            class="input-group"
+            style="margin-top: 20px;"
+        >
+
+            <label for="jobDescription">
+                Job Description
+            </label>
+
+            <textarea
+                id="jobDescription"
+                name="jobDescription"
+                rows="7"
+                placeholder="Paste the target job description here..."
+            ></textarea>
+
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- SUGGESTED COMPANIES -->
+        <!-- ================================================== -->
 
         <div class="company-chips">
 
             <span>Google</span>
-
             <span>Microsoft</span>
-
             <span>Amazon</span>
-
             <span>Adobe</span>
-
             <span>Oracle</span>
-
             <span>Infosys</span>
-
             <span>TCS</span>
-
             <span>Accenture</span>
 
         </div>
 
 
+        <!-- ================================================== -->
+        <!-- ANALYZE BUTTON -->
+        <!-- ================================================== -->
 
-        <button class="analyze-btn">
+        <button
+            class="analyze-btn"
+            id="analyzeSkillGapBtn"
+            type="button"
+        >
 
             <i class="fa-solid fa-wand-magic-sparkles"></i>
 
@@ -154,15 +236,22 @@
     </section>
 
 
+    <!-- ================================================== -->
+    <!-- RESULTS -->
+    <!-- ================================================== -->
 
-    <!-- ================= RESULTS ================= -->
+    <section
+        class="results-section"
+        id="resultsSection"
+        style="display: none;"
+    >
 
-    <section class="results-section" id="resultsSection" style="display:none;">
         <h2>Analysis Results</h2>
 
 
-
-        <!-- Skill Match -->
+        <!-- ================================================== -->
+        <!-- OVERALL SKILL MATCH -->
+        <!-- ================================================== -->
 
         <div class="match-card">
 
@@ -178,60 +267,121 @@
 
             <p>
                 You currently match approximately
-                <strong>78%</strong> of the required skills.
+                <strong>78%</strong>
+                of the required skills.
             </p>
 
         </div>
 
 
-
-        <!-- Skill Match Breakdown -->
+        <!-- ================================================== -->
+        <!-- SKILL MATCH BREAKDOWN -->
+        <!-- ================================================== -->
 
         <div class="chart-section">
 
             <h3>Skill Match Breakdown</h3>
 
-            
-        <div class="skills-chart">
+            <div class="skills-chart">
 
-    <div class="skill">
-        <span>HTML & CSS</span>
-        <div class="bar"><div class="fill" data-width="95"></div></div>
-        <strong>95%</strong>
-    </div>
 
-    <div class="skill">
-        <span>JavaScript</span>
-        <div class="bar"><div class="fill" data-width="82"></div></div>
-        <strong>82%</strong>
-    </div>
+                <!-- HTML & CSS -->
 
-    <div class="skill">
-        <span>React</span>
-        <div class="bar"><div class="fill" data-width="76"></div></div>
-        <strong>76%</strong>
-    </div>
+                <div class="skill">
 
-    <div class="skill">
-        <span>Node.js</span>
-        <div class="bar"><div class="fill" data-width="60"></div></div>
-        <strong>60%</strong>
-    </div>
+                    <span>HTML & CSS</span>
 
-    <div class="skill">
-        <span>MongoDB</span>
-        <div class="bar"><div class="fill" data-width="70"></div></div>
-        <strong>70%</strong>
-    </div>
+                    <div class="bar">
+                        <div
+                            class="fill"
+                            data-width="95"
+                        ></div>
+                    </div>
 
-</div>
+                    <strong>95%</strong>
 
+                </div>
+
+
+                <!-- JavaScript -->
+
+                <div class="skill">
+
+                    <span>JavaScript</span>
+
+                    <div class="bar">
+                        <div
+                            class="fill"
+                            data-width="82"
+                        ></div>
+                    </div>
+
+                    <strong>82%</strong>
+
+                </div>
+
+
+                <!-- React -->
+
+                <div class="skill">
+
+                    <span>React</span>
+
+                    <div class="bar">
+                        <div
+                            class="fill"
+                            data-width="76"
+                        ></div>
+                    </div>
+
+                    <strong>76%</strong>
+
+                </div>
+
+
+                <!-- Node.js -->
+
+                <div class="skill">
+
+                    <span>Node.js</span>
+
+                    <div class="bar">
+                        <div
+                            class="fill"
+                            data-width="60"
+                        ></div>
+                    </div>
+
+                    <strong>60%</strong>
+
+                </div>
+
+
+                <!-- MongoDB -->
+
+                <div class="skill">
+
+                    <span>MongoDB</span>
+
+                    <div class="bar">
+                        <div
+                            class="fill"
+                            data-width="70"
+                        ></div>
+                    </div>
+
+                    <strong>70%</strong>
+
+                </div>
+
+            </div>
 
         </div>
 
 
-
-        <!-- Missing Skills Table -->
+        <!-- ================================================== -->
+        <!-- MISSING SKILLS TABLE -->
+        <!-- ================================================== -->
 
         <div class="table-card">
 
@@ -242,15 +392,10 @@
                 <thead>
 
                     <tr>
-
                         <th>Skill</th>
-
                         <th>Priority</th>
-
                         <th>Learning Time</th>
-
                         <th>Difficulty</th>
-
                     </tr>
 
                 </thead>
@@ -265,9 +410,14 @@
 
                         <td>2 Weeks</td>
 
-                        <td><span class="badge hard">Hard</span></td>
+                        <td>
+                            <span class="badge hard">
+                                Hard
+                            </span>
+                        </td>
 
                     </tr>
+
 
                     <tr>
 
@@ -277,9 +427,14 @@
 
                         <td>4 Weeks</td>
 
-                        <td><span class="badge hard">Hard</span></td>
+                        <td>
+                            <span class="badge hard">
+                                Hard
+                            </span>
+                        </td>
 
                     </tr>
+
 
                     <tr>
 
@@ -289,9 +444,14 @@
 
                         <td>10 Days</td>
 
-                        <td><span class="badge medium">Medium</span></td>
+                        <td>
+                            <span class="badge medium">
+                                Medium
+                            </span>
+                        </td>
 
                     </tr>
+
 
                     <tr>
 
@@ -301,9 +461,14 @@
 
                         <td>1 Week</td>
 
-                        <td><span class="badge medium">Medium</span></td>
+                        <td>
+                            <span class="badge medium">
+                                Medium
+                            </span>
+                        </td>
 
                     </tr>
+
 
                     <tr>
 
@@ -313,7 +478,11 @@
 
                         <td>5 Days</td>
 
-                        <td><span class="badge easy">Easy</span></td>
+                        <td>
+                            <span class="badge easy">
+                                Easy
+                            </span>
+                        </td>
 
                     </tr>
 
@@ -324,30 +493,32 @@
         </div>
 
 
-
-        <!-- Summary -->
+        <!-- ================================================== -->
+        <!-- AI SUMMARY -->
+        <!-- ================================================== -->
 
         <div class="summary-card">
 
             <h3>AI Summary</h3>
 
             <p>
-
-                Your profile is well aligned for Frontend Development.
-                Improving Cloud, Docker, DSA and Testing skills will
-                significantly increase your placement readiness.
-
+                Your skill gap analysis will appear here after
+                the AI completes the analysis.
             </p>
 
         </div>
 
 
-
-        <!-- CTA -->
+        <!-- ================================================== -->
+        <!-- ROADMAP CTA -->
+        <!-- ================================================== -->
 
         <div class="cta-section">
 
-            <button class="roadmap-btn">
+            <button
+                class="roadmap-btn"
+                type="button"
+            >
 
                 <i class="fa-solid fa-road"></i>
 
@@ -360,6 +531,11 @@
     </section>
 
 </div>
+
+
+<!-- ================================================== -->
+<!-- JAVASCRIPT -->
+<!-- ================================================== -->
 
 <script src="/frontend/js/skill-gap.js"></script>
 
