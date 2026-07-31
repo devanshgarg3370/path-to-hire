@@ -25,8 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("targetCompany") ||
         document.querySelector(".input-group input");
 
-    const STORAGE_KEY =
-        "skillGapResult";
+    const STORAGE_KEY = "skillGapResult";
 
 
     // ==========================================
@@ -44,6 +43,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
+    // SAFE HTML
+    // ==========================================
+
+    function escapeHTML(value) {
+
+        return String(value ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+
+    // ==========================================
+    // SAFE PERCENTAGE
+    // ==========================================
+
+    function normalizePercentage(value) {
+
+        const number = Number(value);
+
+        if (!Number.isFinite(number)) {
+            return 0;
+        }
+
+        return Math.max(
+            0,
+            Math.min(100, Math.round(number))
+        );
+    }
+
+
+    // ==========================================
     // COMPANY CHIPS
     // ==========================================
 
@@ -57,12 +90,157 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     companyInput.value =
                         chip.innerText.trim();
-
                 }
-
             });
-
         });
+
+
+    // ==========================================
+    // DIFFICULTY BADGE CLASS
+    // ==========================================
+
+    function getDifficultyClass(difficulty) {
+
+        const value =
+            String(difficulty || "")
+                .trim()
+                .toLowerCase();
+
+        if (value === "easy") {
+            return "easy";
+        }
+
+        if (value === "hard") {
+            return "hard";
+        }
+
+        return "medium";
+    }
+
+
+    // ==========================================
+    // NORMALIZE MATCHED SKILL
+    // ==========================================
+    // Supports BOTH:
+    //
+    // OLD:
+    // "Python"
+    //
+    // NEW:
+    // {
+    //     skill: "Python",
+    //     match_percentage: 85
+    // }
+    //
+    // This keeps old stored/API results from
+    // breaking the page.
+    // ==========================================
+
+    function normalizeMatchedSkill(
+        item,
+        overallPercentage
+    ) {
+
+        if (
+            typeof item === "string"
+        ) {
+
+            return {
+                skill: item,
+                match_percentage:
+                    overallPercentage
+            };
+        }
+
+
+        if (
+            item &&
+            typeof item === "object"
+        ) {
+
+            return {
+
+                skill:
+                    item.skill ||
+                    item.name ||
+                    "Unknown Skill",
+
+                match_percentage:
+                    normalizePercentage(
+                        item.match_percentage ??
+                        item.percentage ??
+                        overallPercentage
+                    )
+            };
+        }
+
+
+        return {
+            skill: "Unknown Skill",
+            match_percentage:
+                overallPercentage
+        };
+    }
+
+
+    // ==========================================
+    // NORMALIZE MISSING SKILL
+    // ==========================================
+    // Supports old string results as fallback.
+    // New Gemini responses should provide all
+    // four dynamic properties.
+    // ==========================================
+
+    function normalizeMissingSkill(item) {
+
+        if (
+            typeof item === "string"
+        ) {
+
+            return {
+                skill: item,
+                priority: "Not specified",
+                learning_time: "Not specified",
+                difficulty: "Not specified"
+            };
+        }
+
+
+        if (
+            item &&
+            typeof item === "object"
+        ) {
+
+            return {
+
+                skill:
+                    item.skill ||
+                    item.name ||
+                    "Unknown Skill",
+
+                priority:
+                    item.priority ||
+                    "Not specified",
+
+                learning_time:
+                    item.learning_time ||
+                    item.learningTime ||
+                    "Not specified",
+
+                difficulty:
+                    item.difficulty ||
+                    "Not specified"
+            };
+        }
+
+
+        return {
+            skill: "Unknown Skill",
+            priority: "Not specified",
+            learning_time: "Not specified",
+            difficulty: "Not specified"
+        };
+    }
 
 
     // ==========================================
@@ -71,34 +249,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderSkillGap(ai) {
 
-        if (!ai) {
+        if (
+            !ai ||
+            typeof ai !== "object"
+        ) {
+
+            console.error(
+                "Invalid Skill Gap result:",
+                ai
+            );
+
             return;
         }
 
 
         // ======================================
-        // MATCH PERCENTAGE
+        // OVERALL MATCH
         // ======================================
 
         const matchFill =
-            document.getElementById("matchFill");
+            document.getElementById(
+                "matchFill"
+            );
 
         const matchText =
-            document.getElementById("matchText");
+            document.getElementById(
+                "matchText"
+            );
 
 
         const percentage =
-            Number(ai.match_percentage) || 0;
+            normalizePercentage(
+                ai.match_percentage
+            );
 
 
         if (matchFill) {
 
             matchFill.style.width =
-                percentage + "%";
+                `${percentage}%`;
 
             matchFill.innerText =
-                percentage + "%";
-
+                `${percentage}%`;
         }
 
 
@@ -106,7 +298,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             matchText.innerHTML =
                 `You currently match approximately <strong>${percentage}%</strong> of the required skills.`;
-
         }
 
 
@@ -115,7 +306,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // ======================================
 
         const summary =
-            document.getElementById("aiSummary");
+            document.getElementById(
+                "aiSummary"
+            );
 
 
         if (summary) {
@@ -123,12 +316,11 @@ document.addEventListener("DOMContentLoaded", () => {
             summary.innerText =
                 ai.role_summary ||
                 "No summary available.";
-
         }
 
 
         // ======================================
-        // MATCHING SKILLS
+        // MATCHED SKILLS
         // ======================================
 
         const skillsChart =
@@ -142,8 +334,39 @@ document.addEventListener("DOMContentLoaded", () => {
             skillsChart.innerHTML = "";
 
 
-            (ai.key_skills_found || [])
-                .forEach((skill) => {
+            const matchedSkills =
+                Array.isArray(
+                    ai.key_skills_found
+                )
+                    ? ai.key_skills_found
+                    : [];
+
+
+            if (matchedSkills.length === 0) {
+
+                skillsChart.innerHTML = `
+                    <p>
+                        No matching skills were identified.
+                    </p>
+                `;
+            }
+
+
+            matchedSkills.forEach(
+                (item) => {
+
+                    const skill =
+                        normalizeMatchedSkill(
+                            item,
+                            percentage
+                        );
+
+
+                    const skillPercentage =
+                        normalizePercentage(
+                            skill.match_percentage
+                        );
+
 
                     const skillElement =
                         document.createElement(
@@ -156,19 +379,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                     skillElement.innerHTML = `
-                        <span>${skill}</span>
+                        <span>
+                            ${escapeHTML(
+                                skill.skill
+                            )}
+                        </span>
 
                         <div class="bar">
 
                             <div
                                 class="fill"
-                                style="width: ${percentage}%"
+                                style="width: ${skillPercentage}%"
                             ></div>
 
                         </div>
 
                         <strong>
-                            ${percentage}%
+                            ${skillPercentage}%
                         </strong>
                     `;
 
@@ -176,9 +403,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     skillsChart.appendChild(
                         skillElement
                     );
-
-                });
-
+                }
+            );
         }
 
 
@@ -197,8 +423,41 @@ document.addEventListener("DOMContentLoaded", () => {
             tbody.innerHTML = "";
 
 
-            (ai.missing_skills || [])
-                .forEach((skill) => {
+            const missingSkills =
+                Array.isArray(
+                    ai.missing_skills
+                )
+                    ? ai.missing_skills
+                    : [];
+
+
+            if (missingSkills.length === 0) {
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                row.innerHTML = `
+                    <td colspan="4">
+                        No major missing skills identified.
+                    </td>
+                `;
+
+
+                tbody.appendChild(row);
+            }
+
+
+            missingSkills.forEach(
+                (item) => {
+
+                    const skill =
+                        normalizeMissingSkill(
+                            item
+                        );
+
 
                     const row =
                         document.createElement(
@@ -206,33 +465,48 @@ document.addEventListener("DOMContentLoaded", () => {
                         );
 
 
+                    const difficultyClass =
+                        getDifficultyClass(
+                            skill.difficulty
+                        );
+
+
                     row.innerHTML = `
                         <td>
-                            ${skill}
+                            ${escapeHTML(
+                                skill.skill
+                            )}
                         </td>
 
                         <td>
-                            High
+                            ${escapeHTML(
+                                skill.priority
+                            )}
                         </td>
 
                         <td>
-                            2-3 Weeks
+                            ${escapeHTML(
+                                skill.learning_time
+                            )}
                         </td>
 
                         <td>
-
-                            <span class="badge medium">
-                                Medium
+                            <span
+                                class="badge ${difficultyClass}"
+                            >
+                                ${escapeHTML(
+                                    skill.difficulty
+                                )}
                             </span>
-
                         </td>
                     `;
 
 
-                    tbody.appendChild(row);
-
-                });
-
+                    tbody.appendChild(
+                        row
+                    );
+                }
+            );
         }
 
 
@@ -251,12 +525,13 @@ document.addEventListener("DOMContentLoaded", () => {
         analyzeBtn.innerHTML =
             '<i class="fa-solid fa-check"></i> Analysis Complete';
 
+
         analyzeBtn.style.background =
             "#22c55e";
 
+
         analyzeBtn.disabled =
             false;
-
     }
 
 
@@ -280,12 +555,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         analyzeBtn.disabled =
             false;
-
     }
 
 
     // ==========================================
-    // RESTORE RESULT ONLY AFTER ACTUAL REFRESH
+    // RESTORE ONLY AFTER ACTUAL REFRESH
     // ==========================================
 
     const navigationEntries =
@@ -347,7 +621,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             resetSkillGapPage();
-
         }
 
     }
@@ -355,11 +628,8 @@ document.addEventListener("DOMContentLoaded", () => {
     else {
 
         /*
-            Fresh navigation to this page.
-
-            Remove any previous analysis so an
-            old result cannot appear before the
-            user selects a role/company.
+            Fresh navigation should NEVER show
+            an old Skill Gap analysis.
         */
 
         sessionStorage.removeItem(
@@ -368,7 +638,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         resetSkillGapPage();
-
     }
 
 
@@ -401,7 +670,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
 
                 return;
-
             }
 
 
@@ -421,12 +689,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Please select a target role."
                 );
 
+
                 if (roleSelect) {
                     roleSelect.focus();
                 }
 
-                return;
 
+                return;
             }
 
 
@@ -453,7 +722,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 return;
-
             }
 
 
@@ -479,7 +747,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 return;
-
             }
 
 
@@ -520,7 +787,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                                 "Authorization":
                                     `Bearer ${token}`
-
                             },
 
                             body:
@@ -534,9 +800,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                                     company:
                                         company
-
                                 })
-
                         }
                     );
 
@@ -545,8 +809,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 // RESPONSE
                 // ==================================
 
-                const data =
-                    await response.json();
+                let data;
+
+
+                try {
+
+                    data =
+                        await response.json();
+
+                }
+
+                catch (error) {
+
+                    throw new Error(
+                        "Server returned an invalid response."
+                    );
+                }
 
 
                 console.log(
@@ -565,7 +843,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         data.message ||
                         "Skill Gap Analysis failed."
                     );
-
                 }
 
 
@@ -573,12 +850,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     data.data;
 
 
-                if (!ai) {
+                if (
+                    !ai ||
+                    typeof ai !== "object"
+                ) {
 
                     throw new Error(
-                        "AI response is empty."
+                        "AI response is empty or invalid."
                     );
-
                 }
 
 
@@ -606,7 +885,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     block:
                         "start"
-
                 });
 
             }
@@ -635,32 +913,116 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 analyzeBtn.style.background =
                     "";
-
             }
-
         }
     );
 
 
     // ==========================================
-    // GENERATE ROADMAP
-    // ==========================================
+// GENERATE ROADMAP FROM SKILL GAP
+// ==========================================
 
-    if (roadmapBtn) {
+if (roadmapBtn) {
 
-        roadmapBtn.addEventListener(
-            "click",
-            (event) => {
+    roadmapBtn.addEventListener(
+        "click",
+        (event) => {
 
-                event.preventDefault();
+            event.preventDefault();
 
 
-                window.location.href =
-                    "roadmap.html";
+            const savedResult =
+                sessionStorage.getItem(
+                    STORAGE_KEY
+                );
 
+
+            if (!savedResult) {
+
+                alert(
+                    "Please complete the Skill Gap Analysis first."
+                );
+
+                return;
             }
-        );
 
-    }
 
-});
+            let skillGap;
+
+
+            try {
+
+                skillGap =
+                    JSON.parse(
+                        savedResult
+                    );
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to read Skill Gap result:",
+                    error
+                );
+
+
+                alert(
+                    "Skill Gap data is invalid. Please analyze again."
+                );
+
+                return;
+            }
+
+
+            const targetRole =
+                roleSelect
+                    ? roleSelect.value.trim()
+                    : "";
+
+
+            const company =
+                companyInput
+                    ? companyInput.value.trim()
+                    : "";
+
+
+            // Build context for Roadmap page
+
+            const roadmapContext = {
+
+                source:
+                    "skill-gap",
+
+                target_role:
+                    targetRole,
+
+                company:
+                    company,
+
+                match_percentage:
+                    skillGap.match_percentage || 0,
+
+                key_skills_found:
+                    skillGap.key_skills_found || [],
+
+                missing_skills:
+                    skillGap.missing_skills || [],
+
+                role_summary:
+                    skillGap.role_summary || ""
+
+            };
+
+
+            sessionStorage.setItem(
+                "roadmapContext",
+                JSON.stringify(
+                    roadmapContext
+                )
+            );
+
+
+            window.location.href =
+                "roadmap.html";
+        }
+    );
+}})
