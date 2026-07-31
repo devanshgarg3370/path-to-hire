@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Save JWT token and user details in localStorage
                 localStorage.setItem("token", data.access_token);
                 localStorage.setItem("user", JSON.stringify(data.user));
+                localStorage.setItem("pathToHireUser", JSON.stringify(data.user));
+                localStorage.setItem("isLoggedIn", "true");
 
                 // Redirect to Dashboard
                 window.location.href = "dashboard.html";
