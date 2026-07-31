@@ -410,6 +410,10 @@ function getRoadmapError(data) {
 
 function renderRoadmap(result) {
 
+    console.log("Complete Result:", result);
+    console.log("Weeks:", result.weeks);
+    console.log("First Week:", result.weeks[0]);
+
     if (!board) {
 
         throw new Error(
@@ -435,10 +439,12 @@ function renderRoadmap(result) {
         );
     }
 
-
+    console.log(result.weeks);
     const weeksHTML =
         result.weeks
             .map((week, index) => {
+
+                console.log(week);
 
                 const tasks =
                     Array.isArray(week.tasks)
@@ -608,8 +614,19 @@ function renderRoadmap(result) {
             .join("");
 
 
-    board.innerHTML =
-        weeksHTML;
+     
+            
+    console.log(weeksHTML);        
+    console.log(board);
+
+    board.innerHTML = weeksHTML;
+
+   board.style.border = "10px solid red";
+   board.style.background = "yellow";
+   
+    console.log("After update:");
+    console.log(board.innerHTML);
+    console.log(board.outerHTML);
 
 
     // Reset old progress because this
@@ -665,114 +682,63 @@ if (modalButtons.length >= 2) {
             // INPUTS
             // ==============================================
 
-            const file =
-                roadmapResume?.files?.[0];
+          const resumeText =
+             localStorage.getItem("resumeText");
 
+             console.log("Resume:", resumeText);
 
-            const jobDescription =
-                roadmapJobDescription
-                    ?.value
-                    ?.trim();
+          const jobDescription =
+             roadmapJobDescription
+             ?.value
+             ?.trim();
 
-
-            const token =
-                localStorage.getItem(
-                    "token"
-                );
-
+         const token =
+              localStorage.getItem("token");
 
             // ==============================================
             // VALIDATION
             // ==============================================
+           if (!resumeText) {
 
-            if (!file) {
+               alert(
+                  "Please upload and analyze your resume first."
+              );
 
-                alert(
-                    "Please upload your resume PDF first."
-                );
-
-
-                if (modal) {
-
-                    modal.classList.remove(
-                        "active"
-                    );
-                }
-
-
-                return;
+              return;
             }
 
+          if (!jobDescription) {
+             alert(
+                "Please paste the target job description."
+              );
 
-            if (
-                file.type !==
-                    "application/pdf" &&
-                !file.name
-                    .toLowerCase()
-                    .endsWith(".pdf")
-            ) {
-
-                alert(
-                    "Only PDF resumes are supported."
-                );
-
-                return;
+             return;
             }
 
+           if (!token) {
 
-            if (!jobDescription) {
-
-                alert(
-                    "Please paste the target job description."
+             alert(
+              "Your login session was not found. Please log in again."
                 );
 
+              window.location.href = "login.html";
 
-                if (modal) {
-
-                    modal.classList.remove(
-                        "active"
-                    );
-                }
-
-
-                return;
+             return;
             }
-
-
-            if (!token) {
-
-                alert(
-                    "Your login session was not found. Please log in again."
-                );
-
-
-                window.location.href =
-                    "login.html";
-
-
-                return;
-            }
-
 
             // ==============================================
             // FORM DATA
             // ==============================================
 
-            const formData =
-                new FormData();
 
 
-            formData.append(
-                "job_description",
-                jobDescription
-            );
+            const requestBody = {
 
+         resume_text: resumeText,
 
-            formData.append(
-                "file",
-                file
-            );
+         job_description: jobDescription
 
+           };
 
             const originalHTML =
                 generateBtn.innerHTML;
@@ -810,12 +776,12 @@ if (modalButtons.length >= 2) {
 
                             headers: {
 
-                                Authorization:
-                                    `Bearer ${token}`
+                                Authorization: `Bearer ${token}`,
+                                "Content-Type": "application/json"
 
                             },
 
-                            body: formData
+                            body: JSON.stringify(requestBody)
 
                         }
                     );
@@ -853,10 +819,8 @@ if (modalButtons.length >= 2) {
                 }
 
 
-                console.log(
-                    "Learning Roadmap API Response:",
-                    data
-                );
+                console.log(typeof data.data);
+                console.log(data.data);
 
 
                 // ==========================================

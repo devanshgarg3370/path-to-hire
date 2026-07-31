@@ -43,6 +43,7 @@ from app.prompts.recruiter_prompt import RECRUITER_PROMPT
 from app.prompts.cold_email_prompt import COLD_EMAIL_PROMPT
 from app.prompts.linkedin_prompt import LINKEDIN_PROMPT
 from app.prompts.career_copilot_prompt import CAREER_COPILOT_PROMPT
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 
@@ -488,29 +489,27 @@ Resume:
     # ============================================================================
 # LEARNING ROADMAP
 # ============================================================================
+class LearningRoadmapRequest(BaseModel):
+    resume_text: str
+    job_description: str
 
 @router.post("/learning-roadmap", status_code=status.HTTP_200_OK)
 async def learning_roadmap(
-    job_description: str = Form(...),
-    file: UploadFile = File(...),
+    request: LearningRoadmapRequest,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
     try:
-        await validate_pdf(file)
-
         logger.info("Learning Roadmap Started")
-
-        resume_text = extract_text_from_pdf(file)
 
         prompt = f"""
 {ROADMAP_PROMPT}
 
 Resume Text:
-{resume_text}
+{request.resume_text}
 
 Job Description:
-{job_description}
+{request.job_description}
 """
 
         result = ask_gemini(prompt)
@@ -519,7 +518,7 @@ Job Description:
             db=db,
             user_id=current_user.id,
             feature_name="learning-roadmap",
-            file_name=file.filename,
+            file_name="Stored Resume",
             response=str(result),
         )
 
