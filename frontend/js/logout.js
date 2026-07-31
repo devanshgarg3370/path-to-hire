@@ -33,11 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
 
             // Remove login session
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            localStorage.removeItem("pathToHireUser");
             localStorage.removeItem("isLoggedIn");
-
-            // If you want to completely remove the user,
-            // uncomment the line below.
-            // localStorage.removeItem("pathToHireUser");
 
             alert("Logged Out Successfully!");
 

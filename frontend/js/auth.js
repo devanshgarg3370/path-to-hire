@@ -3,539 +3,319 @@
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById("loginForm");
+  const signupForm = document.getElementById("signupForm");
 
-    const loginForm = document.getElementById("loginForm");
-    const signupForm = document.getElementById("signupForm");
+  // ==========================================
+  // HELPERS
+  // ==========================================
 
+  function showError(input, message) {
+    if (!input) return;
 
-    // ==========================================
-    // HELPERS
-    // ==========================================
+    const parentGroup = input.closest(".input-group") || input.parentElement;
 
-    function showError(input, message) {
-        if (!input) return;
+    const error = parentGroup ? parentGroup.querySelector(".error") : null;
 
-        const parentGroup =
-            input.closest(".input-group") || input.parentElement;
-
-        const error = parentGroup
-            ? parentGroup.querySelector(".error")
-            : null;
-
-        if (error) {
-            error.innerText = message;
-        }
-
-        input.style.borderColor = "#ef4444";
+    if (error) {
+      error.innerText = message;
     }
 
+    input.style.borderColor = "#ef4444";
+  }
 
-    function clearError(input) {
-        if (!input) return;
+  function clearError(input) {
+    if (!input) return;
 
-        const parentGroup =
-            input.closest(".input-group") || input.parentElement;
+    const parentGroup = input.closest(".input-group") || input.parentElement;
 
-        const error = parentGroup
-            ? parentGroup.querySelector(".error")
-            : null;
+    const error = parentGroup ? parentGroup.querySelector(".error") : null;
 
-        if (error) {
-            error.innerText = "";
-        }
-
-        input.style.borderColor = "#cbd5e1";
+    if (error) {
+      error.innerText = "";
     }
 
+    input.style.borderColor = "#cbd5e1";
+  }
 
-    function validateEmail(value) {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(value);
-    }
+  function validateEmail(value) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(value);
+  }
 
+  function showToast(message, type) {
+    const toast = document.createElement("div");
 
-    function showToast(message, type) {
+    toast.innerText = message;
 
-        const toast = document.createElement("div");
+    toast.style.position = "fixed";
+    toast.style.bottom = "30px";
+    toast.style.right = "30px";
+    toast.style.padding = "15px 25px";
+    toast.style.borderRadius = "12px";
+    toast.style.color = "#fff";
+    toast.style.fontWeight = "600";
+    toast.style.zIndex = "9999";
+    toast.style.boxShadow = "0 10px 25px rgba(0,0,0,.2)";
 
-        toast.innerText = message;
+    toast.style.background = type === "success" ? "#16a34a" : "#ef4444";
 
-        toast.style.position = "fixed";
-        toast.style.bottom = "30px";
-        toast.style.right = "30px";
-        toast.style.padding = "15px 25px";
-        toast.style.borderRadius = "12px";
-        toast.style.color = "#fff";
-        toast.style.fontWeight = "600";
-        toast.style.zIndex = "9999";
-        toast.style.boxShadow = "0 10px 25px rgba(0,0,0,.2)";
+    document.body.appendChild(toast);
 
-        toast.style.background =
-            type === "success"
-                ? "#16a34a"
-                : "#ef4444";
+    setTimeout(() => {
+      toast.remove();
+    }, 3000);
+  }
 
-        document.body.appendChild(toast);
+  // ==========================================
+  // PASSWORD VISIBILITY
+  // ==========================================
 
-        setTimeout(() => {
-            toast.remove();
-        }, 3000);
-    }
+  document.querySelectorAll(".toggle-password").forEach((button) => {
+    button.addEventListener("click", () => {
+      // Prefer data-target.
+      // Fall back to password input in same wrapper.
+      const targetId = button.dataset.target;
 
+      let input = null;
 
-    // ==========================================
-    // PASSWORD VISIBILITY
-    // ==========================================
+      if (targetId) {
+        input = document.getElementById(targetId);
+      } else {
+        input = button
+          .closest(".password-wrapper")
+          ?.querySelector('input[type="password"], input[type="text"]');
+      }
 
-    document
-        .querySelectorAll(".toggle-password")
-        .forEach((button) => {
+      const icon = button.querySelector("i");
 
-            button.addEventListener("click", () => {
+      if (!input || !icon) return;
 
-                // Prefer data-target.
-                // Fall back to password input in same wrapper.
-                const targetId = button.dataset.target;
+      const isHidden = input.type === "password";
 
-                let input = null;
+      input.type = isHidden ? "text" : "password";
 
-                if (targetId) {
-                    input = document.getElementById(targetId);
-                } else {
-                    input = button
-                        .closest(".password-wrapper")
-                        ?.querySelector('input[type="password"], input[type="text"]');
-                }
+      icon.classList.toggle("fa-eye", !isHidden);
 
-                const icon = button.querySelector("i");
+      icon.classList.toggle("fa-eye-slash", isHidden);
 
-                if (!input || !icon) return;
+      button.setAttribute(
+        "aria-label",
+        isHidden ? "Hide password" : "Show password",
+      );
+    });
+  });
 
-                const isHidden =
-                    input.type === "password";
+  // ==========================================
+  // 1. SIGNUP FORM
+  // ==========================================
 
-                input.type =
-                    isHidden
-                        ? "text"
-                        : "password";
+  if (signupForm) {
+    const nameInput = document.getElementById("name");
 
-                icon.classList.toggle(
-                    "fa-eye",
-                    !isHidden
-                );
+    const emailInput = document.getElementById("email");
 
-                icon.classList.toggle(
-                    "fa-eye-slash",
-                    isHidden
-                );
+    const passwordInput = document.getElementById("password");
 
-                button.setAttribute(
-                    "aria-label",
-                    isHidden
-                        ? "Hide password"
-                        : "Show password"
-                );
-            });
+    const confirmPasswordInput = document.getElementById("confirmPassword");
+
+    signupForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      let valid = true;
+
+      const nameVal = nameInput ? nameInput.value.trim() : "";
+
+      const emailVal = emailInput ? emailInput.value.trim() : "";
+
+      const passwordVal = passwordInput ? passwordInput.value : "";
+
+      const confirmVal = confirmPasswordInput ? confirmPasswordInput.value : "";
+
+      // NAME
+      if (!nameVal) {
+        showError(nameInput, "Full Name is required");
+
+        valid = false;
+      } else {
+        clearError(nameInput);
+      }
+
+      // EMAIL
+      if (!emailVal || !validateEmail(emailVal)) {
+        showError(emailInput, "Enter a valid email address");
+
+        valid = false;
+      } else {
+        clearError(emailInput);
+      }
+
+      // PASSWORD
+      if (!passwordVal) {
+        showError(passwordInput, "Password is required");
+
+        valid = false;
+      } else {
+        clearError(passwordInput);
+      }
+
+      // CONFIRM PASSWORD
+      if (!confirmVal) {
+        showError(confirmPasswordInput, "Please confirm your password");
+
+        valid = false;
+      } else if (passwordVal !== confirmVal) {
+        showError(confirmPasswordInput, "Passwords do not match");
+
+        valid = false;
+      } else {
+        clearError(confirmPasswordInput);
+      }
+
+      if (!valid) return;
+
+      const submitBtn = signupForm.querySelector('button[type="submit"]');
+
+      const originalBtnText = submitBtn.innerHTML;
+
+      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Creating Account...`;
+
+      submitBtn.disabled = true;
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/auth/register", {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            name: nameVal,
+            email: emailVal,
+            password: passwordVal,
+          }),
         });
 
+        const data = await response.json();
 
-    // ==========================================
-    // 1. SIGNUP FORM
-    // ==========================================
+        if (response.ok) {
+          showToast(
+            "Account Created Successfully! 🚀 Redirecting to login...",
+            "success",
+          );
 
-    if (signupForm) {
+          setTimeout(() => {
+            window.location.href = "login.html";
+          }, 1500);
+        } else {
+          const errorMsg = data.detail || "Registration failed";
 
-        const nameInput =
-            document.getElementById("name");
+          showToast(errorMsg, "error");
+        }
+      } catch (err) {
+        console.error("Signup Fetch Error:", err);
 
-        const emailInput =
-            document.getElementById("email");
+        showToast("Cannot connect to server. Is FastAPI running?", "error");
+      } finally {
+        submitBtn.innerHTML = originalBtnText;
 
-        const passwordInput =
-            document.getElementById("password");
+        submitBtn.disabled = false;
+      }
+    });
+  }
 
-        const confirmPasswordInput =
-            document.getElementById("confirmPassword");
+  // ==========================================
+  // 2. LOGIN FORM
+  // ==========================================
 
+  if (loginForm) {
+    const emailInput = document.getElementById("email");
 
-        signupForm.addEventListener(
-            "submit",
-            async (e) => {
+    const passwordInput = document.getElementById("password");
 
-                e.preventDefault();
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-                let valid = true;
+      let valid = true;
 
-                const nameVal =
-                    nameInput
-                        ? nameInput.value.trim()
-                        : "";
+      const emailVal = emailInput ? emailInput.value.trim() : "";
 
-                const emailVal =
-                    emailInput
-                        ? emailInput.value.trim()
-                        : "";
+      const passwordVal = passwordInput ? passwordInput.value : "";
 
-                const passwordVal =
-                    passwordInput
-                        ? passwordInput.value
-                        : "";
+      // EMAIL
+      if (!emailVal || !validateEmail(emailVal)) {
+        showError(emailInput, "Enter a valid email");
 
-                const confirmVal =
-                    confirmPasswordInput
-                        ? confirmPasswordInput.value
-                        : "";
+        valid = false;
+      } else {
+        clearError(emailInput);
+      }
 
+      // PASSWORD
+      if (!passwordVal) {
+        showError(passwordInput, "Password is required");
 
-                // NAME
-                if (!nameVal) {
+        valid = false;
+      } else {
+        clearError(passwordInput);
+      }
 
-                    showError(
-                        nameInput,
-                        "Full Name is required"
-                    );
+      if (!valid) return;
 
-                    valid = false;
+      const submitBtn = loginForm.querySelector('button[type="submit"]');
 
-                } else {
+      const originalBtnText = submitBtn.innerHTML;
 
-                    clearError(nameInput);
-                }
+      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Logging in...`;
 
+      submitBtn.disabled = true;
 
-                // EMAIL
-                if (
-                    !emailVal ||
-                    !validateEmail(emailVal)
-                ) {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/auth/login", {
+          method: "POST",
 
-                    showError(
-                        emailInput,
-                        "Enter a valid email address"
-                    );
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-                    valid = false;
+          body: JSON.stringify({
+            email: emailVal,
+            password: passwordVal,
+          }),
+        });
 
-                } else {
+        const data = await response.json();
 
-                    clearError(emailInput);
-                }
+        if (response.ok && data.success) {
+          // localStorage.setItem("token", data.access_token);
+          // localStorage.setItem("user", JSON.stringify(data.user));
+          // localStorage.setItem("isLoggedIn", "true");
 
+          localStorage.setItem("token", data.access_token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("pathToHireUser", JSON.stringify(data.user));
+          localStorage.setItem("isLoggedIn", "true");
 
-                // PASSWORD
-                if (!passwordVal) {
-
-                    showError(
-                        passwordInput,
-                        "Password is required"
-                    );
-
-                    valid = false;
-
-                } else {
-
-                    clearError(passwordInput);
-                }
-
-
-                // CONFIRM PASSWORD
-                if (!confirmVal) {
-
-                    showError(
-                        confirmPasswordInput,
-                        "Please confirm your password"
-                    );
-
-                    valid = false;
-
-                } else if (
-                    passwordVal !== confirmVal
-                ) {
-
-                    showError(
-                        confirmPasswordInput,
-                        "Passwords do not match"
-                    );
-
-                    valid = false;
-
-                } else {
-
-                    clearError(
-                        confirmPasswordInput
-                    );
-                }
-
-
-                if (!valid) return;
-
-
-                const submitBtn =
-                    signupForm.querySelector(
-                        'button[type="submit"]'
-                    );
-
-                const originalBtnText =
-                    submitBtn.innerHTML;
-
-
-                submitBtn.innerHTML =
-                    `<i class="fa-solid fa-spinner fa-spin"></i> Creating Account...`;
-
-                submitBtn.disabled = true;
-
-
-                try {
-
-                    const response = await fetch(
-                        "http://127.0.0.1:8000/auth/register",
-                        {
-                            method: "POST",
-
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
-
-                            body: JSON.stringify({
-                                name: nameVal,
-                                email: emailVal,
-                                password: passwordVal
-                            })
-                        }
-                    );
-
-
-                    const data =
-                        await response.json();
-
-
-                    if (response.ok) {
-
-                        showToast(
-                            "Account Created Successfully! 🚀 Redirecting to login...",
-                            "success"
-                        );
-
-                        setTimeout(() => {
-                            window.location.href =
-                                "login.html";
-                        }, 1500);
-
-                    } else {
-
-                        const errorMsg =
-                            data.detail ||
-                            "Registration failed";
-
-                        showToast(
-                            errorMsg,
-                            "error"
-                        );
-                    }
-
-                } catch (err) {
-
-                    console.error(
-                        "Signup Fetch Error:",
-                        err
-                    );
-
-                    showToast(
-                        "Cannot connect to server. Is FastAPI running?",
-                        "error"
-                    );
-
-                } finally {
-
-                    submitBtn.innerHTML =
-                        originalBtnText;
-
-                    submitBtn.disabled =
-                        false;
-                }
-            }
-        );
-    }
-
-
-    // ==========================================
-    // 2. LOGIN FORM
-    // ==========================================
-
-    if (loginForm) {
-
-        const emailInput =
-            document.getElementById("email");
-
-        const passwordInput =
-            document.getElementById("password");
-
-
-        loginForm.addEventListener(
-            "submit",
-            async (e) => {
-
-                e.preventDefault();
-
-                let valid = true;
-
-                const emailVal =
-                    emailInput
-                        ? emailInput.value.trim()
-                        : "";
-
-                const passwordVal =
-                    passwordInput
-                        ? passwordInput.value
-                        : "";
-
-
-                // EMAIL
-                if (
-                    !emailVal ||
-                    !validateEmail(emailVal)
-                ) {
-
-                    showError(
-                        emailInput,
-                        "Enter a valid email"
-                    );
-
-                    valid = false;
-
-                } else {
-
-                    clearError(emailInput);
-                }
-
-
-                // PASSWORD
-                if (!passwordVal) {
-
-                    showError(
-                        passwordInput,
-                        "Password is required"
-                    );
-
-                    valid = false;
-
-                } else {
-
-                    clearError(passwordInput);
-                }
-
-
-                if (!valid) return;
-
-
-                const submitBtn =
-                    loginForm.querySelector(
-                        'button[type="submit"]'
-                    );
-
-                const originalBtnText =
-                    submitBtn.innerHTML;
-
-
-                submitBtn.innerHTML =
-                    `<i class="fa-solid fa-spinner fa-spin"></i> Logging in...`;
-
-                submitBtn.disabled = true;
-
-
-                try {
-
-                    const response = await fetch(
-                        "http://127.0.0.1:8000/auth/login",
-                        {
-                            method: "POST",
-
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
-
-                            body: JSON.stringify({
-                                email: emailVal,
-                                password: passwordVal
-                            })
-                        }
-                    );
-
-
-                    const data =
-                        await response.json();
-
-
-                    if (
-                        response.ok &&
-                        data.success
-                    ) {
-
-                        localStorage.setItem(
-                            "token",
-                            data.access_token
-                        );
-
-                        localStorage.setItem(
-                            "user",
-                            JSON.stringify(data.user)
-                        );
-
-                        localStorage.setItem(
-                            "isLoggedIn",
-                            "true"
-                        );
-
-
-                        showToast(
-                            "Login Successful 🚀",
-                            "success"
-                        );
-
-
-                        setTimeout(() => {
-
-                            window.location.href =
-                                "resume-upload.html";
-
-                        }, 1200);
-
-                    } else {
-
-                        const errorMsg =
-                            data.detail ||
-                            "Invalid Email or Password";
-
-                        showToast(
-                            errorMsg,
-                            "error"
-                        );
-                    }
-
-                } catch (err) {
-
-                    console.error(
-                        "Login Fetch Error:",
-                        err
-                    );
-
-                    showToast(
-                        "Cannot connect to server. Is FastAPI running?",
-                        "error"
-                    );
-
-                } finally {
-
-                    submitBtn.innerHTML =
-                        originalBtnText;
-
-                    submitBtn.disabled =
-                        false;
-                }
-            }
-        );
-    }
-
+          showToast("Login Successful 🚀", "success");
+
+          setTimeout(() => {
+            window.location.href = "resume-upload.html";
+          }, 1200);
+        } else {
+          const errorMsg = data.detail || "Invalid Email or Password";
+
+          showToast(errorMsg, "error");
+        }
+      } catch (err) {
+        console.error("Login Fetch Error:", err);
+
+        showToast("Cannot connect to server. Is FastAPI running?", "error");
+      } finally {
+        submitBtn.innerHTML = originalBtnText;
+
+        submitBtn.disabled = false;
+      }
+    });
+  }
 });
