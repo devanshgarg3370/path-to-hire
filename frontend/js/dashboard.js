@@ -1,5 +1,5 @@
 // ==========================================
-// Dashboard JavaScript (Path to Hire)
+// Dashboard JavaScript (Path to Hire)continue with google
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("Using cached local data for dashboard metrics.");
     }
 
+    
     // 5. Logout Handler
     const logoutBtn = document.getElementById("logoutBtn");
     if (logoutBtn) {
