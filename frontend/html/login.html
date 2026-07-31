@@ -3,131 +3,312 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Login to Path to Hire to continue your placement journey.">
-    
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Login to Path to Hire to continue your placement journey."
+    >
+
     <title>Login | Path to Hire</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="/frontend/css/auth.css">
+    <link
+        rel="stylesheet"
+        href="/frontend/css/auth.css"
+    >
 </head>
+
 
 <body>
 
     <main class="auth-container">
+
         <div class="auth-card">
 
-            <!-- Logo Section -->
+            <!-- ================= LOGO ================= -->
+
             <div class="logo">
-                <img src="../assets/images/logo.png" 
-                     alt="Path to Hire Logo" 
-                     style="height: 60px; width: auto; object-fit: contain;">
-                <h2>Path to Hire</h2>
+
+                <img
+                    src="../assets/images/logo.png"
+                    alt="Path to Hire Logo"
+                    style="
+                        height: 60px;
+                        width: auto;
+                        object-fit: contain;
+                    "
+                >
+
+                <h2>
+                    Path to Hire
+                </h2>
+
             </div>
 
-            <!-- Header Text -->
+
+            <!-- ================= HEADER ================= -->
+
             <header class="auth-header">
-                <h1>Welcome Back</h1>
-                <p>Login to continue your placement journey.</p>
+
+                <h1>
+                    Welcome Back
+                </h1>
+
+                <p>
+                    Login to continue your placement journey.
+                </p>
+
             </header>
 
-            <!-- Login Form -->
-            <form id="loginForm" novalidate>
 
-                <!-- Email Input -->
+            <!-- ================= LOGIN FORM ================= -->
+
+            <form
+                id="loginForm"
+                novalidate
+            >
+
+
+                <!-- ================= EMAIL ================= -->
+
                 <div class="input-group">
-                    <label for="email">Email Address</label>
-                    <div class="input-wrapper">
-                        <input 
-                            type="email" 
-                            id="email" 
-                            name="email"
-                            placeholder="Enter your email" 
-                            autocomplete="email"
-                            required
-                            aria-describedby="emailError">
-                    </div>
-                    <small class="error" id="emailError" aria-live="polite"></small>
-                </div>
 
-                <!-- Password Input -->
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <div class="input-wrapper password-wrapper">
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password"
-                            placeholder="Enter password" 
-                            autocomplete="current-password"
-                            required
-                            aria-describedby="passwordError">
-                        <button
-    type="button"
-    class="toggle-password"
-    id="togglePassword"
-    aria-label="Show password"
->
-    <!-- <i class="fa-regular fa-eye" id="toggleIcon"></i> -->
-</button>
-                        </button>
-                    </div>
-                    <small class="error" id="passwordError" aria-live="polite"></small>
-                </div>
-
-                <!-- Form Options -->
-                <div class="form-options">
-                    <label class="remember-me" for="rememberMe">
-                        <input type="checkbox" id="rememberMe" name="rememberMe">
-                        <span>Remember Me</span>
+                    <label for="email">
+                        Email Address
                     </label>
 
-                    <a href="forgot-password.html" class="forgot-link">Forgot Password?</a>
+                    <div class="input-wrapper">
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required
+                            aria-describedby="emailError"
+                        >
+
+                    </div>
+
+                    <small
+                        class="error"
+                        id="emailError"
+                        aria-live="polite"
+                    ></small>
+
                 </div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary">Login</button>
 
-                <!-- Divider -->
+                <!-- ================= PASSWORD ================= -->
+
+                <div class="input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter password"
+                            autocomplete="current-password"
+                            required
+                            aria-describedby="passwordError"
+                        >
+
+                        <!-- Password Visibility Eye -->
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="password"
+                            aria-label="Show password"
+                        >
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+
+                    </div>
+
+                    <small
+                        class="error"
+                        id="passwordError"
+                        aria-live="polite"
+                    ></small>
+
+                </div>
+
+
+                <!-- ================= OPTIONS ================= -->
+
+                <div class="form-options">
+
+                    <label
+                        class="remember-me"
+                        for="rememberMe"
+                    >
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                            name="rememberMe"
+                        >
+
+                        <span>
+                            Remember Me
+                        </span>
+
+                    </label>
+
+
+                    <a
+                        href="forgot-password.html"
+                        class="forgot-link"
+                    >
+                        Forgot Password?
+                    </a>
+
+                </div>
+
+
+                <!-- ================= LOGIN BUTTON ================= -->
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Login
+                </button>
+
+
+                <!-- ================= DIVIDER ================= -->
+
                 <div class="divider">
-                    <span>OR</span>
+
+                    <span>
+                        OR
+                    </span>
+
                 </div>
 
-                <!-- Google Sign-In Demo Button -->
-                <div class="social-login" style="margin-top: 15px; text-align: center;">
-                    <button type="button" id="googleLoginBtn" class="google-btn" style="width: 100%; padding: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; cursor: pointer; font-weight: 500; font-size: 15px; color: #1e293b; transition: background 0.2s;">
-                        <!-- Google SVG Icon -->
-                        <svg width="18" height="18" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
-                            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.18v3.14C3.15 21.32 7.22 24 12 24z"/>
-                            <path fill="#FBBC05" d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.62H1.18C.43 8.12 0 9.81 0 12s.43 3.88 1.18 5.38l4.09-3.14z"/>
-                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.22 0 3.15 2.68 1.18 6.62l4.09 3.14c.95-2.85 3.6-4.96 6.73-4.96z"/>
+
+                <!-- ================= GOOGLE LOGIN ================= -->
+
+                <div
+                    class="social-login"
+                    style="
+                        margin-top: 15px;
+                        text-align: center;
+                    "
+                >
+
+                    <button
+                        type="button"
+                        id="googleLoginBtn"
+                        class="google-btn"
+                        style="
+                            width: 100%;
+                            padding: 12px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 10px;
+                            background: #fff;
+                            border: 1px solid #cbd5e1;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-weight: 500;
+                            font-size: 15px;
+                            color: #1e293b;
+                            transition: background 0.2s;
+                        "
+                    >
+
+                        <!-- Google Icon -->
+                        <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                fill="#4285F4"
+                                d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"
+                            />
+
+                            <path
+                                fill="#34A853"
+                                d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.18v3.14C3.15 21.32 7.22 24 12 24z"
+                            />
+
+                            <path
+                                fill="#FBBC05"
+                                d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.62H1.18C.43 8.12 0 9.81 0 12s.43 3.88 1.18 5.38l4.09-3.14z"
+                            />
+
+                            <path
+                                fill="#EA4335"
+                                d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.22 0 3.15 2.68 1.18 6.62l4.09 3.14c.95-2.85 3.6-4.96 6.73-4.96z"
+                            />
+
                         </svg>
-                        Continue with Google 
+
+                        Continue with Google
+
                     </button>
+
                 </div>
 
-                <!-- Footer Text -->
+
+                <!-- ================= SIGNUP LINK ================= -->
+
                 <p class="bottom-text">
-                    Don't have an account? 
-                    <a href="signup.html">Sign Up</a>
+
+                    Don't have an account?
+
+                    <a href="signup.html">
+                        Sign Up
+                    </a>
+
                 </p>
 
             </form>
 
         </div>
+
     </main>
 
-    <!-- JavaScript -->
-   <script src="../js/auth.js"></script>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="../js/auth.js"></script>
+
 </body>
 
 </html>
