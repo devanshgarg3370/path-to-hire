@@ -170,16 +170,16 @@
 
             <div class="match-bar">
 
-                <div class="match-fill">
-                    78%
-                </div>
+                <div class="match-fill" id="matchFill">
+                78%
+             </div>
 
             </div>
 
-            <p>
-                You currently match approximately
-                <strong>78%</strong> of the required skills.
-            </p>
+            <p id="matchText">
+               You currently match approximately
+               <strong>78%</strong> of the required skills.
+           </p>
 
         </div>
 
@@ -189,46 +189,19 @@
 
         <div class="chart-section">
 
-            <h3>Skill Match Breakdown</h3>
+    <h3>Skill Match Breakdown</h3>
 
-            
-        <div class="skills-chart">
+    <div class="skills-chart" id="skillsChart">
 
-    <div class="skill">
-        <span>HTML & CSS</span>
-        <div class="bar"><div class="fill" data-width="95"></div></div>
-        <strong>95%</strong>
+        <!-- AI will insert skills here -->
+
     </div>
 
-    <div class="skill">
-        <span>JavaScript</span>
-        <div class="bar"><div class="fill" data-width="82"></div></div>
-        <strong>82%</strong>
-    </div>
-
-    <div class="skill">
-        <span>React</span>
-        <div class="bar"><div class="fill" data-width="76"></div></div>
-        <strong>76%</strong>
-    </div>
-
-    <div class="skill">
-        <span>Node.js</span>
-        <div class="bar"><div class="fill" data-width="60"></div></div>
-        <strong>60%</strong>
-    </div>
-
-    <div class="skill">
-        <span>MongoDB</span>
-        <div class="bar"><div class="fill" data-width="70"></div></div>
-        <strong>70%</strong>
-    </div>
-
-</div>
+      
 
 
-        </div>
 
+         </div>
 
 
         <!-- Missing Skills Table -->
@@ -255,68 +228,9 @@
 
                 </thead>
 
-                <tbody>
+                <tbody id="missingSkillsBody">
 
-                    <tr>
-
-                        <td>Docker</td>
-
-                        <td>High</td>
-
-                        <td>2 Weeks</td>
-
-                        <td><span class="badge hard">Hard</span></td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>AWS</td>
-
-                        <td>High</td>
-
-                        <td>4 Weeks</td>
-
-                        <td><span class="badge hard">Hard</span></td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>TypeScript</td>
-
-                        <td>Medium</td>
-
-                        <td>10 Days</td>
-
-                        <td><span class="badge medium">Medium</span></td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Testing (Jest)</td>
-
-                        <td>Medium</td>
-
-                        <td>1 Week</td>
-
-                        <td><span class="badge medium">Medium</span></td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>GraphQL</td>
-
-                        <td>Low</td>
-
-                        <td>5 Days</td>
-
-                        <td><span class="badge easy">Easy</span></td>
-
-                    </tr>
-
+                    
                 </tbody>
 
             </table>
@@ -331,13 +245,7 @@
 
             <h3>AI Summary</h3>
 
-            <p>
-
-                Your profile is well aligned for Frontend Development.
-                Improving Cloud, Docker, DSA and Testing skills will
-                significantly increase your placement readiness.
-
-            </p>
+            <p id="aiSummary"></p>
 
         </div>
 

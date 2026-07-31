@@ -10,6 +10,7 @@ from fastapi import (
     Depends,
 )
 from sqlalchemy.orm import Session
+from pydantic import BaseModel
 
 from app.database import get_db
 from app.models import User
@@ -91,16 +92,8 @@ async def resume_analysis(
             response=str(analysis),
         )
 
-        logger.info("🔥🔥🔥 RESUME ANALYSIS COMPLETED 🔥🔥🔥")
+        logger.info("Resume Analysis Completed")
 
-
-        print("RETURNING RESUME TEXT LENGTH:", len(resume_text))
-        print("RETURN KEYS:", {
-          "success": True,
-          "analysis": analysis,
-          "resume_text": resume_text
-            }.keys())
-        
         return {
             "success": True,
             "analysis": analysis,
@@ -431,28 +424,37 @@ Job Description:
 # SKILL GAP ANALYSIS
 # ============================================================================
 
+class SkillGapRequest(BaseModel):
+    resume_text: str
+    target_role: str
+    company: str
+
+
 @router.post("/skill-gap-analysis", status_code=status.HTTP_200_OK)
 async def skill_gap_analysis(
-    job_description: str = Form(...),
-    file: UploadFile = File(...),
+    request: SkillGapRequest,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
     try:
-        await validate_pdf(file)
-
         logger.info("Skill Gap Analysis Started")
 
-        resume_text = extract_text_from_pdf(file)
+        # Read request data FIRST
+        resume_text = request.resume_text
+        target_role = request.target_role
+        company = request.company
 
         prompt = f"""
 {SKILL_GAP_PROMPT}
 
-Resume Text:
-{resume_text}
+Target Role:
+{target_role}
 
-Job Description:
-{job_description}
+Target Company:
+{company}
+
+Resume:
+{resume_text}
 """
 
         result = ask_gemini(prompt)
@@ -461,7 +463,7 @@ Job Description:
             db=db,
             user_id=current_user.id,
             feature_name="skill-gap-analysis",
-            file_name=file.filename,
+            file_name="Stored Resume",
             response=str(result),
         )
 
