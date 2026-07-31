@@ -245,3 +245,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+// ======================================================
+// PASSWORD VISIBILITY TOGGLE
+// ======================================================
+
+const togglePassword = document.getElementById("togglePassword");
+const passwordField = document.getElementById("password");
+const toggleIcon = document.getElementById("toggleIcon");
+
+if (togglePassword && passwordField && toggleIcon) {
+    togglePassword.addEventListener("click", () => {
+        const isHidden = passwordField.type === "password";
+
+        passwordField.type = isHidden ? "text" : "password";
+
+        toggleIcon.classList.toggle("fa-eye", !isHidden);
+        toggleIcon.classList.toggle("fa-eye-slash", isHidden);
+
+        togglePassword.setAttribute(
+            "aria-label",
+            isHidden ? "Hide password" : "Show password"
+        );
+    });
+}
