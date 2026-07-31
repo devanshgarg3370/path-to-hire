@@ -918,12 +918,12 @@ Quick Links
 
 <ul class="list-unstyled mt-3">
 
-<li><a href="#" class="text-secondary text-decoration-none">Home</a></li>
+<li><a href="#home" class="text-secondary text-decoration-none">Home</a></li>
 
-<li><a href="#" class="text-secondary text-decoration-none">Features</a></li>
+<li><a href="#features" class="text-secondary text-decoration-none">Features</a></li>
 
-<li><a href="#" class="text-secondary text-decoration-none">How It Works</a></li>
-<li><a href="#" class="text-secondary text-decoration-none">Contact</a></li>
+<li><a href="#how-it-works" class="text-secondary text-decoration-none">How It Works</a></li>
+<li><a href="/frontend/html/contact.html" class="text-secondary text-decoration-none">Contact</a></li>
 
 </ul>
 
@@ -959,7 +959,7 @@ Resources
 
 <!-- Newsletter -->
 
-<div class="col-lg-3 col-md-4">
+<!-- <div class="col-lg-3 col-md-4">
 
 <h5 class="fw-bold">
 Newsletter
@@ -973,17 +973,20 @@ Get weekly placement tips directly in your inbox.
 
 <div class="input-group mt-3">
 
-<input
-type="email"
-class="form-control"
-placeholder="Email Address">
+    <input
+        type="email"
+        id="newsletterEmail"
+        class="form-control"
+        placeholder="Email Address">
 
-<button class="btn btn-primary">
+   <button
+    type="button"
+    class="btn btn-primary"
+    onclick="subscribeNewsletter()">
 
-Subscribe
+    Subscribe
 
-</button>
-
+</button> -->
 </div>
 
 </div>
@@ -1018,14 +1021,21 @@ Made with ❤️ for Students
 
 <a href="#"
 class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-4 shadow"
-style="width:55px;height:55px;line-height:40px;z-index:999;">
+style="
+width:55px;
+height:55px;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999;
+">
 
 <i class="fa-solid fa-arrow-up"></i>
 
 </a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+<script src="/frontend/js/script.js"></script>
 
 
 </body>

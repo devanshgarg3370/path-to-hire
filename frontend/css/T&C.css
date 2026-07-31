@@ -418,3 +418,15 @@ nav a{
 .card-content.show{
     max-height: 1000px;
 }
+.read-more-btn{
+    background: none;
+    border: none;
+    color: #2563eb;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.read-more-btn:hover{
+    text-decoration: underline;
+}

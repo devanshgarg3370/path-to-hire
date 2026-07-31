@@ -1,391 +1,917 @@
-/* ================= GOOGLE FONT ================= */
+/* ==========================================================
+   PATH TO HIRE - LEARNING ROADMAP
+   ========================================================== */
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+
+/* ================= GLOBAL ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-body{
-background:linear-gradient(135deg,#eef4ff,#dbeafe,#eff6ff);
-color:#1e293b;
-min-height:100vh;
+body {
+    background: linear-gradient(
+        135deg,
+        #eef4ff,
+        #dbeafe,
+        #eff6ff
+    );
+
+    color: #1e293b;
+    min-height: 100vh;
 }
+
 
 /* ================= PAGE ================= */
 
-.roadmap-page{
-width:95%;
-max-width:1500px;
-margin:auto;
-padding:30px 0;
+.roadmap-page {
+    width: 95%;
+    max-width: 1500px;
+    margin: auto;
+    padding: 30px 0;
 }
 
-/* ================= HEADER ================= */
 
-.page-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:35px;
+/* ==========================================================
+   NAVBAR
+   ========================================================== */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 40px;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.06);
+
+    margin-bottom: 35px;
 }
 
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.logo-img{
-    width: 100px;
-    height:100px;
-    object-fit:contain;
+
+.logo-img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
 }
 
-.page-header a{
-text-decoration:none;
-background:#2563eb;
-color:#fff;
-padding:10px 20px;
-border-radius:10px;
-transition:.3s;
+
+.logo h2 {
+    font-size: 22px;
+    color: #1e293b;
 }
 
-.page-header a:hover{
-background:#1d4ed8;
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
-/* ================= TITLE ================= */
 
-.title-section{
-text-align:center;
-margin-bottom:40px;
+.nav-links {
+    display: flex;
+    align-items: center;
+
+    list-style: none;
+
+    gap: 20px;
+
+    margin: 0;
+    padding: 0;
 }
 
-.title-section h1{
-font-size:40px;
-margin-bottom:12px;
+
+.nav-links li {
+    list-style: none;
 }
 
-.title-section p{
-max-width:700px;
-margin:auto;
-color:#64748b;
-line-height:1.7;
+
+.nav-links a {
+    text-decoration: none;
+
+    color: #334155;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    transition: 0.2s;
 }
 
-/* ================= TOP ================= */
 
-.roadmap-top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:25px;
-flex-wrap:wrap;
-margin-bottom:35px;
+.nav-links a:hover {
+    color: #2563eb;
 }
 
-.progress-card{
-flex:1;
-min-width:350px;
-background:rgba(255,255,255,.7);
-backdrop-filter:blur(15px);
-padding:25px;
-border-radius:20px;
-box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+.dashboard-btn {
+    background: #2563eb;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 12px 24px;
+
+    border-radius: 12px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
 }
 
-.progress-header{
-display:flex;
-justify-content:space-between;
-margin-bottom:15px;
-font-weight:600;
+
+.dashboard-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
 }
 
-.progress-bar{
-height:14px;
-background:#dbeafe;
-border-radius:20px;
-overflow:hidden;
+
+/* ==========================================================
+   TITLE
+   ========================================================== */
+
+.title-section {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-.progress-fill{
-width:0;
-height:100%;
-background:linear-gradient(90deg,#2563eb,#3b82f6);
-border-radius:20px;
-transition:2s;
+
+.title-section h1 {
+    font-size: 40px;
+    margin-bottom: 12px;
 }
 
-/* ================= BUTTONS ================= */
 
-.controls{
-display:flex;
-gap:15px;
+.title-section p {
+    max-width: 700px;
+
+    margin: auto;
+
+    color: #64748b;
+
+    line-height: 1.7;
 }
+
+
+/* ==========================================================
+   TOP CONTROLS
+   ========================================================== */
+
+.roadmap-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 35px;
+}
+
+
+/* ================= PROGRESS ================= */
+
+.progress-card {
+    flex: 1;
+
+    min-width: 350px;
+
+    background: rgba(255, 255, 255, 0.7);
+
+    backdrop-filter: blur(15px);
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+.progress-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+
+    font-weight: 600;
+}
+
+
+.progress-bar {
+    height: 14px;
+
+    background: #dbeafe;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+.progress-fill {
+    width: 0;
+
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    border-radius: 20px;
+
+    transition: width 0.6s ease;
+}
+
+
+/* ==========================================================
+   CONTROLS / BUTTONS
+   ========================================================== */
+
+.controls {
+    display: flex;
+    gap: 15px;
+}
+
 
 .controls button,
 .regenerate-btn,
-.modal-buttons button{
-border:none;
-cursor:pointer;
-padding:12px 22px;
-border-radius:12px;
-font-size:15px;
-font-weight:600;
-transition:.3s;
+.modal-buttons button {
+
+    border: none;
+
+    cursor: pointer;
+
+    padding: 12px 22px;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
 }
 
-.controls button{
-background:#fff;
-box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+.controls button {
+    background: #fff;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
-.controls .active{
-background:#2563eb;
-color:#fff;
+
+.controls .active {
+    background: #2563eb;
+    color: #fff;
 }
+
 
 .controls button:hover,
-.regenerate-btn:hover{
-transform:translateY(-3px);
+.regenerate-btn:hover {
+
+    transform: translateY(-3px);
 }
 
-/* ================= BOARD ================= */
 
-.kanban-board{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:25px;
+/* ==========================================================
+   KANBAN BOARD
+   ========================================================== */
+
+.kanban-board {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 25px;
 }
 
-.week-column{
-background:rgba(255,255,255,.75);
-backdrop-filter:blur(18px);
-padding:20px;
-border-radius:20px;
-box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+.week-column {
+
+    background:
+        rgba(255, 255, 255, 0.75);
+
+    backdrop-filter:
+        blur(18px);
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.08);
 }
 
-.week-column h2{
-color:#2563eb;
-margin-bottom:6px;
+
+.week-column h2 {
+
+    color: #2563eb;
+
+    margin-bottom: 6px;
 }
 
-.week-column span{
-color:#64748b;
-font-size:14px;
-display:block;
-margin-bottom:20px;
+
+.week-column > span {
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    display: block;
+
+    margin-bottom: 20px;
 }
 
-/* ================= TASK ================= */
 
-.task-card{
-background:#fff;
-padding:18px;
-border-radius:16px;
-margin-bottom:18px;
-box-shadow:0 8px 20px rgba(0,0,0,.06);
-transition:.3s;
+/* ==========================================================
+   TASK CARDS
+   ========================================================== */
+
+.task-card {
+
+    background: #fff;
+
+    padding: 18px;
+
+    border-radius: 16px;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.06);
+
+    transition: 0.3s;
 }
 
-.task-card:hover{
-transform:translateY(-6px);
-box-shadow:0 18px 35px rgba(37,99,235,.15);
+
+.task-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 18px 35px
+        rgba(37, 99, 235, 0.15);
 }
 
-.task-top{
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:12px;
+
+.task-card.completed {
+
+    opacity: 0.65;
 }
 
-.task-top h4{
-font-size:16px;
+
+.task-card.completed h4 {
+
+    text-decoration:
+        line-through;
 }
 
-.task-card p{
-color:#2563eb;
-margin-bottom:10px;
+
+.task-top {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
 }
 
-.task-card small{
-color:#64748b;
+
+.task-top h4 {
+
+    font-size: 16px;
 }
 
-/* ================= BUTTON ================= */
 
-.bottom-section{
-text-align:center;
-margin-top:45px;
+.task-card p {
+
+    color: #2563eb;
+
+    margin-bottom: 10px;
 }
 
-.regenerate-btn{
-background:#2563eb;
-color:#fff;
-font-size:17px;
-padding:14px 35px;
+
+.task-card small {
+
+    color: #64748b;
 }
 
-/* ================= MODAL ================= */
 
-.modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.45);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:999;
+/* ==========================================================
+   AI ROADMAP INPUT CARD
+   ========================================================== */
+
+.analysis-card {
+
+    background:
+        rgba(255, 255, 255, 0.78);
+
+    backdrop-filter:
+        blur(18px);
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.08);
 }
 
-.modal-box{
-background:rgba(255,255,255,.95);
-backdrop-filter:blur(18px);
-padding:35px;
-width:420px;
-border-radius:22px;
-animation:popup .35s;
+
+.analysis-card h2 {
+
+    color: #1e293b;
+
+    margin-bottom: 8px;
 }
 
-@keyframes popup{
-from{
-transform:scale(.8);
-opacity:0;
-}
-to{
-transform:scale(1);
-opacity:1;
-}
+
+.analysis-card > p {
+
+    color: #64748b;
+
+    line-height: 1.6;
 }
 
-.modal-box h2{
-margin-bottom:10px;
+
+.input-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
 }
 
-.modal-box p{
-margin:15px 0;
-color:#64748b;
+
+.input-group label {
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #334155;
 }
 
-.modal input{
-width:100%;
-margin:15px 0;
+
+.input-group input[type="file"],
+.input-group textarea {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 12px;
+
+    background: #fff;
+
+    color: #1e293b;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
 }
 
-.modal-buttons{
-display:flex;
-justify-content:flex-end;
-gap:12px;
-margin-top:20px;
+
+.input-group textarea {
+
+    resize: vertical;
+
+    min-height: 150px;
 }
 
-.modal-buttons button:first-child{
-background:#e2e8f0;
+
+.input-group input[type="file"]:focus,
+.input-group textarea:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.12);
 }
 
-.modal-buttons button:last-child{
-background:#2563eb;
-color:#fff;
+
+/* ==========================================================
+   GENERATE BUTTON
+   ========================================================== */
+
+.bottom-section {
+
+    text-align: center;
+
+    margin-top: 35px;
+
+    margin-bottom: 25px;
 }
 
-/* ================= CHECKBOX ================= */
 
-input[type="checkbox"]{
-width:18px;
-height:18px;
-accent-color:#2563eb;
-cursor:pointer;
+.regenerate-btn {
+
+    background: #2563eb;
+
+    color: #fff;
+
+    font-size: 17px;
+
+    padding: 14px 35px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(37, 99, 235, 0.25);
 }
 
-/* ================= RESPONSIVE ================= */
 
-@media(max-width:1200px){
+.regenerate-btn:hover {
 
-.kanban-board{
-grid-template-columns:repeat(2,1fr);
+    background: #1d4ed8;
 }
 
+
+/* ==========================================================
+   MODAL
+   ========================================================== */
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(15, 23, 42, 0.55);
+
+    backdrop-filter:
+        blur(4px);
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    z-index: 9999;
 }
 
-@media(max-width:768px){
 
-.page-header{
-flex-direction:column;
-gap:20px;
+/*
+    IMPORTANT:
+    JavaScript adds the "active" class when
+    Generate AI Roadmap is clicked.
+*/
+
+.modal.active {
+
+    display: flex;
 }
 
-.roadmap-top{
-flex-direction:column;
+
+.modal-box {
+
+    background:
+        rgba(255, 255, 255, 0.98);
+
+    backdrop-filter:
+        blur(18px);
+
+    padding: 35px;
+
+    width: 420px;
+
+    max-width: 100%;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(15, 23, 42, 0.25);
+
+    animation:
+        popup 0.35s ease;
 }
 
-.controls{
-width:100%;
+
+@keyframes popup {
+
+    from {
+
+        transform:
+            scale(0.85);
+
+        opacity: 0;
+    }
+
+    to {
+
+        transform:
+            scale(1);
+
+        opacity: 1;
+    }
 }
 
-.controls button{
-flex:1;
+
+.modal-box h2 {
+
+    margin-bottom: 10px;
+
+    color: #1e293b;
 }
 
-.kanban-board{
-grid-template-columns:1fr;
+
+.modal-box p {
+
+    margin: 15px 0;
+
+    color: #64748b;
 }
 
-.progress-card{
-min-width:100%;
+
+.modal-box label {
+
+    display: block;
+
+    font-weight: 600;
+
+    margin-top: 20px;
+
+    color: #334155;
 }
 
-.modal-box{
-width:90%;
+
+.modal input[type="range"] {
+
+    width: 100%;
+
+    margin: 15px 0;
+
+    accent-color: #2563eb;
 }
 
-.title-section h1{
-font-size:32px;
+
+/* ================= MODAL BUTTONS ================= */
+
+.modal-buttons {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 20px;
 }
 
-}
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 80px;
-    background:#fff;
+
+.modal-buttons button:first-child {
+
+    background: #e2e8f0;
+
+    color: #334155;
 }
 
-.nav-right{
-    display:flex;
-    align-items:center;
-    gap:30px;          /* 60 ki jagah 30 */
+
+.modal-buttons button:first-child:hover {
+
+    background: #cbd5e1;
 }
 
-.nav-links{
-    display:flex;
-    align-items:center;
-    list-style:none;
-    gap:20px;
-    margin:0;
-    padding:0;
+
+.modal-buttons button:last-child {
+
+    background: #2563eb;
+
+    color: #fff;
 }
 
-.nav-links li{
-    list-style:none;
+
+.modal-buttons button:last-child:hover {
+
+    background: #1d4ed8;
 }
 
-.nav-links a{
-    text-decoration:none;
-    color:#333;
-    font-size:18px;
-    font-weight:500;
+
+.modal-buttons button:disabled {
+
+    cursor: not-allowed;
+
+    opacity: 0.65;
 }
 
-.dashboard-btn{
-    background:#2563eb;
-    color:white;
-    text-decoration:none;
-    padding:12px 24px;
-    border-radius:12px;
-    font-weight:600;
+
+/* ==========================================================
+   CHECKBOX
+   ========================================================== */
+
+input[type="checkbox"] {
+
+    width: 18px;
+
+    height: 18px;
+
+    flex-shrink: 0;
+
+    accent-color: #2563eb;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 1200px) {
+
+    .kanban-board {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .navbar {
+
+        padding:
+            20px 25px;
+    }
+
+
+    .nav-links {
+
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .roadmap-page {
+
+        width: 92%;
+    }
+
+
+    .navbar {
+
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+
+    .nav-right {
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    .roadmap-top {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .controls {
+
+        width: 100%;
+    }
+
+
+    .controls button {
+
+        flex: 1;
+    }
+
+
+    .kanban-board {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .progress-card {
+
+        min-width: 100%;
+    }
+
+
+    .analysis-card {
+
+        padding: 22px;
+    }
+
+
+    .modal-box {
+
+        width: 90%;
+
+        padding: 25px;
+    }
+
+
+    .title-section h1 {
+
+        font-size: 32px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .logo-img {
+
+        width: 60px;
+
+        height: 60px;
+    }
+
+
+    .logo h2 {
+
+        font-size: 19px;
+    }
+
+
+    .dashboard-btn {
+
+        padding:
+            10px 16px;
+
+        font-size: 14px;
+    }
+
+
+    .controls {
+
+        flex-direction: column;
+    }
+
+
+    .modal-buttons {
+
+        flex-direction: column;
+    }
+
+
+    .modal-buttons button {
+
+        width: 100%;
+    }
+
 }
