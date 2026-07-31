@@ -1,209 +1,419 @@
-// Animate Overall Match Bar
+/* =========================================
+   PATH TO HIRE - SKILL GAP ANALYSIS
+========================================= */
 
-window.addEventListener("load",()=>{
+document.addEventListener("DOMContentLoaded", () => {
 
-document.querySelector(".match-fill").style.width="78%";
+    const analyzeBtn = document.querySelector(".analyze-btn");
+    const results = document.getElementById("resultsSection");
+    const roadmapBtn = document.querySelector(".roadmap-btn");
 
-});
+    const roleSelect = document.querySelector("select");
+    const companyInput = document.querySelector(".input-group input");
 
-// Animate Skill Bars
+    const STORAGE_KEY = "skillGapResult";
 
-document.querySelectorAll(".fill").forEach(bar=>{
 
-setTimeout(()=>{
+    // ==========================================
+    // COMPANY CHIPS
+    // ==========================================
 
-bar.style.width=bar.dataset.width+"%";
+    document
+        .querySelectorAll(".company-chips span")
+        .forEach((chip) => {
 
-},400);
+            chip.addEventListener("click", () => {
+                if (companyInput) {
+                    companyInput.value = chip.innerText;
+                }
+            });
 
-});
+        });
 
-// Company Chips
 
-document.querySelectorAll(".company-chips span").forEach(chip=>{
+    // ==========================================
+    // RENDER RESULT
+    // ==========================================
 
-chip.addEventListener("click",()=>{
+    function renderSkillGap(ai) {
 
-document.querySelector(".input-group input").value=chip.innerText;
+        if (!ai) return;
 
-});
 
-});
+        // MATCH
 
-// Analyze Button
+        const matchFill =
+            document.getElementById("matchFill");
 
-const analyzeBtn = document.querySelector(".analyze-btn");
-const results = document.getElementById("resultsSection");
+        const matchText =
+            document.getElementById("matchText");
 
-results.style.display = "none";
 
-analyzeBtn.addEventListener("click", async (e) => {
+        const percentage =
+            Number(ai.match_percentage) || 0;
 
-    e.preventDefault();
 
-    const resumeText = localStorage.getItem("resumeText");
+        matchFill.style.width =
+            percentage + "%";
 
-    if (!resumeText) {
-        alert("Please upload your resume first.");
-        return;
+        matchFill.innerText =
+            percentage + "%";
+
+
+        matchText.innerHTML =
+            `You currently match approximately <strong>${percentage}%</strong> of the required skills.`;
+
+
+        // SUMMARY
+
+        const summary =
+            document.getElementById("aiSummary");
+
+        summary.innerText =
+            ai.role_summary || "No summary available.";
+
+
+        // SKILLS
+
+        const skillsChart =
+            document.getElementById("skillsChart");
+
+        skillsChart.innerHTML = "";
+
+
+        (ai.key_skills_found || [])
+            .forEach((skill) => {
+
+                const skillElement =
+                    document.createElement("div");
+
+                skillElement.className =
+                    "skill";
+
+
+                skillElement.innerHTML = `
+                    <span>${skill}</span>
+
+                    <div class="bar">
+                        <div
+                            class="fill"
+                            style="width: ${percentage}%"
+                        ></div>
+                    </div>
+
+                    <strong>
+                        ${percentage}%
+                    </strong>
+                `;
+
+
+                skillsChart.appendChild(
+                    skillElement
+                );
+            });
+
+
+        // MISSING SKILLS
+
+        const tbody =
+            document.getElementById(
+                "missingSkillsBody"
+            );
+
+        tbody.innerHTML = "";
+
+
+        (ai.missing_skills || [])
+            .forEach((skill) => {
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+                    <td>${skill}</td>
+
+                    <td>
+                        High
+                    </td>
+
+                    <td>
+                        2-3 Weeks
+                    </td>
+
+                    <td>
+                        <span class="badge medium">
+                            Medium
+                        </span>
+                    </td>
+                `;
+
+
+                tbody.appendChild(row);
+            });
+
+
+        // SHOW RESULTS
+
+        results.style.display =
+            "block";
+
+
+        // BUTTON STATE
+
+        analyzeBtn.innerHTML =
+            '<i class="fa-solid fa-check"></i> Analysis Complete';
+
+        analyzeBtn.style.background =
+            "#22c55e";
+
+        analyzeBtn.disabled =
+            false;
     }
 
-    const targetRole = document.querySelector("select").value;
 
-    const company = document
-        .querySelector(".input-group input")
-        .value
-        .trim();
+    // ==========================================
+    // RESTORE RESULT AFTER REFRESH
+    // ==========================================
 
-    const token = localStorage.getItem("token");
+    const savedResult =
+        sessionStorage.getItem(STORAGE_KEY);
 
-    analyzeBtn.innerHTML =
-        '<i class="fa-solid fa-spinner fa-spin"></i> Analyzing...';
 
-    analyzeBtn.disabled = true;
-try {
+    if (savedResult) {
 
-    const response = await fetch(
-    "http://127.0.0.1:8000/skill-gap-analysis",
-    {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({
-            resume_text: resumeText,
-            target_role: targetRole,
-            company: company
-        })
+        try {
+
+            const ai =
+                JSON.parse(savedResult);
+
+            renderSkillGap(ai);
+
+            console.log(
+                "Skill Gap result restored."
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Failed to restore Skill Gap result:",
+                error
+            );
+
+            sessionStorage.removeItem(
+                STORAGE_KEY
+            );
+
+            results.style.display =
+                "none";
+        }
+
+    } else {
+
+        results.style.display =
+            "none";
     }
-);
 
-const data = await response.json();
-if (!response.ok || !data.success) {
 
-    console.error(data);
+    // ==========================================
+    // ANALYZE
+    // ==========================================
 
-    alert(
-        data.detail ||
-        data.message ||
-        "Skill Gap Analysis failed."
+    analyzeBtn.addEventListener(
+        "click",
+        async (event) => {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+
+            const resumeText =
+                localStorage.getItem(
+                    "resumeText"
+                );
+
+
+            if (!resumeText) {
+
+                alert(
+                    "Please upload your resume first."
+                );
+
+                return;
+            }
+
+
+            const targetRole =
+                roleSelect
+                    ? roleSelect.value
+                    : "";
+
+
+            const company =
+                companyInput
+                    ? companyInput.value.trim()
+                    : "";
+
+
+            const token =
+                localStorage.getItem(
+                    "token"
+                );
+
+
+            if (!token) {
+
+                alert(
+                    "Your session has expired. Please login again."
+                );
+
+                window.location.href =
+                    "login.html";
+
+                return;
+            }
+
+
+            // LOADING STATE
+
+            analyzeBtn.innerHTML =
+                '<i class="fa-solid fa-spinner fa-spin"></i> Analyzing...';
+
+            analyzeBtn.disabled =
+                true;
+
+            analyzeBtn.style.background =
+                "";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://127.0.0.1:8000/skill-gap-analysis",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
+
+                                "Authorization":
+                                    `Bearer ${token}`
+                            },
+
+                            body: JSON.stringify({
+                                resume_text:
+                                    resumeText,
+
+                                target_role:
+                                    targetRole,
+
+                                company:
+                                    company
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                console.log(
+                    "Skill Gap Response:",
+                    data
+                );
+
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.detail ||
+                        data.message ||
+                        "Skill Gap Analysis failed."
+                    );
+                }
+
+
+                const ai =
+                    data.data;
+
+
+                if (!ai) {
+
+                    throw new Error(
+                        "AI response is empty."
+                    );
+                }
+
+
+                // SAVE BEFORE RENDERING
+                // so refresh cannot destroy the result
+
+                sessionStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify(ai)
+                );
+
+
+                renderSkillGap(ai);
+
+
+                results.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+
+            } catch (error) {
+
+                console.error(
+                    "Skill Gap Error:",
+                    error
+                );
+
+
+                alert(
+                    error.message ||
+                    "Skill Gap Analysis failed."
+                );
+
+
+                analyzeBtn.innerHTML =
+                    '<i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Skill Gap';
+
+                analyzeBtn.disabled =
+                    false;
+
+                analyzeBtn.style.background =
+                    "";
+
+            }
+
+        }
     );
 
-    analyzeBtn.innerHTML =
-        '<i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Skill Gap';
 
-    analyzeBtn.disabled = false;
+    // ==========================================
+    // ROADMAP
+    // ==========================================
 
-    return;
-}
-console.log("FULL RESPONSE:", data);
-console.log("AI OBJECT:", data.data);
+    if (roadmapBtn) {
 
-console.log(data);
+        roadmapBtn.addEventListener(
+            "click",
+            (event) => {
 
-const ai = data.data;
-if (!ai) throw new Error("AI response is empty");
-console.log("FULL DATA:", data);
-console.log("AI JSON:", JSON.stringify(ai, null, 2));
-console.log("Matching:", ai.key_skills_found);
-console.log("Missing:", ai.missing_skills);
-// ================= MATCH =================
+                event.preventDefault();
 
-const matchFill = document.getElementById("matchFill");
-const matchText = document.getElementById("matchText");
-
-matchFill.style.width = ai.match_percentage + "%";
-matchFill.innerText = ai.match_percentage + "%";
-
-matchText.innerHTML =
-    `You currently match approximately <strong>${ai.match_percentage}%</strong> of the required skills.`;
-
-// ================= SUMMARY =================
-
-document.getElementById("aiSummary").innerText =
-    ai.role_summary;
-
-// ================= SKILLS =================
-
-const skillsChart = document.getElementById("skillsChart");
-
-skillsChart.innerHTML = "";
-
-(ai.key_skills_found || []).forEach(skill => {
-
-    skillsChart.innerHTML += `
-        <div class="skill">
-            <span>${skill}</span>
-
-            <div class="bar">
-                <div class="fill" style="width:${ai.match_percentage}%"></div>
-            </div>
-
-            <strong>${ai.match_percentage}%</strong>
-        </div>
-    `;
-
-});
-
-// ================= MISSING SKILLS =================
-
-const tbody =
-document.getElementById("missingSkillsBody");
-
-tbody.innerHTML = "";
-
-(ai.missing_skills || []).forEach(skill => {
-
-    tbody.innerHTML += `
-        <tr>
-            <td>${skill}</td>
-            <td>High</td>
-            <td>2-3 Weeks</td>
-            <td>
-                <span class="badge medium">
-                    Medium
-                </span>
-            </td>
-        </tr>
-    `;
-
-});
-
-analyzeBtn.innerHTML =
-'<i class="fa-solid fa-check"></i> Analysis Complete';
-
-analyzeBtn.style.background = "#22c55e";
-
-console.log("Showing Results...");
-results.style.display = "block";
-console.log("Results Visible");
-
-
-results.scrollIntoView({
-    behavior: "smooth"
-});
-
-} catch (error) {
-
-    console.error(error);
-
-    console.error(error.stack);
-
-    alert(error.message);
-
-    analyzeBtn.disabled = false;
-
-    analyzeBtn.innerHTML =
-    '<i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Skill Gap';
-
-}
-});
-
-// Generate Roadmap
-
-document.querySelector(".roadmap-btn").addEventListener("click",()=>{
-
-window.location.href="roadmap.html";
+                window.location.href =
+                    "roadmap.html";
+            }
+        );
+    }
 
 });

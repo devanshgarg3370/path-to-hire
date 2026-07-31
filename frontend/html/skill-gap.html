@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,16 +9,22 @@
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
     <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/frontend/css/skill-gap.css">
-
+    <link
+        rel="stylesheet"
+        href="/frontend/css/skill-gap.css"
+    >
 </head>
 
 <body>
@@ -28,50 +33,83 @@
 
     <!-- ================= HEADER ================= -->
 
-   <header class="navbar">
+    <header class="navbar">
 
-    <div class="logo">
-        <img src="/frontend/assets/images/logo.png" class="logo-img">
-        <h2>Path to Hire</h2>
-    </div>
+        <div class="logo">
+            <img
+                src="/frontend/assets/images/logo.png"
+                class="logo-img"
+                alt="Path to Hire Logo"
+            >
 
-    <div class="nav-right">
-
-        <ul class="nav-links">
-            <li><a href="landing.html#home">Home</a></li>
-            <li><a href="landing.html#features">Features</a></li>
-            <li><a href="landing.html#how-it-works">How it Works</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-
-        <a href="dashboard.html" class="dashboard-btn">
-            <i class="fa-solid fa-arrow-left"></i>
-            Dashboard
-        </a>
-
-    </div>
-
-</header>
+            <h2>Path to Hire</h2>
+        </div>
 
 
+        <div class="nav-right">
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="landing.html#home">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="landing.html#features">
+                        Features
+                    </a>
+                </li>
+
+                <li>
+                    <a href="landing.html#how-it-works">
+                        How it Works
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <a
+                href="dashboard.html"
+                class="dashboard-btn"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Dashboard
+
+            </a>
+
+        </div>
+
+    </header>
 
 
     <!-- ================= PAGE TITLE ================= -->
 
     <section class="page-title">
 
-        <h1>Skill Gap Analysis</h1>
+        <h1>
+            Skill Gap Analysis
+        </h1>
 
         <p>
-            Compare your current skills with your dream role and receive
-            an AI-generated learning roadmap.
+            Compare your current skills with your dream role
+            and receive an AI-generated learning roadmap.
         </p>
 
     </section>
 
 
-
-    <!-- ================= ANALYSIS FORM ================= -->
+    <!-- ================= ANALYSIS ================= -->
 
     <section class="analysis-card">
 
@@ -81,69 +119,83 @@
 
             <div class="input-group">
 
-                <label>Target Role</label>
+                <label for="targetRole">
+                    Target Role
+                </label>
 
-                <select>
+                <select id="targetRole">
 
-                    <option>Frontend Developer</option>
+                    <option value="Frontend Developer">
+                        Frontend Developer
+                    </option>
 
-                    <option>Backend Developer</option>
+                    <option value="Backend Developer">
+                        Backend Developer
+                    </option>
 
-                    <option>Full Stack Developer</option>
+                    <option value="Full Stack Developer">
+                        Full Stack Developer
+                    </option>
 
-                    <option>AI Engineer</option>
+                    <option value="AI Engineer">
+                        AI Engineer
+                    </option>
 
-                    <option>Data Scientist</option>
+                    <option value="Data Scientist">
+                        Data Scientist
+                    </option>
 
-                    <option>Machine Learning Engineer</option>
+                    <option value="Machine Learning Engineer">
+                        Machine Learning Engineer
+                    </option>
 
                 </select>
 
             </div>
 
 
-
-            <!-- Company -->
+            <!-- Target Company -->
 
             <div class="input-group">
 
-                <label>Target Company</label>
+                <label for="targetCompany">
+                    Target Company
+                </label>
 
                 <input
                     type="text"
-                    placeholder="Search company...">
+                    id="targetCompany"
+                    placeholder="Search company..."
+                >
 
             </div>
 
         </div>
 
 
-
-        <!-- Suggested Companies -->
+        <!-- Company Suggestions -->
 
         <div class="company-chips">
 
             <span>Google</span>
-
             <span>Microsoft</span>
-
             <span>Amazon</span>
-
             <span>Adobe</span>
-
             <span>Oracle</span>
-
             <span>Infosys</span>
-
             <span>TCS</span>
-
             <span>Accenture</span>
 
         </div>
 
 
+        <!-- Analyze Button -->
 
-        <button class="analyze-btn">
+        <button
+            type="button"
+            class="analyze-btn"
+            id="analyzeBtn"
+        >
 
             <i class="fa-solid fa-wand-magic-sparkles"></i>
 
@@ -154,61 +206,83 @@
     </section>
 
 
-
     <!-- ================= RESULTS ================= -->
 
-    <section class="results-section" id="resultsSection" style="display:none;">
-        <h2>Analysis Results</h2>
+    <section
+        class="results-section"
+        id="resultsSection"
+        style="display: none;"
+    >
+
+        <h2>
+            Analysis Results
+        </h2>
 
 
-
-        <!-- Skill Match -->
+        <!-- ================= MATCH ================= -->
 
         <div class="match-card">
 
-            <h3>Overall Skill Match</h3>
+            <h3>
+                Overall Skill Match
+            </h3>
+
 
             <div class="match-bar">
 
-                <div class="match-fill" id="matchFill">
-                78%
-             </div>
+                <div
+                    class="match-fill"
+                    id="matchFill"
+                    style="width: 0%;"
+                >
+                    0%
+                </div>
 
             </div>
 
+
             <p id="matchText">
-               You currently match approximately
-               <strong>78%</strong> of the required skills.
-           </p>
+
+                You currently match approximately
+
+                <strong>0%</strong>
+
+                of the required skills.
+
+            </p>
 
         </div>
 
 
-
-        <!-- Skill Match Breakdown -->
+        <!-- ================= SKILLS ================= -->
 
         <div class="chart-section">
 
-    <h3>Skill Match Breakdown</h3>
-
-    <div class="skills-chart" id="skillsChart">
-
-        <!-- AI will insert skills here -->
-
-    </div>
-
-      
+            <h3>
+                Skill Match Breakdown
+            </h3>
 
 
+            <div
+                class="skills-chart"
+                id="skillsChart"
+            >
 
-         </div>
+                <!-- AI generated skills -->
+
+            </div>
+
+        </div>
 
 
-        <!-- Missing Skills Table -->
+        <!-- ================= MISSING SKILLS ================= -->
 
         <div class="table-card">
 
-            <h3>Missing Skills</h3>
+            <h3>
+                Missing Skills
+            </h3>
+
 
             <table>
 
@@ -216,21 +290,31 @@
 
                     <tr>
 
-                        <th>Skill</th>
+                        <th>
+                            Skill
+                        </th>
 
-                        <th>Priority</th>
+                        <th>
+                            Priority
+                        </th>
 
-                        <th>Learning Time</th>
+                        <th>
+                            Learning Time
+                        </th>
 
-                        <th>Difficulty</th>
+                        <th>
+                            Difficulty
+                        </th>
 
                     </tr>
 
                 </thead>
 
+
                 <tbody id="missingSkillsBody">
 
-                    
+                    <!-- AI generated rows -->
+
                 </tbody>
 
             </table>
@@ -238,24 +322,28 @@
         </div>
 
 
-
-        <!-- Summary -->
+        <!-- ================= SUMMARY ================= -->
 
         <div class="summary-card">
 
-            <h3>AI Summary</h3>
+            <h3>
+                AI Summary
+            </h3>
 
             <p id="aiSummary"></p>
 
         </div>
 
 
-
-        <!-- CTA -->
+        <!-- ================= ROADMAP ================= -->
 
         <div class="cta-section">
 
-            <button class="roadmap-btn">
+            <button
+                type="button"
+                class="roadmap-btn"
+                id="roadmapBtn"
+            >
 
                 <i class="fa-solid fa-road"></i>
 
@@ -269,9 +357,10 @@
 
 </div>
 
+<!-- ================= JAVASCRIPT ================= -->
+
 <script src="/frontend/js/auth-guard.js"></script>
 <script src="/frontend/js/skill-gap.js"></script>
 
 </body>
-
 </html>

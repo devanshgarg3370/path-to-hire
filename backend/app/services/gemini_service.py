@@ -11,6 +11,11 @@ logger = logging.getLogger(__name__)
 
 API_KEY = os.getenv("GEMINI_API_KEY")
 
+GEMINI_MODEL = os.getenv(
+    "GEMINI_MODEL",
+    "gemini-3.5-flash-lite",
+)
+
 if not API_KEY:
     raise ValueError(
         "GEMINI_API_KEY not found. Check your .env file."
@@ -23,14 +28,17 @@ def ask_gemini(prompt: str):
     """
     Sends a prompt to Gemini and returns parsed JSON.
     """
+
     try:
         response = client.models.generate_content(
-            model="gemini-3.6-flash",
+            model=GEMINI_MODEL,
             contents=prompt,
         )
 
         if not response or not response.text:
-            raise ValueError("Gemini returned an empty response.")
+            raise ValueError(
+                "Gemini returned an empty response."
+            )
 
         text = (
             response.text
@@ -42,12 +50,16 @@ def ask_gemini(prompt: str):
         return json.loads(text)
 
     except json.JSONDecodeError as e:
-        logger.exception("Gemini returned invalid JSON.")
+        logger.exception(
+            "Gemini returned invalid JSON."
+        )
 
         raise ValueError(
             f"Invalid JSON received from Gemini.\n\n{text}"
         ) from e
 
     except Exception:
-        logger.exception("Gemini request failed.")
+        logger.exception(
+            "Gemini request failed."
+        )
         raise
