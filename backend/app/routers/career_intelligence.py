@@ -20,8 +20,11 @@ from app.services.gemini_service import ask_gemini
 from app.services.history_service import save_history
 
 from app.prompts.career_intelligence_prompt import CAREER_INTELLIGENCE_PROMPT
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
+class CareerAnalysisRequest(BaseModel):
+    resume_text: str
 
 router = APIRouter(
     prefix="/career-intelligence",
@@ -34,17 +37,15 @@ router = APIRouter(
     status_code=status.HTTP_200_OK,
 )
 async def generate_career_intelligence(
-    resume: UploadFile = File(...),
-    target_role: str = Form("Software Engineer"),
+    request: CareerAnalysisRequest,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
     try:
 
-        resume_text = await extract_text_from_pdf(resume)
+        resume_text = request.resume_text
 
         prompt = CAREER_INTELLIGENCE_PROMPT.format(
-            target_role=target_role,
             resume_text=resume_text,
         )
 
@@ -53,16 +54,16 @@ async def generate_career_intelligence(
         save_history(
             db=db,
             user_id=current_user.id,
-            feature="Career Intelligence",
-            input_text=resume.filename,
-            output_text=response,
+            feature_name="career-intelligence",
+            file_name="Stored Resume",
+            response=str(response),
         )
 
+        
         return {
-            "success": True,
-            "message": "Career Intelligence Report generated successfully.",
-            "target_role": target_role,
-            "report": response,
+           "success": True,
+           "message": "Career Intelligence Report generated successfully.",
+            "data": response,
         }
 
     except Exception as e:

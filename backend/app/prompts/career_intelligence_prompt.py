@@ -1,10 +1,7 @@
 CAREER_INTELLIGENCE_PROMPT = """
 You are an elite AI Career Intelligence Coach.
 
-Analyze the following resume for the target role:
-
-TARGET ROLE:
-{target_role}
+Analyze the following resume and generate a comprehensive AI Career Intelligence Report.
 
 RESUME:
 {resume_text}
