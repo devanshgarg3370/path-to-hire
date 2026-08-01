@@ -1,127 +1,115 @@
-
 const API_URL =
-"http://127.0.0.1:8000/career-intelligence/";
+    "http://127.0.0.1:8000/career-intelligence/";
 
 
+async function loadCareerReport() {
 
-async function loadCareerReport(){
+    try {
 
+        const resumeText =
+            localStorage.getItem("resumeText");
 
-try{
-
-const resumeText =
-    localStorage.getItem("resumeText");
-
-const token =
-    localStorage.getItem("token");
-
-if (!resumeText) {
-
-    alert(
-        "Please upload and analyze your resume first."
-    );
-
-    return;
-}
-
-if (!token) {
-
-    alert(
-        "Please login again."
-    );
-
-    return;
-}
-const requestBody = {
-
-    resume_text: resumeText
-
-};
-
-const response =
-    await fetch(API_URL, {
-
-        method: "POST",
-
-        headers: {
-
-            Authorization:
-                `Bearer ${token}`,
-
-            "Content-Type":
-                "application/json"
-
-        },
-
-        body:
-            JSON.stringify(requestBody)
-
-    });
+        const token =
+            localStorage.getItem("token");
 
 
-const data =
-await response.json();
+        if (!resumeText) {
 
-console.log(data);
+            alert(
+                "Please upload and analyze your resume first."
+            );
 
-
-
-document.getElementById(
-"candidateName"
-).innerHTML=data.name;
+            return;
+        }
 
 
+        if (!token) {
 
-document.getElementById(
-"resumeScore"
-).innerHTML=
-data.resume_score+"%";
+            alert(
+                "Please login again."
+            );
 
-
-
-document.getElementById(
-"atsScore"
-).innerHTML=
-data.ats_score+"%";
+            return;
+        }
 
 
+        const requestBody = {
 
-document.getElementById(
-"resumeAnalysis"
-).innerHTML=
-data.analysis;
+            resume_text: resumeText
 
-
-
-document.getElementById(
-"careerSuggestion"
-).innerHTML=
-data.career;
+        };
 
 
+        const response =
+            await fetch(API_URL, {
 
-}
+                method: "POST",
 
-catch(error){
+                headers: {
 
-console.log(error);
+                    Authorization:
+                        `Bearer ${token}`,
+
+                    "Content-Type":
+                        "application/json"
+
+                },
+
+                body:
+                    JSON.stringify(requestBody)
+
+            });
+
+
+        console.log("HTTP Status:", response.status);
+
+        const responseData =
+            await response.json();
+
+        console.log("Full API Response:");
+        console.log(responseData);
+
+
+        if (!response.ok) {
+
+            alert(
+                responseData.detail ||
+                "Failed to generate Career Intelligence Report."
+            );
+
+            return;
+
+        }
+
+
+        const report =
+            responseData.data;
+
+        console.log("Career Intelligence Report:");
+        console.log(report);
+
+
+        // Rendering will start after we verify the JSON.
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Career Intelligence Error:",
+            error
+        );
+
+    }
 
 }
-
-
-}
-
 
 
 loadCareerReport();
 
 
+function downloadPDF() {
 
-
-
-
-function downloadPDF(){
-
-window.print();
+    window.print();
 
 }

@@ -1,10 +1,7 @@
 CAREER_INTELLIGENCE_PROMPT = """
 You are an elite AI Career Intelligence Coach.
 
-Analyze the following resume for the target role.
-
-TARGET ROLE:
-{target_role}
+Analyze the following resume and generate a complete AI Career Intelligence Report.
 
 RESUME:
 {resume_text}
@@ -19,71 +16,71 @@ If information is unavailable, use empty strings or empty arrays.
 
 Return the following JSON structure exactly:
 
-{
+{{
   "career_score": 0,
   "career_score_reason": "",
 
   "resume_summary": "",
 
-  "ats_analysis": {
+  "ats_analysis": {{
     "score": 0,
     "formatting": "",
     "keywords": "",
     "missing_sections": [],
     "improvements": []
-  },
+  }},
 
   "strengths": [],
 
   "weaknesses": [],
 
-  "missing_skills": {
+  "missing_skills": {{
     "technical": [],
     "soft": []
-  },
+  }},
 
   "best_job_roles": [
-    {
+    {{
       "role": "",
       "match_percentage": 0,
       "reason": ""
-    }
+    }}
   ],
 
-  "recruiter_feedback": {
+  "recruiter_feedback": {{
     "decision": "",
     "reason": ""
-  },
+  }},
 
-  "interview_readiness": {
+  "interview_readiness": {{
     "overall_score": 0,
     "technical": 0,
     "communication": 0,
     "resume": 0,
     "summary": ""
-  },
+  }},
 
   "learning_roadmap": [
-    {
+    {{
       "week": 1,
       "focus": "",
       "tasks": []
-    },
-    {
+    }},
+    {{
       "week": 2,
       "focus": "",
       "tasks": []
-    },
-    {
+    }},
+    {{
       "week": 3,
       "focus": "",
       "tasks": []
-    },
-    {
+    }},
+    {{
       "week": 4,
       "focus": "",
       "tasks": []
-    }
+    }}
   ],
 
   "recommended_projects": [],
@@ -96,21 +93,21 @@ Return the following JSON structure exactly:
 
   "cover_letter_summary": "",
 
-  "cold_outreach_strategy": {
+  "cold_outreach_strategy": {{
     "subject": "",
     "email": ""
-  },
+  }},
 
-  "linkedin_optimization": {
+  "linkedin_optimization": {{
     "headline": "",
     "about": "",
     "skills": [],
     "featured_projects": []
-  },
+  }},
 
-  "final_verdict": {
+  "final_verdict": {{
     "decision": "",
     "reason": ""
-  }
-}
+  }}
+}}
 """
