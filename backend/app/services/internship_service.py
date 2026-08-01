@@ -29,4 +29,7 @@ def get_internships(role):
         params=querystring
     )
 
+    print("STATUS:", response.status_code)
+    print("BODY:", response.text)
+
     return response.json()
