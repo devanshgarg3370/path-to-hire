@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Career Intelligence AI Report</title>
+
+<link rel="stylesheet" href="/frontend/css/career-intelligence.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+</head>
+
+
+<body>
+
+
+<div class="report-container">
+
+
+<header class="report-header">
+
+<div>
+<h1>Career Intelligence</h1>
+
+<p>
+AI Powered Resume & Career Analysis Report
+</p>
+
+</div>
+
+
+<div id="report-id">
+
+Report ID:
+<span>CI-2026-00125</span>
+
+</div>
+
+
+</header>
+
+
+
+<section class="candidate-card">
+
+
+<h2>👤 Candidate Information</h2>
+
+
+<div class="candidate-grid">
+
+
+<div>
+<label>Name</label>
+<p id="candidateName">Rashi Gupta</p>
+</div>
+
+
+<div>
+<label>Role</label>
+<p id="candidateRole">Software Developer</p>
+</div>
+
+
+
+<div>
+<label>Email</label>
+<p id="candidateEmail">
+example@gmail.com
+</p>
+</div>
+
+
+<div>
+<label>Experience</label>
+<p id="experience">
+Fresher
+</p>
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section class="score-section">
+
+
+<div class="score-card">
+
+<h3>Resume Score</h3>
+
+<div class="circle">
+
+<span id="resumeScore">
+85%
+</span>
+
+</div>
+
+</div>
+
+
+
+
+<div class="score-card">
+
+
+<h3>ATS Score</h3>
+
+
+<div class="circle">
+
+<span id="atsScore">
+92%
+</span>
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+<section class="analysis-card">
+
+
+<h2>📄 Resume Analysis</h2>
+
+
+<p id="resumeAnalysis">
+
+
+Your resume shows strong frontend development skills.
+Projects demonstrate practical implementation.
+Improve backend and system design knowledge.
+
+
+</p>
+
+
+</section>
+
+
+
+
+
+
+<section class="analysis-card">
+
+
+<h2>🚀 Skill Gap Analysis</h2>
+
+
+
+<ul id="skillGap">
+
+
+<li>Advanced React Concepts</li>
+
+<li>Backend API Security</li>
+
+<li>Cloud Deployment</li>
+
+<li>System Design Basics</li>
+
+
+</ul>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="analysis-card">
+
+
+<h2>📚 AI Learning Roadmap</h2>
+
+
+
+<div class="timeline">
+
+
+<div>
+<h3>Month 1</h3>
+<p>Master DSA & JavaScript Fundamentals</p>
+</div>
+
+
+<div>
+<h3>Month 2</h3>
+<p>Backend Development + Databases</p>
+</div>
+
+
+<div>
+<h3>Month 3</h3>
+<p>AI Integration & Deployment</p>
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="analysis-card">
+
+
+<h2>🎤 Mock Interview Result</h2>
+
+
+<div class="interview">
+
+
+<p>
+Technical Score:
+<strong>8.5/10</strong>
+</p>
+
+
+<p>
+Communication:
+<strong>8/10</strong>
+</p>
+
+
+<p>
+Confidence:
+<strong>7.8/10</strong>
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<section class="analysis-card">
+
+
+<h2>
+💼 Internship Recommendations
+</h2>
+
+
+
+<div class="recommendations">
+
+
+<div>
+<h3>Frontend Developer Intern</h3>
+<p>React, JavaScript, UI Development</p>
+</div>
+
+
+<div>
+
+<h3>AI Developer Intern</h3>
+
+<p>
+Python, ML, Generative AI
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<section class="analysis-card">
+
+
+<h2>
+🤖 AI Career Suggestion
+</h2>
+
+
+<h3 id="careerSuggestion">
+
+Full Stack AI Developer
+
+</h3>
+
+
+<p>
+
+Based on your skills and resume,
+AI recommends focusing on MERN Stack,
+Generative AI and Cloud Technologies.
+
+</p>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="chart-card">
+
+
+<h2>
+📊 Skills Progress
+</h2>
+
+
+<canvas id="skillChart"></canvas>
+
+
+
+</section>
+
+
+
+
+
+
+
+<section class="qr-section">
+
+
+<h2>
+Verification QR
+</h2>
+
+
+<div id="qrcode"></div>
+
+
+</section>
+
+
+
+
+
+
+
+<div class="buttons">
+
+
+<button onclick="window.print()">
+
+🖨 Print Report
+
+</button>
+
+
+<button onclick="downloadPDF()">
+
+⬇ Download PDF
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+<script src="/frontend/js/career-intelligence.js"></script>
+
+
+</body>
+
+</html>
