@@ -1,137 +1,116 @@
 CAREER_INTELLIGENCE_PROMPT = """
 You are an elite AI Career Intelligence Coach.
 
-Analyze the following resume and generate a comprehensive AI Career Intelligence Report.
+Analyze the following resume for the target role.
+
+TARGET ROLE:
+{target_role}
 
 RESUME:
 {resume_text}
 
-Generate a COMPLETE Career Intelligence Report in clean Markdown.
+Return ONLY valid JSON.
 
-The report must include:
+Do NOT return Markdown.
+Do NOT wrap the JSON inside ```json.
+Do NOT add explanations before or after the JSON.
+Every field must always exist.
+If information is unavailable, use empty strings or empty arrays.
 
-# 🎯 Overall Career Score
-Give a score out of 100.
+Return the following JSON structure exactly:
 
-Explain why.
+{
+  "career_score": 0,
+  "career_score_reason": "",
 
----
+  "resume_summary": "",
 
-# 📄 Resume Summary
-Summarize the candidate in 5-6 lines.
+  "ats_analysis": {
+    "score": 0,
+    "formatting": "",
+    "keywords": "",
+    "missing_sections": [],
+    "improvements": []
+  },
 
----
+  "strengths": [],
 
-# 🤖 ATS Score
-Score out of 100.
+  "weaknesses": [],
 
-Explain:
-- Formatting
-- Keywords
-- Missing sections
-- ATS Improvements
+  "missing_skills": {
+    "technical": [],
+    "soft": []
+  },
 
----
+  "best_job_roles": [
+    {
+      "role": "",
+      "match_percentage": 0,
+      "reason": ""
+    }
+  ],
 
-# 💪 Top Strengths
-List at least 5 strengths.
+  "recruiter_feedback": {
+    "decision": "",
+    "reason": ""
+  },
 
----
+  "interview_readiness": {
+    "overall_score": 0,
+    "technical": 0,
+    "communication": 0,
+    "resume": 0,
+    "summary": ""
+  },
 
-# ⚠ Weaknesses
-List weaknesses that can reduce interview chances.
+  "learning_roadmap": [
+    {
+      "week": 1,
+      "focus": "",
+      "tasks": []
+    },
+    {
+      "week": 2,
+      "focus": "",
+      "tasks": []
+    },
+    {
+      "week": 3,
+      "focus": "",
+      "tasks": []
+    },
+    {
+      "week": 4,
+      "focus": "",
+      "tasks": []
+    }
+  ],
 
----
+  "recommended_projects": [],
 
-# 🛠 Missing Skills
-List technical and soft skills missing for the target role.
+  "recommended_certifications": [],
 
----
+  "interview_questions": [],
 
-# 💼 Best Job Roles
-Recommend the best matching job roles.
+  "resume_improvement_suggestions": [],
 
----
+  "cover_letter_summary": "",
 
-# 👨‍💼 Recruiter Feedback
-Write feedback exactly as if you are a recruiter reviewing this resume.
+  "cold_outreach_strategy": {
+    "subject": "",
+    "email": ""
+  },
 
-Mention:
-- Hire / Consider / Reject
-- Why
+  "linkedin_optimization": {
+    "headline": "",
+    "about": "",
+    "skills": [],
+    "featured_projects": []
+  },
 
----
-
-# 📈 Interview Readiness
-Rate readiness out of 10.
-
-Mention:
-- Technical
-- Communication
-- Resume
-
----
-
-# 📚 30-Day Learning Roadmap
-
-Week 1
-
-Week 2
-
-Week 3
-
-Week 4
-
----
-
-# 🚀 Recommended Projects
-Suggest 5 projects that improve employability.
-
----
-
-# 🎓 Recommended Certifications
-Suggest relevant certifications.
-
----
-
-# ❓ Top Interview Questions
-Generate 15 interview questions based on the resume.
-
----
-
-# 📝 Resume Improvement Suggestions
-Provide detailed improvements.
-
----
-
-# 💌 Cover Letter Summary
-Generate a professional cover letter summary.
-
----
-
-# 📧 Cold Outreach Strategy
-Generate a cold email template for recruiters.
-
----
-
-# 🔗 LinkedIn Optimization
-Suggest:
-- Headline
-- About Section
-- Skills
-- Featured Projects
-
----
-
-Finally conclude with:
-
-## Final Verdict
-
-Should this candidate start applying immediately?
-
-or
-
-Should they spend another 30 days improving?
-
-Explain why.
+  "final_verdict": {
+    "decision": "",
+    "reason": ""
+  }
+}
 """
