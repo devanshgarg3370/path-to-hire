@@ -44,7 +44,7 @@ from app.prompts.cold_email_prompt import COLD_EMAIL_PROMPT
 from app.prompts.linkedin_prompt import LINKEDIN_PROMPT
 from app.prompts.career_copilot_prompt import CAREER_COPILOT_PROMPT
 from pydantic import BaseModel
-
+from app.services.internship_service import get_internships
 logger = logging.getLogger(__name__)
 
 router = APIRouter(
@@ -901,4 +901,42 @@ Career Goal:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=str(e),
+        )
+
+@router.post("/internship-recommendations")
+async def internship_recommendations(
+    file: UploadFile = File(...),
+):
+    try:
+        await validate_pdf(file)
+
+        resume_text = extract_text_from_pdf(file)
+
+        prompt = JOB_RECOMMENDATION_PROMPT.format(
+            resume=resume_text
+        )
+
+        result = ask_gemini(prompt)
+
+        role = "Software Engineer"
+
+        if (
+            isinstance(result, dict)
+            and "recommended_jobs" in result
+            and len(result["recommended_jobs"]) > 0
+        ):
+            role = result["recommended_jobs"][0]["role"]
+
+        internships = get_internships(role)
+
+        return {
+            "success": True,
+            "recommended_role": role,
+            "internships": internships
+        }
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
         )

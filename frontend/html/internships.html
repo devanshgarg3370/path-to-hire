@@ -232,33 +232,40 @@
                 INTERNSHIP RESULTS
         ====================================== -->
 
-        <main class="results-section">
+<main class="results-section">
 
-            <div class="results-header">
+    <div class="results-header">
 
-                <h1>
+        <h1>
+            Recommended Internships
+        </h1>
 
-                    Recommended Internships
+        <p>
+            Personalized recommendations based on your resume.
+        </p>
 
-                </h1>
+    </div>
 
-                <p>
+    <!-- Upload Resume -->
 
-                    Personalized recommendations based on your resume.
+    <div class="upload-section">
 
-                </p>
+        <input
+            type="file"
+            id="resumeFile"
+            accept=".pdf">
 
-            </div>
+        <button id="loadInternships">
+            Get Recommendations
+        </button>
 
+    </div>
 
+    <!-- Dynamic Cards -->
 
-
-
-            <!-- Dynamic Cards -->
-
-            <div
-                id="internshipGrid"
-                class="internship-grid">
+    <div
+        id="internshipGrid"
+        class="internship-grid">          
 
                 <!-- JavaScript will create cards -->
 

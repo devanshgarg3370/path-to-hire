@@ -65,65 +65,58 @@ document.getElementById(
 // ===============================
 
 
-const internships=[
+let internships = [];
+async function loadInternships() {
 
+    const fileInput = document.getElementById("resumeFile");
 
-{
-title:"Frontend Developer Intern",
-company:"Google",
-location:"Bangalore",
-stipend:50000,
-type:"MNC",
-remote:true,
-skills:["React","JavaScript"]
-},
+    if (!fileInput.files.length) {
+        alert("Please upload your resume.");
+        return;
+    }
 
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
 
-{
-title:"Backend Developer Intern",
-company:"Microsoft",
-location:"Hyderabad",
-stipend:60000,
-type:"MNC",
-remote:false,
-skills:["Node.js","MongoDB"]
-},
+    const token = localStorage.getItem("token");
 
+    try {
 
-{
-title:"AI Engineer Intern",
-company:"OpenAI Startup",
-location:"Delhi NCR",
-stipend:30000,
-type:"Startup",
-remote:true,
-skills:["Python","ML"]
-},
+        const response = await fetch(
+            "http://127.0.0.1:8000/internship-recommendations",
+            {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                body: formData
+            }
+        );
 
+        const result = await response.json();
 
-{
-title:"Full Stack Developer",
-company:"Infosys",
-location:"Pune",
-stipend:25000,
-type:"Service Based",
-remote:false,
-skills:["MERN"]
-},
+        console.log(JSON.stringify(result, null, 2));
 
+        if (!result.success) {
+            alert("Failed to load internships");
+            return;
+        }
 
-{
-title:"Software Developer Intern",
-company:"Amazon",
-location:"Mumbai",
-stipend:70000,
-type:"Product Based",
-remote:true,
-skills:["Java","DSA"]
+        internships = result.internships.data.jobs || [];
+        console.log(internships);
+
+        displayInternships(internships);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+        alert("Something went wrong.");
+
+    }
+
 }
-
-
-];
 
 
 
@@ -135,140 +128,63 @@ skills:["Java","DSA"]
 // ===============================
 
 
-function displayInternships(data){
+function displayInternships(data) {
 
+    internshipGrid.innerHTML = "";
 
-internshipGrid.innerHTML="";
+    if (data.length === 0) {
+        emptyState.style.display = "block";
+        return;
+    }
 
+    emptyState.style.display = "none";
 
+    data.forEach((item, index) => {
 
-if(data.length===0)
-{
+        let card = document.createElement("div");
 
+        card.className = "internship-card";
 
-emptyState.style.display="block";
+        card.innerHTML = `
 
-return;
+        <div class="company-logo">
+            <i class="fa-solid fa-building"></i>
+        </div>
 
+        <h3>${item.job_title}</h3>
+
+        <p class="company">
+            ${item.employer_name}
+        </p>
+
+        <div class="details">
+
+            <p>📍 ${item.job_city || "India"}</p>
+
+            <p>
+                ${item.job_is_remote ? "🌐 Remote" : "🏢 Onsite"}
+            </p>
+
+        </div>
+
+        <div class="card-buttons">
+
+            <a
+                class="apply-btn"
+                href="${item.job_apply_link}"
+                target="_blank">
+                Apply
+            </a>
+
+        </div>
+
+        `;
+
+        internshipGrid.appendChild(card);
+
+    });
 
 }
-
-
-else{
-
-
-emptyState.style.display="none";
-
-
-}
-
-
-
-
-
-
-data.forEach(
-(item,index)=>{
-
-
-let card =
-document.createElement("div");
-
-
-card.className=
-"internship-card";
-
-
-
-card.innerHTML=`
-
-<div class="company-logo">
-
-<i class="fa-solid fa-building"></i>
-
-</div>
-
-
-<h3>
-${item.title}
-</h3>
-
-
-<p class="company">
-
-${item.company}
-
-</p>
-
-
-
-<div class="details">
-
-
-<p>
-📍 ${item.location}
-</p>
-
-
-<p>
-💰 ₹${item.stipend}
-</p>
-
-
-<p>
-${item.remote?"🌐 Remote":"🏢 Onsite"}
-</p>
-
-
-</div>
-
-
-
-${item.skills.map(skill=>
-
-`<span class="badge">${skill}</span>`
-
-).join("")}
-
-
-
-<div class="card-buttons">
-
-<button class="apply-btn"
-onclick="applyInternship('${item.title}')">
-
-Apply
-
-</button>
-
-
-<button class="save-btn"
-onclick="saveInternship(${index})">
-
-♡ Save
-
-</button>
-
-</div>
-
-`;
-
-
-
-internshipGrid.appendChild(card);
-
-
-});
-
-
-
-}
-
-
-
-
-
-
 
 // ===============================
 // FILTER FUNCTION
@@ -363,10 +279,9 @@ Number(stipend.value)
 
 
 
-applyFilters.addEventListener(
-"click",
-filterInternships
-);
+applyFilters.addEventListener("click", () => {
+    displayInternships(internships);
+});
 
 
 
@@ -479,9 +394,9 @@ alert(
 // INITIAL LOAD
 
 
-displayInternships(
-internships
-);
+document
+    .getElementById("loadInternships")
+    .addEventListener("click", loadInternships);
 
 
 
